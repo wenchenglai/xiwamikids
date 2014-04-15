@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Xiwami Kids</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <script type="text/x-handlebars">
+        <nav class="navbar navbar-fixed-top">
+            <a href="cover.html" class="btn btn-lg btn-success">Cover Page</a>
+            <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Home</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "playdates" }}>Play Dates</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "logout" }}>Logout</button>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <ul class="nav nav-sidebar">
+                        <li class="active"><a href="#">Overview</a></li>
+                        <li><a href="#">Connect</a></li>
+                        <li><a href="#">Items</a></li>
+                        <li><a href="#">Activities</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <div>
+                        <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+                    </div>
+                    {{outlet}}
+                </div>
+            </div>
+        </div>
+
+        <h2>Footer</h2>
+    </script>
+
+    <script type="text/x-handlebars" id="index">
+        <h2>Welcome to Xiwami Kids - index page</h2>
+        <div>
+            Items activities
+        </div>
+        <div>
+            Upcoming events
+        </div>
+        <div>
+            Facebook Data:
+            <div id="fb">
+                <ul>
+                    <li>
+                        Name: <span id="username"></span>
+                    </li>
+                    <li>
+                        id: <span id="fbid"></span>
+                    </li>
+                    <li>
+                        gender: <span id="gender"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
+        </div>
+    </script>  
+
+    <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/libs/handlebars-1.1.2.js"></script>
+    <script src="js/libs/ember-1.5.0.js"></script>
+    <script src="js/app.js"></script>
+    
+    <script src="js/facebooklogin.js"></script>
+    
+    <script src="js/routes/routes.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+
+    <!-- to activate the test runner, add the "?test" query string parameter -->
+    <script src="tests/runner.js"></script>
+</body>
+</html>
+
