@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css" media="screen">
 </head>
 <body>
     <script type="text/x-handlebars">
@@ -28,10 +29,9 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        <li class="active"><a href="#">Overview</a></li>
-                        <li><a href="#">Connect</a></li>
-                        <li><a href="#">Items</a></li>
-                        <li><a href="#">Activities</a></li>
+                        {{#each menuitem in model}}
+                        <li>{{#link-to menuitem.linkName activeClass="selected"}}{{menuitem.displayName}}{{/link-to}}</li>
+                        {{/each}}
                     </ul>
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -44,6 +44,7 @@
         </div>
 
         <h2>Footer</h2>
+        <input type="hidden" id="isAuth" />
     </script>
 
     <script type="text/x-handlebars" id="index">
@@ -69,20 +70,34 @@
                     </li>
                 </ul>
             </div>
+            <div id="feeds">
+                {{#each feed in model}}
+                <li>{{feed.id}}</li>
+                {{/each}}
+            </div>
             <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
         </div>
-    </script>  
+    </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-formhelpers.min.js"></script>
+    <script src="js/facebooklogin.js"></script>
     <script src="js/libs/handlebars-1.1.2.js"></script>
     <script src="js/libs/ember-1.5.0.js"></script>
+    <script src="js/libs/ember-data-1.0.0-beta.js"></script>
+    <script src="js/libs/localstorage_adapter.js"></script>
+    
     <script src="js/app.js"></script>
-    
-    <script src="js/facebooklogin.js"></script>
-    
-    <script src="js/routes/routes.js"></script>
-    <script src="js/controllers/controllers.js"></script>
+
+    <script src="js/models/family-model.js"></script>
+    <script src="js/models/person-model.js"></script>
+
+    <script src="js/routes/application-route.js"></script>
+    <script src="js/routes/connect.search-route.js"></script>
+
+    <script src="js/controllers/application-controller.js"></script>
+    <script src="js/controllers/connect.search-controller.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

@@ -61,11 +61,12 @@ function testAPI() {
         $("#gender").text(response.gender);
         console.log('Good to see you, ' + response.name + '.');
     });
-
-    FB.api('/625848591/feed', function (response) {
-
-        console.log('feeds ');
-    });
+    //debugger;
+    $('#isAuth').text('Yes');
+    //FB.api('/625848591/feed', function (response) {
+    //    debugger;
+    //    console.log('feeds ');
+    //});
 
 
 }

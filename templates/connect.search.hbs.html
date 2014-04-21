@@ -1,0 +1,83 @@
+﻿<h2>Connect other parents!</h2>
+
+<div class="row">
+    <div class="col-lg-6">
+        I am looking for families which have kids age from
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1">
+        {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="fromAge" content=ages placeholder="Age"}}
+    </div>
+    <div class="col-lg-11">
+        {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="toAge" content=ages}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="language" content=languages placeholder="Language"}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="distance" content=distances placeholder="Language"}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <button type="button" class="btn btn-default btn-lg" {{action "searchfamilies" }}>Search</button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        You are searching families which have kids from age {{toAge}} to {{fromAge}} in your neighborhood.
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <ul>
+            {{#each model}}
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">{{id}}</div>
+                <div class="panel-body">
+                    <p>{{zipcode}}</p>
+                </div>
+
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Birthday</th>
+                        <th>Language</th>
+                        <th>Relationship</th>
+                    </thead>
+                    <tbody>
+                        {{#each kids }}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{firstName}}</td>
+                            <td>{{lastName}}</td>
+                            <td>{{birthday}}</td>
+                            <td>{{languages}}</td>
+                            <td>{{type}}</td>
+                        </tr>
+                        {{/each}}                        
+                    </tbody>
+                </table>
+            </div>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
