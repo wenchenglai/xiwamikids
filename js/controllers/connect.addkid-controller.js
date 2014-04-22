@@ -6,12 +6,16 @@
             var $this = this;
             debugger;
 
+            var year = this.get('year');
+            var month = this.get('month');
+            var day = this.get('day');
+
             // create a record and save it to the store
             var newkid = this.store.createRecord('person', {
                 firstName: this.get('firstName'),
                 lastName: this.get('lastName'),
                 nickname: this.get('nickname'),
-                birthday: new Date()
+                birthday: new Date(year, month, day)
             });
 
             this.store.find('family', 1).then(function(family)
