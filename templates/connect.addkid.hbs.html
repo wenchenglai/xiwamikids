@@ -1,1 +1,44 @@
 ﻿<h2>Add New Kid</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <label>
+            First Name:
+            {{view Ember.TextField class="edit_box" valueBinding="firstName"}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <label>
+            Last Name:
+            {{view Ember.TextField class="edit_box" valueBinding="lastName"}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <label>
+            Nickname:
+            {{view Ember.TextField class="edit_box" valueBinding="nickname"}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        Birthday: {{view Ember.TextField class="edit_box" valueBinding="month"}} / {{view Ember.TextField class="edit_box" valueBinding="day"}} / {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="year" content=years}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        Language: {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="language" content=languages placeholder="Language"}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <button type="button" class="btn btn-default btn-lg" {{action "addkid" }}>Add New Kid</button>
+        </div>
+    </div>
+</div>
