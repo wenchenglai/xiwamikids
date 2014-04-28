@@ -1,6 +1,7 @@
 ﻿App.Family = DS.Model.extend({
     zipcode: DS.attr(),
-    kids: DS.hasMany('person')
+    createdDate: DS.attr('date'),
+    members: DS.hasMany('person')
 });
 
 //App.Family.FIXTURES = [{

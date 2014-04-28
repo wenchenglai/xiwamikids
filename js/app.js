@@ -105,4 +105,7 @@ App.ApplicationAdapter = DS.LSAdapter.extend({
 
 //App.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-
+//App.Store = DS.Store.extend({
+//    revision: 13,
+//    adapter: 'DS.FixtureAdapter'
+//});

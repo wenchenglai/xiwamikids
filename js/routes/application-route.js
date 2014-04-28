@@ -20,7 +20,8 @@
 
         var fm = this.store.createRecord('family', {
             id: 1,
-            zipcode: '48105'
+            zipcode: '48105',
+            createdDate: new Date()
         });
         var store = this.store;
         fm.save().then(function (f) {
@@ -31,6 +32,7 @@
                 email: 'a@a.com',
                 languages: ['English', 'Chinese'],
                 type: 'parent',
+                createdDate: new Date(),
                 family: f
             });
             //f.get('kids').content.push(p1);
@@ -48,6 +50,7 @@
                 email: 'a@a.com',
                 languages: ['English', 'Chinese'],
                 type: 'parent',
+                createdDate: new Date(),
                 family: f
             });
             p2.save();
@@ -60,6 +63,7 @@
                 email: 'a@a.com',
                 languages: ['English', 'Chinese'],
                 type: 'daughter',
+                createdDate: new Date(),
                 family: f
             });
             //p3.save();

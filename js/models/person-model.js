@@ -6,6 +6,11 @@
     birthday: DS.attr('date'),
     languages: DS.attr(),
     type: DS.attr(),
+    gender: DS.attr('string'),
+    avatarUrl: DS.attr('string'),
     family: DS.belongsTo('family'),
-    createdDate: DS.attr('date')
+    createdDate: DS.attr('date'),
+    male: function () {
+        return this.get('gender') == 'Male';
+    }.property('gender')
 });

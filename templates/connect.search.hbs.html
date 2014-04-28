@@ -43,41 +43,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <ul>
-            {{#each model}}
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading">{{id}}</div>
-                <div class="panel-body">
-                    <p>{{zipcode}}</p>
-                </div>
-
-                <!-- Table -->
-                <table class="table">
-                    <thead>
-                        <th>#</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Birthday</th>
-                        <th>Language</th>
-                        <th>Relationship</th>
-                    </thead>
-                    <tbody>
-                        {{#each kids }}
-                        <tr>
-                            <td>{{id}}</td>
-                            <td>{{firstName}}</td>
-                            <td>{{lastName}}</td>
-                            <td>{{birthday}}</td>
-                            <td>{{languages}}</td>
-                            <td>{{type}}</td>
-                        </tr>
-                        {{/each}}                        
-                    </tbody>
-                </table>
-            </div>
-            {{/each}}
-        </ul>
+        {{family-cmp families=model}}
     </div>
 </div>
 
