@@ -1,7 +1,13 @@
-﻿<h2>Add New Kid</h2>
+﻿<h2>My Family</h2>
+
 <div class="row">
     <div class="col-lg-12">
         <button type='button' id='modalnew' class='btn btn-primary' {{action 'showmodal' }}>Add</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        {{family-cmp families=model}}
     </div>
 </div>
 <div class="row">
@@ -64,14 +70,4 @@
         </div>
     </div>
 </div>
-<div id="modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Add Contact</h3>
-    </div>
-    {{partial "contactForm"}}
-    <div class="modal-footer">
-        <button type="submit" id="fat-btn" data-loading-text="creating..." class="btn btn-success btn-primary" {{action 'savecontact' }}> Create New Contact </button>
-        <button type="reset" id="btn-create-canc" data-loading-text="canceling..." class="btn btn-success btn-primary"> Cancel </button>
-    </div>
-</div>
+

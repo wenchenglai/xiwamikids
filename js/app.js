@@ -85,6 +85,7 @@ App.Router.map(function() {
     this.resource('connect', function () {
         this.route('search');
         this.route('addkid');
+        this.route('editperson', { path: '/editperson/:id' });
     });
 
     this.resource('items', function () {

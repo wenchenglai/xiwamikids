@@ -98,6 +98,7 @@
                 <th>Birthday</th>
                 <th>Language</th>
                 <th>Relationship</th>
+                <th>Action</th>
                 </thead>
                 <tbody>
                     {{#each members }}
@@ -109,6 +110,7 @@
                         <td>{{birthday}}</td>
                         <td>{{languages}}</td>
                         <td>{{type}}</td>
+                        <td>{{#link-to "connect.editperson" id}}Edit&nbsp;&nbsp;{{/link-to}}<a href='#'>Edit</a></td>
                     </tr>
                     {{/each}}
                 </tbody>

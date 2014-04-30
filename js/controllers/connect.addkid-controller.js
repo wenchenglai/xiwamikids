@@ -9,14 +9,7 @@
         //    controller.get('currentContact.transaction').rollback();
         //});
     },
-    showmodal: function () {
-        debugger;
-        var newp = App.Person.createRecord();
-        debugger;
-        this.set('currentContact', newp);
-        debugger;
-        $('#modal').modal();
-    },
+    families: null,
     actions: {
         addkid: function (params) {
             var $this = this;
@@ -53,6 +46,14 @@
 
                 newkid.save().then(onSuccess, onFail);
             });
+        },
+        showmodal: function () {
+            debugger;
+            var newp = Em.Object.create({});
+            debugger;
+            this.set('currentContact', newp);
+            debugger;
+            $('#modal').modal();
         }
     }
 });
