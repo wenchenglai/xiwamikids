@@ -1,5 +1,7 @@
 ﻿App.Family = DS.Model.extend({
-    zipcode: DS.attr(),
+    zipcode: DS.attr('string'),
+    familyName: DS.attr('string'),
+    description: DS.attr('string'),
     createdDate: DS.attr('date'),
     members: DS.hasMany('person')
 });

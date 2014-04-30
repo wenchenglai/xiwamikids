@@ -13,6 +13,8 @@
     
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css" media="screen">
+
+    <link href="css/jqueryui/smoothness/jquery-ui-1.10.4.custom.css" rel="stylesheet">
 </head>
 <body>
     <script type="text/x-handlebars">
@@ -83,9 +85,9 @@
         {{#each families}}
         <div class="panel panel-default">
             <!-- Default panel contents -->
-            <div class="panel-heading">{{id}}</div>
+            <div class="panel-heading">{{id}}&nbsp;{{familyName}}</div>
             <div class="panel-body">
-                <p>{{zipcode}}</p>
+                <p>{{zipcode}}&nbsp;<a href="#">Edit</a></p>
             </div>
 
             <!-- Table -->
@@ -110,7 +112,7 @@
                         <td>{{birthday}}</td>
                         <td>{{languages}}</td>
                         <td>{{type}}</td>
-                        <td>{{#link-to "connect.editperson" id}}Edit&nbsp;&nbsp;{{/link-to}}<a href='#'>Edit</a></td>
+                        <td>{{#link-to "connect.editperson" id}}Edit&nbsp;&nbsp;{{/link-to}}<button id="edit-member" {{action "editmember" }}>Edit</button><a href="#">Delete</a></td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -173,6 +175,7 @@
     </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap-formhelpers.min.js"></script>
     <script src="js/facebooklogin.js"></script>
@@ -197,6 +200,10 @@
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/connect.addkid-controller.js"></script>
     <script src="js/controllers/connect.search-controller.js"></script>
+
+    <script src="js/views/connect.addkid-view.js"></script>
+
+    <script src="js/components/connect.addkid-component.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

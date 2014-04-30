@@ -47,6 +47,10 @@
                 newkid.save().then(onSuccess, onFail);
             });
         },
+        editmember: function () {
+            debugger;
+            $("#dialog-form").dialog("open");
+        },
         showmodal: function () {
             debugger;
             var newp = Em.Object.create({});
