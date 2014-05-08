@@ -18,22 +18,27 @@
         //    }, this);
         //});
 
-        var fm = this.store.createRecord('family', {
+        var newFamily = this.store.createRecord('family', {
             id: 1,
             zipcode: '48105',
+            familyName: 'Wen Lai Family',
+            description: 'We are a happy family living in Ann Arbor, MI',
             createdDate: new Date()
         });
         var store = this.store;
-        fm.save().then(function (f) {
+        newFamily.save().then(function (family) {
             var p1 = store.createRecord('person', {
                 id: 1,
                 lastName: 'Lai',
                 firstName: 'Wen',
-                email: 'a@a.com',
+                nickName: 'Wayne',
+                email: 'wenchenglai@gmail.com',
+                birthday: '1978-07-01',
                 languages: ['English', 'Chinese'],
-                type: 'parent',
+                type: 1,
+                gender: 'male',
                 createdDate: new Date(),
-                family: f
+                family: family
             });
             //f.get('kids').content.push(p1);
             p1.save();
@@ -47,11 +52,13 @@
                 id: 2,
                 lastName: 'Chen',
                 firstName: 'Jia',
-                email: 'a@a.com',
+                email: 'jiac@umich.edu',
+                birthday: '1981-09-01',
                 languages: ['English', 'Chinese'],
-                type: 'parent',
+                type: 2,
+                gender: 'female',
                 createdDate: new Date(),
-                family: f
+                family: family
             });
             p2.save();
             //p2.save().then(function (p) { f.get('kids').content.push(p); });
@@ -61,13 +68,15 @@
                 lastName: 'Lai',
                 firstName: 'Sophie',
                 email: 'a@a.com',
+                birthday: '2011-07-01',
                 languages: ['English', 'Chinese'],
-                type: 'daughter',
+                type: 4,
+                gender: 'female',
                 createdDate: new Date(),
-                family: f
+                family: family
             });
             //p3.save();
-            p3.save().then(function (p) { f.save(); });
+            p3.save().then(function (p) { family.save(); });
         });
 
 

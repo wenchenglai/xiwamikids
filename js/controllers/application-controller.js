@@ -11,7 +11,7 @@
             this.set('content', [{ displayName: 'My Xiwami', linkName: 'index' }]);
 
         } else if (currentPath === 'connect.index') {
-            this.set('content', [{ displayName: 'Friends', linkName: 'connect.index' }, { displayName: 'Search Families', linkName: 'connect.search' }, { displayName: 'Add Kids', linkName: 'connect.addkid' }]);
+            this.set('content', [{ displayName: 'Friends', linkName: 'connect.index' }, { displayName: 'Search Families', linkName: 'connect.search' }, { displayName: 'My Family', linkName: 'connect.myfamily' }]);
 
         } else if (currentPath === 'items.index') {
             this.set('content', [{ displayName: 'Your Items', linkName: 'items.index' }, { displayName: 'Search Items', linkName: 'items.search' }, { displayName: 'Add Items', linkName: 'items.additem' }]);
@@ -48,16 +48,22 @@
         },
         searchparents: function() {
             debugger;
+        },
+        openAddMemberModal: function (modalName, model) {
+            debugger;
+            //this.controllerFor(modalName).set('model', model);
+            debugger;
+            return this.render(modalName, {
+                into: 'application',
+                outlet: 'modal'
+            });
+        },
+        closeAddMemberModal: function () {
+            debugger;
+            return this.disconnectOutlet({
+                outlet: 'modal',
+                parentView: 'application'
+            });
         }
-    }
-});
-
-App.IndexController = Ember.ArrayController.extend({
-    init: function () {
-        this._super();
-        //debugger;
-    },
-    updateContent: function () {
-        //debugger;
     }
 });

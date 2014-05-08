@@ -1,0 +1,117 @@
+﻿<h2>My Family</h2>
+
+<div class="row">
+    <div class="col-lg-12">
+        <button class='btn btn-primary' {{action 'openAddMemberModal' 'connect/addmember' }}>Add New Family Member</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        {{family-cmp families=model edit="openEditMemberModal" cancel="cancelUserCreation"}}
+    </div>
+</div>
+
+
+<div id="dialog-form" title="Create new member">
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                First Name:
+                {{view Ember.TextField class="edit_box" placeholder="First Name" value=firstName}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Last Name:
+                {{view Ember.TextField class="edit_box" placeholder="Last Name" value=lastName}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Nickname:
+                {{view Ember.TextField class="edit_box" placeholder="Nickname" valueBinding="nickname"}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="control-group">
+                <label class="control-label">Gender</label>
+                <div class="controls">
+                    <p>
+                        <div id="gendertype" name="gender" class="btn-group rdgender" data-toggle="buttons-radio">
+
+                            {{#view App.RadioButtonView name="selectionTest" label="Male" class="btn btn-info" selectionBinding="controller.gender" value="Male"}}Male{{/view}}
+
+                            {{#view App.RadioButtonView name="selectionTest" label="Female" class="btn btn-info" selectionBinding="controller.gender" value="Female"}}Female{{/view}}
+
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            Birthday:
+            {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="month" content=months}} /
+            {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="day" content=days}} /
+            {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="year" content=years}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            Language: {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="language" content=languages placeholder="Language"}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-sm" {{action "addkid" }} {{bind-attr disabled=disabled}}>
+                Add
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-edit-form-family" title="Create new member">
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Family Name:
+                {{view Ember.TextField class="edit_box" valueBinding="familyName"}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Zip Code:
+                {{view Ember.TextField class="edit_box" valueBinding="zipcode"}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Description:
+                {{view Ember.TextField class="edit_box" valueBinding="description"}}
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="input-group">
+                <button type="button" class="btn btn-default btn-lg" {{action "editfamily" }}>Edit Family Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" title="Empty the recycle bin?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These member will be deleted. Are you sure?</p>
+</div>

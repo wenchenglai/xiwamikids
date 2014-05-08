@@ -1,11 +1,20 @@
-﻿App.Person = DS.Model.extend({
+﻿App.RawTransform = DS.Transform.extend({
+    deserialize: function (serialized) {
+        return serialized;
+    },
+    serialize: function (deserialized) {
+        return deserialized;
+    }
+});
+
+App.Person = DS.Model.extend({
     facebookId: DS.attr('string'),
     lastName: DS.attr('string'),
     firstName: DS.attr('string'),
     nickName: DS.attr('string'),
     email: DS.attr('string'),
     birthday: DS.attr('date'),
-    languages: DS.attr(),
+    languageArray: DS.attr('raw'),
     type: DS.attr('number'),
     gender: DS.attr('string'),
     avatarUrl: DS.attr('string'),

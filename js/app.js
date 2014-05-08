@@ -28,10 +28,26 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
-            url: '/templates/connect.addkid.hbs.html',
+            url: '/templates/connect.myfamily.hbs.html',
             async: false,
             success: function (resp) {
-                Em.TEMPLATES['connect/addkid'] = Ember.Handlebars.compile(resp);
+                Em.TEMPLATES['connect/myfamily'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/connect.addmember.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['connect/addmember'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/connect.editmember.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['connect/editmember'] = Ember.Handlebars.compile(resp);
             }
         });
 
@@ -84,7 +100,9 @@ App.Router.map(function() {
 
     this.resource('connect', function () {
         this.route('search');
-        this.route('addkid');
+        this.route('myfamily');
+        this.route('addmember');
+        this.route('editmember');
         this.route('editperson', { path: '/editperson/:id' });
     });
 
