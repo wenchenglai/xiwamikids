@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Home</button>
             <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "playdates" }}>Play Dates</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "playdates" }}>Activities</button>
             <button type="button" class="btn btn-default btn-lg" {{action "logout" }}>Logout</button>
         </nav>
 
@@ -81,102 +81,6 @@
             <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
         </div>
     </script>
-    
-    <script type="text/x-handlebars" id="components/family-cmp">
-        {{#each families}}
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading">{{id}}&nbsp;{{familyName}}</div>
-            <div class="panel-body">
-                <p>{{zipcode}}&nbsp;<a href="#" {{action "OpenEditFamilyModal" id }}>Edit</a></p>
-            </div>
-
-            <!-- Table -->
-            <table class="table">
-                <thead>
-                <th>#</th>
-                <th>Avartar</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Birthday</th>
-                <th>Language</th>
-                <th>Relationship</th>
-                <th>Action</th>
-                </thead>
-                <tbody>
-                    {{#each members }}
-                    <tr>
-                        <td>{{id}}</td>
-                        <td><img {{bind-attr src=avatarUrl}} alt="Avatar"></td>
-                        <td>{{firstName}}</td>
-                        <td>{{lastName}}</td>
-                        <td>{{birthday}}</td>
-                        <td>{{languages}}</td>
-                        <td>{{type}}</td>
-                        <td>
-                            <a href="#" {{action "edit" 'connect/editmember' id }}>Edit</a>&nbsp;|&nbsp;
-                            <a href="#" {{action "DeleteMember" id }}>Delete</a>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-        {{/each}}
-    </script>
-    
-    <script type="text/x-handlebars" data-template-name="_contactForm">
-        <div class="modal-body">
-            <div class="modal-form">
-                <form class="form-horizontal" method="post" action="success.php">
-                    <div class="control-group">
-                        <label class="control-label">First Name</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on"><i class="icon-user"></i></span>
-                                {{view Ember.TextField  class="input-xlarge" placeholder="First Name" valueBinding="controller.currentContact.firstName"}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group ">
-                        <label class="control-label">Last Name</label>
-                        <div class="controls">
-                            <div class="input-prepend">
-                                <span class="add-on"><i class="icon-user"></i></span>
-                                {{view Ember.TextField  class="input-xlarge"  placeholder="Last Name" valueBinding="controller.currentContact.lastName"}}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Gender</label>
-                        <div class="controls">
-                            <p>
-                                <div id="gendertype" name="gender" class="btn-group rdgender" data-toggle="buttons-radio">
-
-                                    {{#view App.RadioButtonView name="selectionTest" label="Male" class="btn btn-info" selectionBinding="controller.currentContact.gender" value="Male"}}Male{{/view}}
-
-                                    {{#view App.RadioButtonView name="selectionTest" label="Female" class="btn btn-info" selectionBinding="controller.currentContact.gender" value="Female"}}Female{{/view}}
-
-                                </div>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Contact Type</label>
-                        <div class="controls">
-                            {{view Ember.Select
-                            contentBinding="objtype.content"
-                            optionValuePath="content.id"
-                            optionLabelPath="content.type"
-                            valueBinding="controller.currentContact.contacttype"
-                            prompt="Please select a type"
-                            }}
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>
@@ -191,7 +95,7 @@
     <script src="js/app.js"></script>
     
     <script src="js/views/radio-button-view.js"></script>
-    <script src="js/components/connect.addkid-component.js"></script>  
+    <script src="js/components/familylist-component.js"></script>  
 
     <script src="js/models/family-model.js"></script>
     <script src="js/models/person-model.js"></script>
@@ -208,6 +112,8 @@
     <script src="js/controllers/connect.myfamily-controller.js"></script>
     <script src="js/controllers/connect.addmember-controller.js"></script>
     <script src="js/controllers/connect.editmember-controller.js"></script>
+    <script src="js/controllers/connect.addfamily-controller.js"></script>
+    <script src="js/controllers/connect.editfamily-controller.js"></script>
     <script src="js/controllers/connect.search-controller.js"></script>
 
     <script src="js/views/index-view.js"></script>

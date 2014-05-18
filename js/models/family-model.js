@@ -3,6 +3,7 @@
     familyName: DS.attr('string'),
     description: DS.attr('string'),
     createdDate: DS.attr('date'),
+    cityState: DS.attr('string'),
     members: DS.hasMany('person')
 });
 

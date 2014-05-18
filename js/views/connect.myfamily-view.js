@@ -43,20 +43,24 @@
             //}
         });
 
-        this.$("#dialog-confirm").dialog({
-            autoOpen: false,
-            resizable: false,
-            height: 240,
-            modal: true,
-            buttons: {
-                "Delete all items": function () {
-                    $(this).dialog("close");
-                },
-                Cancel: function () {
-                    $(this).dialog("close");
-                }
-            }
-        });
+        //this.$("#dialog-confirm").dialog({
+        //    autoOpen: false,
+        //    resizable: false,
+        //    height: 240,
+        //    modal: true,
+        //    buttons: {
+        //        "Delete": function () {
+        //            var id = $(this).data('id');
+        //            debugger;
+
+        //            $(this).dialog("close");
+        //            controller.send('deleteMember', id);
+        //        },
+        //        Cancel: function () {
+        //            $(this).dialog("close");
+        //        }
+        //    }
+        //});
     },
     action: {
         editmember: function (params) {

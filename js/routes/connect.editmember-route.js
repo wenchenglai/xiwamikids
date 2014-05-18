@@ -1,7 +1,7 @@
 ﻿App.ConnectEditmemberRoute = Ember.Route.extend({
     model: function () {
-        debugger;
+        //debugger;
         //return Em.Object.create({});
-        return this.store.find('person', 1);
+        //return this.store.find('person', 1);
     }
 });

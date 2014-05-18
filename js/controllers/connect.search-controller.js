@@ -10,11 +10,16 @@
             this.set('toAge', this.get('toAge'));
             var language = this.get('language');
             var distance = this.get('distance');
-            var ads = this.store.find('family');
-            debugger;
-            var data = this.store.find('person');
-            debugger;
-            this.set('content', data);
+
+            var query = {
+                distance: distance,
+                languages: language,
+                fromAge: this.get('fromAge'),
+                toAge: this.get('toAge')
+            };
+
+            var found = this.store.find('family', query);
+            this.set('content', found);
         }
     }
 });

@@ -3,6 +3,32 @@ App = Ember.Application.create({
 
     ready: function () {
 
+        // Components loading
+        Ember.$.ajax({
+            url: '/templates/familylist-component.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['components/family-list'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        // Pages loading
+        Ember.$.ajax({
+            url: '/templates/helpout.ask.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/ask'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/helpout.browse.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/browse'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
         Ember.$.ajax({
             url: '/templates/connect.hbs.html',
             async: false,
@@ -52,6 +78,22 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
+            url: '/templates/connect.addfamily.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['connect/addfamily'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/connect.editfamily.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['connect/editfamily'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
             url: '/templates/items.hbs.html',
             async: false,
             success: function (resp) {
@@ -68,10 +110,10 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
-            url: '/templates/items.additem.hbs.html',
+            url: '/templates/items.myitems.hbs.html',
             async: false,
             success: function (resp) {
-                Em.TEMPLATES['items/additem'] = Ember.Handlebars.compile(resp);
+                Em.TEMPLATES['items/myitems'] = Ember.Handlebars.compile(resp);
             }
         });
 
@@ -108,11 +150,16 @@ App.Router.map(function() {
 
     this.resource('items', function () {
         this.route('search');
-        this.route('additem');
+        this.route('myitems');
     });
 
     this.resource('playdates', function () {
         this.route('search');
+    });
+
+    this.resource('helpout', function () {
+        this.route('ask');
+        this.route('browse');
     });
 });
 

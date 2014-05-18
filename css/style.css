@@ -4,11 +4,13 @@
 }
 
 .wenmodal {
-  position: relative;
-  margin: 10px auto;
-  width: 800px;
-  background-color: #fff;
-  padding: 1em;
+    position: absolute;
+    margin: 10px auto;
+    width: 800px;
+    background-color: #fff;
+    padding: 1em;
+    top: 250px;
+    left: 100px;
 }
 
 input {

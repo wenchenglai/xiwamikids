@@ -39,7 +39,7 @@
 
     },
     model: function () {
-        return this.store.find('family');
+        //return this.store.find('family');
     },
 
     afterModel: function(data, tran, qparams) {

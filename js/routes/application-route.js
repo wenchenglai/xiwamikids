@@ -23,6 +23,7 @@
             zipcode: '48105',
             familyName: 'Wen Lai Family',
             description: 'We are a happy family living in Ann Arbor, MI',
+            cityState: 'Ann Arbor, MI 48105',
             createdDate: new Date()
         });
         var store = this.store;
@@ -40,13 +41,7 @@
                 createdDate: new Date(),
                 family: family
             });
-            //f.get('kids').content.push(p1);
             p1.save();
-            //p1.save().then(function (p) {
-            //    //debugger;
-            //    //f.get('kids').content.push(p);
-            //    //f.save();
-            //});
 
             var p2 = store.createRecord('person', {
                 id: 2,

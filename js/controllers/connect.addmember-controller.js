@@ -36,12 +36,12 @@
     selectedDay: null,
     selectedLanguage: null,
     selectedRelation: null,
+    familyId: -1,
 
     disabled: function () {
-        //return Ember.isEmpty(this.get('firstName'));
-        // I have to return false all the time for now, until I figure out how to update DOM using ember automatically when computed property got changed.
-        return false;
-    }.property('firstName'),
+        return Ember.isEmpty(this.get('firstName')) || Ember.isEmpty(this.get('lastName'));
+    }.property('firstName', 'lastName'),
+
     actions: {
         close: function () {
             return this.send('closeAddMemberModal');
@@ -70,7 +70,7 @@
                 type: selectedRelation
             });
 
-            this.store.find('family', 1).then(function (family) {
+            this.store.find('family', this.get("familyId")).then(function (family) {
                 newkid.set('family', family);
                 var f = family;
                 var onSuccess = function (article) {

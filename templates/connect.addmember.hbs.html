@@ -30,17 +30,16 @@
         <div class="col-lg-12">
             <div class="control-group">
                 <label class="control-label">Gender</label>
-                <div class="controls">
+
                     <p>
-                        <div id="gendertype" name="gender" class="btn-group rdgender" data-toggle="buttons-radio">
+                        <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
 
-                            {{#view App.RadioButtonView name="selectionTest" label="Male" class="btn btn-info" selectionBinding="controller.gender" value="Male"}}Male{{/view}}
+                            {{#view App.RadioButtonView selectionBinding="controller.gender" value="Male"}}Male{{/view}}
 
-                            {{#view App.RadioButtonView name="selectionTest" label="Female" class="btn btn-info" selectionBinding="controller.gender" value="Female"}}Female{{/view}}
+                            {{#view App.RadioButtonView selectionBinding="controller.gender" value="Female"}}Female{{/view}}
 
                         </div>
                     </p>
-                </div>
             </div>
         </div>
     </div>
