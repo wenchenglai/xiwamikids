@@ -74,13 +74,65 @@
             p3.save().then(function (p) { family.save(); });
         });
 
+        var item1 = store.createRecord('item', {
+            id: 1,
+            name: 'Baby Doll',
+            description: 'A baby doll that can talk',
+            price: 2,
+            size: '',
+            width: 5,
+            length: 12,
+            height: 3,
+            fromAge: 1,
+            toAge: 4,
+            condition: 'Used',
+            type: 'Toy',
+            status: 'Open',
+            imageUrl: '',
+            createdDate: new Date(2014, 04, 18),
+            isDeleted: false
+        });
+        item1.save();
 
-        //debugger;
-        if (App.get('currentPath') === 'home' || App.get('currentPath') === '') {
-            return ['Feeds', 'Reminders', 'blue'];
-        } else {
-            return ['red', 'yellow', 'blue'];
-        }
+        var item2 = store.createRecord('item', {
+            id: 2,
+            name: 'Blue Skirt',
+            description: 'A blue skirt',
+            price: 5,
+            size: '3T',
+            width: 5,
+            length: 12,
+            height: 3,
+            fromAge: 3,
+            toAge: 4,
+            condition: 'Used',
+            type: 'Cloth',
+            status: 'Open',
+            imageUrl: '',
+            createdDate: new Date(2014, 04, 18),
+            isDeleted: false
+        });
+        item2.save();
+
+        var item3 = store.createRecord('item', {
+            id: 3,
+            name: 'Chinese Character',
+            description: 'A beginner chinese learning book',
+            price: 2,
+            size: '',
+            width: 5,
+            length: 8,
+            height: 0.5,
+            fromAge: 4,
+            toAge: 5,
+            condition: 'Used',
+            type: 'Book',
+            status: 'Closed',
+            imageUrl: '',
+            createdDate: new Date(2014, 04, 18),
+            isDeleted: false
+        });
+        item3.save();
     }
 });
 

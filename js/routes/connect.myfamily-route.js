@@ -4,7 +4,8 @@
         //return Em.Object.create({});
         return this.store.find('family');
     },
-    afterModel: function(model) {
+    afterModel: function (model) {
+
     },
     actions: {
         openAddMemberModal: function (modalName, id) {

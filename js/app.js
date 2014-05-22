@@ -118,10 +118,18 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
-            url: '/templates/playdates.hbs.html',
+            url: '/templates/activity.hbs.html',
             async: false,
             success: function (resp) {
-                Em.TEMPLATES['playdates'] = Ember.Handlebars.compile(resp);
+                Em.TEMPLATES['activity'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/activity.calendar.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['activity/calendar'] = Ember.Handlebars.compile(resp);
             }
         });
     }
@@ -132,9 +140,6 @@ App = Ember.Application.create({
 
 //var url = 'hbs/about.hbs',
 //    templateName = url.replace('.hbs', '');
-
-
-
 
 //Ember.TEMPLATES['test'] = Ember.Handlebars.compile('Hello {{personName}}');
 
@@ -153,8 +158,9 @@ App.Router.map(function() {
         this.route('myitems');
     });
 
-    this.resource('playdates', function () {
+    this.resource('activity', function () {
         this.route('search');
+        this.route('calendar');
     });
 
     this.resource('helpout', function () {

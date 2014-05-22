@@ -8,16 +8,16 @@
         App.set('currentPath', currentPath);
         //debugger;
         if (currentPath === 'index' || currentPath === '') {
-            this.set('content', [{ displayName: 'My Xiwami', linkName: 'index' }, { displayName: 'Ask for Help', linkName: 'helpout.ask' }, { displayName: 'Help Others', linkName: 'helpout.browse' }]);
+            this.set('content', [{ displayName: 'Index', linkName: 'index' }, { displayName: 'Ask for Help', linkName: 'helpout.ask' }, { displayName: 'Help Others', linkName: 'helpout.browse' }]);
 
         } else if (currentPath === 'connect.index') {
-            this.set('content', [{ displayName: 'Friends', linkName: 'connect.index' }, { displayName: 'Search Families', linkName: 'connect.search' }, { displayName: 'My Family', linkName: 'connect.myfamily' }]);
+            this.set('content', [{ displayName: 'Index', linkName: 'connect.index' }, { displayName: 'Search Families', linkName: 'connect.search' }, { displayName: 'My Family', linkName: 'connect.myfamily' }]);
 
         } else if (currentPath === 'items.index') {
-            this.set('content', [{ displayName: 'Your Items', linkName: 'items.index' }, { displayName: 'Search Items', linkName: 'items.search' }, { displayName: 'Add Items', linkName: 'items.additem' }]);
+            this.set('content', [{ displayName: 'Index', linkName: 'items.index' }, { displayName: 'Search Items', linkName: 'items.search' }, { displayName: 'My Items', linkName: 'items.myitems' }]);
 
-        } else if (currentPath === 'playdates.index') {
-            this.set('content', [{ displayName: 'Calendar', linkName: 'playdates.index' }, { displayName: 'Search Events', linkName: 'playdates.search' }]);
+        } else if (currentPath === 'activity.index') {
+            this.set('content', [{ displayName: 'Index', linkName: 'activity.index' }, { displayName: 'Search Events', linkName: 'activity.search' }, { displayName: 'Calendar', linkName: 'activity.calendar' }]);
 
         }
 
@@ -37,8 +37,8 @@
         items: function() {
             this.transitionToRoute('items');
         },
-        playdates: function() {
-            this.transitionToRoute('playdates');
+        activity: function() {
+            this.transitionToRoute('activity');
         },
         logout: function() {
             FB.logout(function(response) {

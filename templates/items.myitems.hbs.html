@@ -1,1 +1,44 @@
-﻿<h2>Add New Item</h2>
+﻿<h2>My Items</h2>
+
+<div class="btn-group">
+    <button type="button" class="btn btn-primary" {{action 'loadOpen' }}>Open Items</button>
+    <button type="button" class="btn btn-primary" {{action 'loadClosed' }}>Closed Items</button>
+    <button type="button" class="btn btn-primary" {{action 'loadDeleted' }}>Deleted Items</button>
+</div>
+
+<!-- Table -->
+<table class="table">
+    <thead>
+        <th>#</th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Posted Date</th>
+        <th>Age Range</th>
+    </thead>
+    <tbody>
+        {{#each}}
+        <tr>
+            <td>{{id}}</td>
+            <td><img {{bind-attr src=avatarUrl}} alt="Avatar"></td>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>{{price}}</td>
+            <td>{{createdDate}}</td>
+            <td>{{ageRange}}</td>
+            <td>
+                <a href="#" {{action "edit" "items/search" id }}>Edit</a>&nbsp;|&nbsp;
+                <a href="#" {{action "openDeleteDialog" id target="view" bubbles=false }}>Deletes</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+Total Price: {{totalPrice}}
+
+<div id="dialog-confirm-delete" title="Delete a family member?">
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This item will be deleted. Are you sure?</p>
+</div>
+

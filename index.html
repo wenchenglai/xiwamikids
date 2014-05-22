@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css" media="screen">
 
     <link rel="stylesheet" href="css/jqueryui/smoothness/jquery-ui-1.10.4.custom.css">
+    <link rel="stylesheet" href="css/fullcalendar.css">
+    <link rel="stylesheet" href="css/fullcalendar.print.css">
+
 </head>
 <body>
     <script type="text/x-handlebars">
@@ -23,7 +26,7 @@
             <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Home</button>
             <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "playdates" }}>Activities</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
             <button type="button" class="btn btn-default btn-lg" {{action "logout" }}>Logout</button>
         </nav>
 
@@ -84,9 +87,13 @@
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>
+    
     <script src="js/libs/bootstrap.min.js"></script>
     <script src="js/libs/bootstrap-formhelpers.min.js"></script>
+    
     <script src="js/libs/facebooklogin.js"></script>
+    <script src="js/libs/fullcalendar.js"></script>
+    
     <script src="js/libs/handlebars-1.1.2.js"></script>
     <script src="js/libs/ember-1.5.0.js"></script>
     <script src="js/libs/ember-data-1.0.0-beta.js"></script>
@@ -100,12 +107,14 @@
     <script src="js/models/family-model.js"></script>
     <script src="js/models/person-model.js"></script>
     <script src="js/models/item-model.js"></script>
-    <script src="js/models/event-model.js"></script>
+    <script src="js/models/activity-model.js"></script>
+    <script src="js/models/transaction-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/connect.myfamily-route.js"></script>
     <script src="js/routes/connect.editmember-route.js"></script>
     <script src="js/routes/connect.search-route.js"></script>
+    <script src="js/routes/items.myitems-route.js"></script>
 
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/index-controller.js"></script>
@@ -115,11 +124,14 @@
     <script src="js/controllers/connect.addfamily-controller.js"></script>
     <script src="js/controllers/connect.editfamily-controller.js"></script>
     <script src="js/controllers/connect.search-controller.js"></script>
+    <script src="js/controllers/items.myitems-controller.js"></script>
 
     <script src="js/views/index-view.js"></script>
     <script src="js/views/connect.myfamily-view.js"></script>
     <script src="js/views/connect.addmember-view.js"></script>
     <script src="js/views/connect.editmember-view.js"></script>
+    <script src="js/views/items.myitems-view.js"></script>
+    <script src="js/views/activity.calendar-view.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>
