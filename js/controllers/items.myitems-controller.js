@@ -29,6 +29,9 @@
         openDeleteDialog: function (params) {
             debugger;
             this.$("#dialog-confirm-delete").dialog("open");
+        },
+        deleteItem: function (id) {
+            debugger;
         }
     }
 });

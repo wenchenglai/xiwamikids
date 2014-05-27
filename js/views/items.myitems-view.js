@@ -1,6 +1,7 @@
 ﻿App.ItemsMyitemsView = Ember.View.extend({
     didInsertElement: function () {
-        debugger;
+        //debugger;
+        var controller = this;
         this.$("#dialog-confirm-delete").dialog({
             autoOpen: false,
             resizable: false,
@@ -10,7 +11,8 @@
                 "Delete": function () {
                     var id = $(this).data('id');
                     $(this).dialog("close");
-                    controller.sendAction('delete', id);
+                    debugger;
+                    controller.sendAction('deleteItem', id);
                 },
                 Cancel: function () {
                     $(this).dialog("close");
@@ -19,9 +21,9 @@
         });
     },
     actions: {
-        openDeleteDialog: function (params) {
+        openDeleteDialog: function (id) {
             debugger;
-            this.$("#dialog-confirm-delete").dialog("open");
+            $("#dialog-confirm-delete").data('id', id).dialog("open");
         }
     }
 });
