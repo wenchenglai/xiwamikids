@@ -26,12 +26,11 @@
             var data = this.store.find('item', {status: 'Deleted'});
             this.set('content', data);
         },
-        openDeleteDialog: function (params) {
-            debugger;
-            this.$("#dialog-confirm-delete").dialog("open");
-        },
         deleteItem: function (id) {
-            debugger;
+            this.store.find('item', id).then(function (record) {
+                record.deleteRecord();
+                record.save();
+            });
         }
     }
 });
