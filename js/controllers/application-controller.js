@@ -17,7 +17,7 @@
             this.set('content', [{ displayName: 'Index', linkName: 'items.index' }, { displayName: 'Search Items', linkName: 'items.search' }, { displayName: 'My Items', linkName: 'items.myitems' }]);
 
         } else if (currentPath === 'activity.index') {
-            this.set('content', [{ displayName: 'Index', linkName: 'activity.index' }, { displayName: 'Search Events', linkName: 'activity.search' }, { displayName: 'Calendar', linkName: 'activity.calendar' }]);
+            this.set('content', [{ displayName: 'Index', linkName: 'activity.index' }, { displayName: 'Search Events', linkName: 'activity.search' }, { displayName: 'Calendar', linkName: 'activity.calendar' }, { displayName: 'My Events', linkName: 'activity.my' }]);
 
         }
 

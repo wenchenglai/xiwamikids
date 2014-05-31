@@ -1,4 +1,4 @@
-﻿App.ItemsMyitemsView = Ember.View.extend({
+﻿App.ActivityMyView = Ember.View.extend({
     didInsertElement: function () {
         //debugger;
         var view = this;
@@ -10,8 +10,9 @@
             buttons: {
                 "Delete": function () {
                     var id = $(this).data('id');
+                    debugger;
                     $(this).dialog("close");
-                    view.get('controller').send('deleteItem', id);
+                    view.get('controller').send('deleteActivity', id);
                 },
                 Cancel: function () {
                     $(this).dialog("close");

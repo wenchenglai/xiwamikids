@@ -25,12 +25,6 @@
         loadDeleted: function(params) {
             var data = this.store.find('item', {status: 'Deleted'});
             this.set('content', data);
-        },
-        deleteItem: function (id) {
-            this.store.find('item', id).then(function (record) {
-                record.deleteRecord();
-                record.save();
-            });
         }
     }
 });

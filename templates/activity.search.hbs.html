@@ -1,0 +1,30 @@
+﻿<h2>Search for events that you are looking for</h2>
+
+<div class="row">
+    <div class="col-lg-3">
+        <label>
+            Search for:
+            {{view Ember.TextField class="form-control" placeholder="e.g Dancing Babies" value=size}}
+        </label>
+    </div>
+    <div class="col-lg-3">
+        <label>
+            Within? <br />
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Distance <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href="#">5 Miles</a></li>
+                <li><a href="#">10 Miles</a></li>
+                <li><a href="#">25 Miles</a></li>
+                <li><a href="#">50 Miles</a></li>
+            </ul>            
+        </label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <button type="button" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</div>

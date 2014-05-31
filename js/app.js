@@ -118,6 +118,14 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
+            url: '/templates/items.additem.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['items/additem'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
             url: '/templates/activity.hbs.html',
             async: false,
             success: function (resp) {
@@ -126,10 +134,34 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
+            url: '/templates/activity.search.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['activity/search'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
             url: '/templates/activity.calendar.hbs.html',
             async: false,
             success: function (resp) {
                 Em.TEMPLATES['activity/calendar'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/activity.my.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['activity/my'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/activity.edit.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['activity/edit'] = Ember.Handlebars.compile(resp);
             }
         });
     }
@@ -156,11 +188,14 @@ App.Router.map(function() {
     this.resource('items', function () {
         this.route('search');
         this.route('myitems');
+        this.route('additem');
     });
 
     this.resource('activity', function () {
         this.route('search');
         this.route('calendar');
+        this.route('my');
+        this.route('edit');
     });
 
     this.resource('helpout', function () {

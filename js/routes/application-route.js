@@ -133,6 +133,38 @@
             isDeleted: false
         });
         item3.save();
+
+        var activity1 = store.createRecord('activity', {
+            id: 1,
+            title: 'Dancing Babies',
+            description: 'A kids dancing party by Ann Arbor Public Library',
+            fromTime: new Date(2014, 7, 10, 10, 0, 0, 0),
+            toTime: new Date(2014, 7, 10, 11, 0, 0 ,0),
+            location: 'Ann Arbor Public Library - Downtown',
+            category: 'Physical Exercise',
+            originalLink: 'http://www.aadl.org/node/254176',
+            facebookEventUrl: '',
+            imageUrl: '',
+            createdDate: new Date(2014, 04, 18),
+            isDeleted: false
+        });
+        activity1.save();
+
+        var activity2 = store.createRecord('activity', {
+            id: 2,
+            title: 'Spanish Cultural Event',
+            description: 'teach kids about spanish culture',
+            fromTime: new Date(2014, 8, 21, 10, 0, 0, 0),
+            toTime: new Date(2014, 8, 21, 11, 0, 0, 0),
+            location: 'Ann Arbor Public Library - Downtown',
+            category: 'Physical Exercise',
+            originalLink: 'http://www.aadl.org/node/254176',
+            facebookEventUrl: '',
+            imageUrl: '',
+            createdDate: new Date(2014, 05, 18),
+            isDeleted: false
+        });
+        activity2.save();
     }
 });
 

@@ -1,0 +1,114 @@
+﻿<div class="overlay"></div>
+<div class="wenmodal">
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                {{view Ember.TextField class="form-control" placeholder="Item Name" value=name}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                {{view Ember.TextArea class="form-control" placeholder="Description" value=description}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Price:
+                {{view Ember.TextField class="form-control" placeholder="Price in" value=price}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="control-group">
+                <label class="control-label">Type</label>
+
+                <p>
+                    <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+
+                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Male"}}Toy{{/view}}
+
+                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Clothes{{/view}}
+                        
+                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Books{{/view}}
+                        
+                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Furnitures{{/view}}
+                        
+                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Other{{/view}}
+
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="control-group">
+                <label class="control-label">Condition</label>
+
+                <p>
+                    <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+
+                        {{#view App.RadioButtonView selectionBinding="controller.condition" value="New"}}New{{/view}}
+
+                        {{#view App.RadioButtonView selectionBinding="controller.condition" value="Used"}}Used{{/view}}
+
+                    </div>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <label>
+                Size:
+                {{view Ember.TextField class="form-control" placeholder="Size" value=size}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <label>
+                Width:
+                {{view Ember.TextField class="form-control" placeholder="Width" value=width}}
+            </label>
+        </div>
+        <div class="col-lg-4">
+            <label>
+                Length:
+                {{view Ember.TextField class="form-control" placeholder="Length" value=length}}
+            </label>
+        </div>
+        <div class="col-lg-4">
+            <label>
+                Height:
+                {{view Ember.TextField class="form-control" placeholder="Height" value=height}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <label>
+                From Age:
+                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="fromAge" content=ages placeholder="Age"}}
+            </label>
+        </div>
+        <div class="col-lg-6">
+            <label>
+                To Age:
+                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="toAge" content=ages}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>                
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "add" }} {{bind-attr disabled=disabled}}>Add</button>
+            <button class="btn btn-primary btn-sm" {{action "close" }}>Cancel</button>
+        </div>
+    </div>
+</div>
