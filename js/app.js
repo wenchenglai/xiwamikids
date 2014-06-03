@@ -205,9 +205,13 @@ App.Router.map(function() {
 });
 
 
-App.ApplicationSerializer = DS.LSSerializer.extend();
-App.ApplicationAdapter = DS.LSAdapter.extend({
-    namespace: 'xiwamilocal'
+//App.ApplicationSerializer = DS.LSSerializer.extend();
+//App.ApplicationAdapter = DS.LSAdapter.extend({
+//    namespace: 'xiwamilocal'
+//});
+
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+	host: 'http://localhost:3000'
 });
 
 //App.ApplicationAdapter = DS.FixtureAdapter.extend();
