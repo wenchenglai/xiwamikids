@@ -2,7 +2,6 @@
 
     actions: {
         close: function () {
-            //debugger;
             return this.send('closeAddMemberModal');
         },
         edit: function (params) {
@@ -12,17 +11,19 @@
                 description = this.get('description');
 
             var fromModel = this.get('model').content;
-            // create a record and save it to the store
-
+            debugger;
             var onSuccess = function (person) {
                 $this.send('closeAddMemberModal');
             };
 
-            var onFail = function (post) {
+            var onFail = function (ret) {
                 // deal with the failure here
+                if (ret.status === 200)
+                    $this.send('closeAddMemberModal');
             };
-
-            fromModel.save().then(onSuccess, onFail);
+            
+            if (fromModel.get('isDirty'))
+                fromModel.save().then(onSuccess, onFail);
         }
     }
 });

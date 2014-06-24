@@ -1,4 +1,4 @@
-﻿App.ConnectMyfamilyController = Ember.ArrayController.extend({
+﻿App.ConnectMyfamilyController = Ember.ObjectController.extend({
     years: function() {
         var currentYear = new Date().getFullYear();
         return this.getEnumeration(currentYear - 6, currentYear);

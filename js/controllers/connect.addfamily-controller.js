@@ -10,29 +10,29 @@
             return this.send('closeAddMemberModal');
         },
         add: function (params) {
-            var $this = this,
+            var self = this,
                 familyName = this.get('familyName'),
                 zipcode = this.get('zipcode'),
-                description = this.get('description'),
-                cityState = "";
+                description = this.get('description');
             
 
             var onSuccess = function (json) {
-                cityState = json.results[0].formatted_address;
+                var cityState = json.results[0].formatted_address;
 
                 // create a record and save it to the store
-                var newRecord = $this.store.createRecord('family', {
-                    familyName: familyName,
+                var newRecord = self.store.createRecord('family', {
                     zipcode: zipcode,
-                    description: description,
-                    cityState: cityState
+                    cityState: cityState,
+                    familyName: familyName,
+                    description: description
                 });
 
                 newRecord.save().then(function (data) {
-                    return $this.send('closeAddMemberModal');
-                }, function (article) {
-                    // deal with the failure here
                     debugger;
+                    return self.send('closeAddMemberModal');
+                }, function (error) {
+                    // deal with the failure here
+                    return self.send('closeAddMemberModal');
                 });
             };
 

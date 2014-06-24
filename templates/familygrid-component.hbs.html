@@ -1,7 +1,7 @@
-﻿{{#each families}}
+﻿{{#with model}}
 <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">{{id}}&nbsp;{{familyName}} | {{cityState}} | {{description}} | {{createdDate}} | {{zipcode}}</div>
+    <div class="panel-heading">{{id}} | {{familyName}} | {{cityState}} | {{description}} | {{zipcode}}</div>
     <div class="panel-body">
         <p>
             <a href="#" {{action "editfamily" "connect/editfamily" id }}>Edit</a>&nbsp;|&nbsp;
@@ -23,7 +23,7 @@
         <th>Action</th>
         </thead>
         <tbody>
-            <!--{{#each members }}
+            {{#each members }}
             <tr>
                 <td>{{id}}</td>
                 <td><img {{bind-attr src=avatarUrl}} alt="Avatar"></td>
@@ -33,17 +33,16 @@
                 <td>{{languages}}</td>
                 <td>{{type}}</td>
                 <td>
-                    <a href="#" {{action "edit" "connect/editmember" id }}>Edit</a>&nbsp;|&nbsp;
+                    <a href="#" {{action "editmember" "connect/editmember" id }}>Edit</a>&nbsp;|&nbsp;
                     <a href="#" {{action "deletemember" id }}>Delete</a>
                 </td>
             </tr>
-            {{/each}}-->
+            {{/each}}
 
         </tbody>
     </table>
 </div>
-{{/each}}
-
+{{/with}}
 <div id="dialog-confirm-delete-member" title="Delete a family member?">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This member will be deleted. Are you sure?</p>
 </div>

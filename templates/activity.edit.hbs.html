@@ -20,13 +20,13 @@
         <div class="col-lg-4">
             <label>
                 From:
-                {{view Ember.TextField class="edit_box" value=fromTime}}
+                {{view App.DatePicker dateBinding="fromTime"}} 
             </label>
         </div>
         <div class="col-lg-4">
             <label>
                 To:
-                {{view Ember.TextField class="edit_box" value=toTime}}
+                {{view App.DatePicker dateBinding="toTime"}} 
             </label>
         </div>
     </div>
@@ -35,7 +35,7 @@
             <label>
                 Location:
                 {{view Ember.TextField class="edit_box" value=location}}
-            </label>
+            </label>            
         </div>
     </div>
     <div class="row">

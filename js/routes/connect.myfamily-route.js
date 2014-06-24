@@ -1,11 +1,10 @@
 ﻿App.ConnectMyfamilyRoute = Ember.Route.extend({
     model: function () {
-
         //return Em.Object.create({});
-        return this.store.find('family');
+        return this.store.find('family', '53a78f832e853854ec59d93f');
     },
     afterModel: function (model) {
-
+        //debugger;
     },
     actions: {
         openAddMemberModal: function (modalName, id) {
@@ -19,7 +18,7 @@
 
         openEditMemberModal: function (modalName, id) {
             //debugger;
-            this.controllerFor("connect.editmember").set('model', this.store.find('person', id));
+            this.controllerFor("connect.editmember").set('model', this.store.find('member', id));
             //this.controllerFor(modalName).set('model', this.store.find('person', id));
             //this.generateController('connect.addmember');
             //debugger;
@@ -39,7 +38,6 @@
         },
 
         openEditFamilyModal: function (modalName, id) {
-            //debugger;
             this.controllerFor("connect.editfamily").set('model', this.store.find('family', id));
             //this.controllerFor(modalName).set('model', this.store.find('person', id));
             //this.generateController('connect.addmember');
@@ -59,14 +57,16 @@
         },
 
         deleteMember: function(id) {
-            this.store.find('person', id).then(function (record) {
+            this.store.find('member', id).then(function (record) {
                 //p.destroyRecord(); // => DELETE to /posts/2
                 record.deleteRecord();
                 record.save();
             });
             
         },
+
         deleteFamily: function (id) {
+            debugger;
             this.store.find('family', id).then(function (record) {
                 //record.destroyRecord(); // => DELETE to /posts/2
                 record.deleteRecord();

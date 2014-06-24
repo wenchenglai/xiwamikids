@@ -1,10 +1,9 @@
 ﻿App.Family = DS.Model.extend({
-    zipcode: DS.attr('string'),
-    familyName: DS.attr('string'),
-    description: DS.attr('string'),
-    createdDate: DS.attr('date'),
-    cityState: DS.attr('string'),
-    members: DS.hasMany('person')
+	zipcode: DS.attr('string'),
+	cityState: DS.attr('string'),
+	familyName: DS.attr('string'),
+	description: DS.attr('string'),
+	members: DS.hasMany('member', { embedded: 'always' })
 });
 
 //App.Family.FIXTURES = [{

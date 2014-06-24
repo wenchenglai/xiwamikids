@@ -60,13 +60,13 @@
 
             debugger;
             // create a record and save it to the store
-            var newkid = this.store.createRecord('person', {
+            var newkid = this.store.createRecord('member', {
                 firstName: firstName,
                 lastName: lastName,
                 nickname: nickName,
                 gender: gender,
                 birthday: new Date(selectedYear, selectedMonth, selectedDay),
-                selectedLanguage: ['Chinese', 'English'],
+                languages: ['Chinese', 'English'],
                 type: selectedRelation
             });
 
@@ -75,14 +75,16 @@
                 var f = family;
                 var onSuccess = function (article) {
                     //debugger;
-                    f.save().then(function () {
+                    //f.save().then(function () {
                         //$this.transitionToRoute('connect.index');
                         return $this.send('closeAddMemberModal');
-                    });
+                    //});
                 };
 
-                var onFail = function (article) {
+                var onFail = function (ret) {
                     // deal with the failure here
+                    if (ret.status === 200)
+                        return $this.send('closeAddMemberModal');
                     debugger;
                 };
 
