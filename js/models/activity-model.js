@@ -1,5 +1,5 @@
 ﻿App.Activity = DS.Model.extend({
-    creatorId: DS.attr('string'),
+    member: DS.belongsTo('member'),
     title: DS.attr('string'),
     description: DS.attr('string'),
     fromTime: DS.attr('date'),
@@ -8,7 +8,5 @@
     catetory: DS.attr('string'),
     originalLink: DS.attr('string'),
     facebookEventUrl: DS.attr('string'),
-    imageUrl: DS.attr('string'),
-    createdDate: DS.attr('date'),
-    isDeleted: DS.attr('')
+    imageUrl: DS.attr('string')
 });

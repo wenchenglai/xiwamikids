@@ -26,10 +26,12 @@
             {{#each members }}
             <tr>
                 <td>{{id}}</td>
-                <td><img {{bind-attr src=avatarUrl}} alt="Avatar"></td>
+                <td>
+                    {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+                </td>
                 <td>{{firstName}}</td>
                 <td>{{lastName}}</td>
-                <td>{{birthday}}</td>
+                <td>{{prettyDate birthday 'll'}}</td>
                 <td>{{languages}}</td>
                 <td>{{type}}</td>
                 <td>

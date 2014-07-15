@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="css/fullcalendar.css">
     <link rel="stylesheet" href="css/fullcalendar.print.css">
     <link rel="stylesheet" href="css/datepicker.css">
-    <!--<link rel="stylesheet" href="css/datepicker3.css">-->
 
 </head>
 <body>
@@ -29,7 +28,12 @@
             <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
             <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "logout" }}>Logout</button>
+            {{#if session.isAuthenticated}}
+                <a {{ action 'invalidateSession' }} class="btn btn-danger navbar-btn navbar-right">Logout</a>
+            {{else}}
+                {{#link-to 'login' class="btn btn-success navbar-btn navbar-right"}}Login{{/link-to}}
+            {{/if}}
+            
         </nav>
 
         <div class="container-fluid">
@@ -95,19 +99,36 @@
     <script src="js/libs/bootstrap-datepicker.js"></script>
     
     <script src="js/libs/facebooklogin.js"></script>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiLoaded"></script>
     <script src="js/libs/fullcalendar.js"></script>
+    <script src="js/libs/moment.js"></script>
     
     <script src="js/libs/handlebars-1.1.2.js"></script>
     <script src="js/libs/ember-1.5.0.js"></script>
     <script src="js/libs/ember-data-1.0.0-beta.js"></script>
     <script src="js/libs/localstorage_adapter.js"></script>
+    <script src="js/libs/ember-simple-auth-0.6.3.js"></script>
+    <script src="js/libs/ember-simple-auth-cookie-store-0.6.3.js"></script>
+    <script src="js/libs/ember-simple-auth-oauth2-0.6.3.js"></script>
       
     <script src="js/app.js"></script>
     
+    <script src="js/helpers/prettyDate.js"></script>
     <script src="js/views/radio-button-view.js"></script>
     <script src="js/components/familygrid-component.js"></script>
     <script src="js/components/familylist-component.js"></script>
     <script src="js/components/datepicker-component.js"></script>
+    <script src="js/components/chosenmultiselect-component.js"></script>
+    
+    <script src="js/views/index-view.js"></script>
+    <script src="js/views/connect.myfamily-view.js"></script>
+    <script src="js/views/connect.addmember-view.js"></script>
+    <script src="js/views/connect.editmember-view.js"></script>
+    <script src="js/views/items.myitems-view.js"></script>
+    <script src="js/views/activity.calendar-view.js"></script>
+    <script src="js/views/activity.my-view.js"></script>
+    <script src="js/views/previewuploadimage-view.js"></script>
 
     <script src="js/models/family-model.js"></script>
     <script src="js/models/question-model.js"></script>
@@ -117,6 +138,7 @@
     <script src="js/models/transaction-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
+    <script src="js/routes/login-route.js"></script>
     <script src="js/routes/connect.myfamily-route.js"></script>
     <script src="js/routes/connect.editmember-route.js"></script>
     <script src="js/routes/connect.search-route.js"></script>
@@ -137,14 +159,6 @@
     <script src="js/controllers/items.additem-controller.js"></script>
     <script src="js/controllers/activity.my-controller.js"></script>
     <script src="js/controllers/activity.edit-controller.js"></script>
-
-    <script src="js/views/index-view.js"></script>
-    <script src="js/views/connect.myfamily-view.js"></script>
-    <script src="js/views/connect.addmember-view.js"></script>
-    <script src="js/views/connect.editmember-view.js"></script>
-    <script src="js/views/items.myitems-view.js"></script>
-    <script src="js/views/activity.calendar-view.js"></script>
-    <script src="js/views/activity.my-view.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

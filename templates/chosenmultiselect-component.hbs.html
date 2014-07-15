@@ -1,0 +1,16 @@
+﻿<label {{bind-attr class="labelClasses" }} {{bind-attr for="inputField.elementId" }}>{{label}}</label>
+<div {{bind-attr class="inputContainerClasses" }}>
+    {{view Ember.Select
+    class=inputClasses
+    prompt=prompt
+    content=content
+    value=value
+    multiple=multiple
+    selection=selection
+    chosenSelection=chosenSelection
+    dataPlaceholder=dataPlaceholder
+    optionLabelPath=optionLabelPath
+    optionValuePath=optionValuePath
+    intputDisabled=intputDisabled
+    viewName="inputField"}}
+</div>

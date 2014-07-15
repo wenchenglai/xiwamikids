@@ -1,4 +1,4 @@
-﻿App.ApplicationRoute = Ember.Route.extend({
+﻿App.ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, {
     model: function () {
         //this.get('store').findAll('family').then(function (record) {
         //    record.content.forEach(function (rec) {
@@ -166,6 +166,32 @@
         //    isDeleted: false
         //});
         //activity2.save();
+    },
+    actions: {
+        sessionAuthenticationSucceeded: function() {
+            debugger;
+        },
+
+        sessionAuthenticationFailed: function() {
+            debugger;
+        },
+
+        invalidateSession: function() {
+            debugger;
+            this._super();
+        },
+        
+        sessionInvalidationSucceeded: function() {
+            debugger;
+        },
+
+        sessionInvalidationFailed: function() {
+            debugger;
+        },
+
+        authorizationFailed: function() {
+            debugger;
+        }
     }
 });
 

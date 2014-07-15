@@ -1,4 +1,25 @@
+// setup Facebook SDK
+FB.init({ appId: '290368724455193' });
+
+// setup Google+ API
+function googleApiLoaded() {
+    gapi.client.setApiKey('A_Dlo1Vp4KMI8d8B9QMWgPQb');
+};
+
+Ember.Application.initializer({
+    name: 'authentication',
+    before: 'simple-auth',
+    initialize: function (container, application) {
+        // register the Facebook and Google+ authenticators so the session can find them
+        container.register('authenticator:facebook', App.FacebookAuthenticator);
+        container.register('authenticator:googleplus', App.GooglePlusAuthenticator);
+    }
+});
+
 App = Ember.Application.create({
+    LOG_TRANSITIONS: true,
+    LOG_TRANSITIONS_INTERNAL: true,
+    LOG_ACTIVE_GENERATION: true,
     currentPath: '',
 
     ready: function () {
@@ -17,6 +38,23 @@ App = Ember.Application.create({
             async: false,
             success: function (resp) {
                 Em.TEMPLATES['components/family-grid'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/chosenmultiselect-component.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['components/chosen-multiselect'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        // Authentication
+        Ember.$.ajax({
+            url: '/templates/login.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['login'] = Ember.Handlebars.compile(resp);
             }
         });
 
@@ -175,6 +213,10 @@ App = Ember.Application.create({
     }
 });
 
+App.Router.reopen({
+    rootURL: 'index.html'
+});
+
 //App = Em.Application.createWithMixins(Em.Facebook);
 //App.set('appId', '290368724455193');
 
@@ -184,6 +226,8 @@ App = Ember.Application.create({
 //Ember.TEMPLATES['test'] = Ember.Handlebars.compile('Hello {{personName}}');
 
 App.Router.map(function() {
+
+    this.route('login');
 
     this.resource('connect', function () {
         this.route('search');
@@ -212,43 +256,123 @@ App.Router.map(function() {
     });
 });
 
+// the custom authenticator that initiates the authentication process with Facebook
+App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
+    restore: function (properties) {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            if (!Ember.isEmpty(properties.accessToken)) {
+                resolve(properties);
+            } else {
+                reject();
+            }
+        });
+    },
+    authenticate: function () {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            FB.getLoginStatus(function (fbResponse) {
+                if (fbResponse.status === 'connected') {
+                    Ember.run(function () {
+                        // A place to get information about this facebook user
+                        debugger;
+                        resolve({ accessToken: fbResponse.authResponse.accessToken });
+                    });
+                } else if (fbResponse.status === 'not_authorized') {
+                    reject();
+                } else {
+                    FB.login(function (fbResponse) {
+                        if (fbResponse.authResponse) {
+                            Ember.run(function () {
+                                resolve({ accessToken: fbResponse.authResponse.accessToken });
+                            });
+                        } else {
+                            reject();
+                        }
+                    });
+                }
+            });
+        });
+    },
+    invalidate: function () {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            FB.logout(function (response) {
+                Ember.run(resolve);
+            });
+        });
+    }
+});
+
+// the custom authenticator that initiates the authentication process with Google+
+App.GooglePlusAuthenticator = SimpleAuth.Authenticators.Base.extend({
+    restore: function (properties) {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            if (!Ember.isEmpty(properties.access_token)) {
+                resolve(properties);
+            } else {
+                reject();
+            }
+        });
+    },
+    authenticate: function () {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            gapi.auth.authorize({
+                client_id: '973620112090-cdupacm1dvpmt5ahibvtl8hnv6u903v9.apps.googleusercontent.com',
+                scope: ['https://www.googleapis.com/auth/plus.me'],
+                'approvalprompt': 'force',
+                immediate: false
+            }, function (authResult) {
+                if (authResult && !authResult.error) {
+                    resolve({ access_token: authResult.access_token });
+                } else {
+                    reject((authResult || {}).error);
+                }
+            });
+        });
+    },
+    invalidate: function () {
+        return Ember.RSVP.resolve();
+    }
+});
 
 //App.ApplicationSerializer = DS.LSSerializer.extend();
 //App.ApplicationAdapter = DS.LSAdapter.extend({
 //    namespace: 'xiwamilocal'
 //});
 
-//debugger;
 App.ApplicationAdapter = DS.RESTAdapter.extend({
-    host: 'http://localhost:8080'
+    host: 'http://localhost:8088'
     //headers: { 
     //'Content-Type': 'application/json'
     //}
 });
 
+// the problem when writing my own serializer is the data transforms are not being utilized
 //App.ApplicationSerializer = DS.RESTSerializer.extend({
-//    primaryKey: '_id'
-//});
-//debugger;
-//DS.JSONSerializer.reopen({ // or DS.RESTSerializer
-//    serializeHasMany: function (record, json, relationship) {
+//    //primaryKey: '_id'
+//    serialize: function (record, options) {
 //        debugger;
-//        var key = relationship.key,
-//            hasManyRecords = Ember.get(record, key);
 
-//        // Embed hasMany relationship if records exist
-//        if (hasManyRecords && relationship.options.embedded == 'always') {
-//            json[key] = [];
-//            hasManyRecords.forEach(function (item, index) {
-//                json[key].push(item.serialize());
-//            });
-//        }
-//            // Fallback to default serialization behavior
-//        else {
-//            return this._super(record, json, relationship);
-//        }
+//        var json = {},
+//            changedAttributes = Object.keys(record.get('_inFlightAttributes'));
+
+//        json[this.get('primaryKey')] = record.get('id');
+
+//        record.eachAttribute(function(key, attribute) {
+//            if (changedAttributes.indexOf(key) != -1) {
+//                if (!attribute.options.readOnly) {
+//                    var data = record.get(key);
+//                    if (data instanceof Date) {
+//                        json[key] = moment(data).format('YYYY/MM/DD');
+//                    } else 
+//                        json[key] = record.get(key);
+//                }
+//            }
+//        });
+
+
+//        return json;
 //    }
 //});
+
 
 // 
 // Handle deserializing data

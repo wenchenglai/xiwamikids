@@ -28,21 +28,37 @@
         }
         return array;
     },
-    languages: ['English', 'Chinese', 'Russian'],
-    relationships: [
-      { text: "Daughter", id: 1 },
-      { text: "Son", id: 2 },
-      { text: "Mother", id: 3 },
-      { text: "Father", id: 4 }
+    allLanguages: ['Chinese (Mnadarin)', 'Chinese (Cantonese)', 'English', 'French', 'German', 'Indonesian', 'Japanese', 'Korean', 'Russian', 'Spanish'],
+    //relationships: [
+    //  { text: "Daughter", id: 1 },
+    //  { text: "Son", id: 2 },
+    //  { text: "Mother", id: 3 },
+    //  { text: "Father", id: 4 },
+    //  { text: "Grandfather", id: 4 },
+    //  { text: "Grandmother", id: 4 },
+    //  { text: "Pet", id: 4 },
+    //],
+    allRelationships: [
+      "Daughter",
+      "Son",
+      "Parent",
+      "Grandparent",
+      "Pet"
     ],
-    pronoun: "He",
+    foto: '',
+    pronoun: function() {
+        if (this.get('gender') === 'male')
+            return 'He';
+        else
+            return 'She';
+    }.property('gender'),
     //firstName: "",
     //lastName: "",
     //nickName: "",
     gender: function () {
         var gender = this.get('model.gender');
         return gender;
-    }.property('model.birthday'),
+    }.property('model.gender'),
     selectedYear: function () {
         var birthday = this.get('model.birthday');
         var mydate = new Date(birthday);
@@ -61,11 +77,6 @@
         var day = mydate.getDate();
         return day;
     }.property('model.birthday'),
-    //selectedLanguage: null,
-    selectedRelation: function () {
-        var type = this.get('model.type');
-        return type;
-    }.property('model.birthday'),
 
     //disabled: function () {
     //    //return Ember.isEmpty(this.get('firstName'));
@@ -76,29 +87,29 @@
     actions: {
         close: function () {
             //debugger;
+            this.get('model').content.rollback();
             return this.send('closeAddMemberModal');
         },
         edit: function (params) {
             var $this = this,
-                firstName = this.get('firstName'),
-                lastName = this.get('lastName'),
-                nickName = this.get('nickName');
-                //gender = this.get('gender'),
-                //selectedYear = this.get('selectedYear'),
-                //selectedMonth = this.get('selectedMonth'),
-                //selectedDay = this.get('selectedDay'),
-                //selectedLanguage = this.get('selectedLanguage'),
-                //selectedRelation = this.get('selectedRelation');
+                fromModel = this.get('model').content,
+                originalBirthday = fromModel.get('birthday'),
+                birthday = new Date(this.get('selectedYear'), this.get('selectedMonth') - 1, this.get('selectedDay', 0, 0, 0, 0));
 
-            debugger;
-            var fromModel = this.get('model').content;
-            // create a record and save it to the store
+            // it's difficult to compare the original date attribute with the custom date object from UI (UI uses three different textboxes instead of calendar textbox)
+            if (originalBirthday.toString() !== birthday.toString()) {
+                fromModel.set('birthday', birthday);
+            }
 
-            var onSuccess = function (person) {
+            //debugger;
+            var onSuccess = function (ret) {
+                debugger;
                 $this.send('closeAddMemberModal');
             };
 
-            var onFail = function (post) {
+            var onFail = function (ret) {
+                if (ret.status === 200)
+                    $this.send('closeAddMemberModal');
                 // deal with the failure here
             };
 

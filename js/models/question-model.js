@@ -2,5 +2,5 @@
     userId: DS.attr('string'),
     question: DS.attr('string'),
     createdDate: DS.attr('date'),
-    isAnswered: DS.attr("")
+    isAnswered: DS.attr("boolean")
 });

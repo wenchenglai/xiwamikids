@@ -1,4 +1,4 @@
-﻿App.ActivityMyRoute = Ember.Route.extend({
+﻿App.ActivityMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         //return Em.Object.create({});
         return this.store.find('activity', {isDeleted: false});

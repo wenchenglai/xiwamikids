@@ -1,4 +1,4 @@
-﻿App.ConnectMyfamilyRoute = Ember.Route.extend({
+﻿App.ConnectMyfamilyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         //return Em.Object.create({});
         return this.store.find('family', '53a78f832e853854ec59d93f');

@@ -1,4 +1,4 @@
-﻿App.ItemsMyitemsRoute = Ember.Route.extend({
+﻿App.ItemsMyitemsRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         debugger;
         //return Em.Object.create({});
