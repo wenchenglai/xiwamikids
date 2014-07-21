@@ -29,6 +29,16 @@
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
             <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
             {{#if session.isAuthenticated}}
+                <a href="#" class="btn navbar-btn navbar-right" data-toggle="dropdown">{{session.store.firstName}}<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
                 <a {{ action 'invalidateSession' }} class="btn btn-danger navbar-btn navbar-right">Logout</a>
             {{else}}
                 {{#link-to 'login' class="btn btn-success navbar-btn navbar-right"}}Login{{/link-to}}

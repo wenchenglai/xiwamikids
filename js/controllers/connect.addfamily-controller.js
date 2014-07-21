@@ -12,7 +12,7 @@
         add: function (params) {
             var self = this,
                 familyName = this.get('familyName'),
-                zipcode = this.get('zipcode'),
+                zipCode = this.get('zipCode'),
                 description = this.get('description');
             
 
@@ -21,7 +21,7 @@
 
                 // create a record and save it to the store
                 var newRecord = self.store.createRecord('family', {
-                    zipcode: zipcode,
+                    zipCode: zipCode,
                     cityState: cityState,
                     familyName: familyName,
                     description: description
@@ -41,7 +41,7 @@
                 debugger;
             };
 
-            Ember.$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + zipcode + '&sensor=true').then(onSuccess, onFail);
+            Ember.$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?address=' + zipCode + '&sensor=true').then(onSuccess, onFail);
         }
     }
 });

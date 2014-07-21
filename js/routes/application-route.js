@@ -1,4 +1,13 @@
 ﻿App.ApplicationRoute = Ember.Route.extend(SimpleAuth.ApplicationRouteMixin, {
+    _saveTransition: function (transition) {
+        if (transition.targetName !== 'login') {
+            this.controllerFor('login').set('previousTransition', transition);
+        }
+    },
+    setupController: function (controller, post) {
+        this._super(controller);
+        this.generateController('login');
+    },
     model: function () {
         //this.get('store').findAll('family').then(function (record) {
         //    record.content.forEach(function (rec) {
@@ -168,30 +177,33 @@
         //activity2.save();
     },
     actions: {
-        sessionAuthenticationSucceeded: function() {
-            debugger;
-        },
-
-        sessionAuthenticationFailed: function() {
-            debugger;
-        },
-
-        invalidateSession: function() {
-            debugger;
-            this._super();
-        },
-        
-        sessionInvalidationSucceeded: function() {
-            debugger;
-        },
-
-        sessionInvalidationFailed: function() {
-            debugger;
-        },
-
-        authorizationFailed: function() {
-            debugger;
+        willTransition: function (transition) {
+            this._saveTransition(transition);
         }
+        //sessionAuthenticationSucceeded: function() {
+        //    debugger;
+        //},
+
+        //sessionAuthenticationFailed: function() {
+        //    debugger;
+        //},
+
+        //invalidateSession: function() {
+        //    debugger;
+        //    this._super();
+        //},
+        
+        //sessionInvalidationSucceeded: function() {
+        //    debugger;
+        //},
+
+        //sessionInvalidationFailed: function() {
+        //    debugger;
+        //},
+
+        //authorizationFailed: function() {
+        //    debugger;
+        //}
     }
 });
 

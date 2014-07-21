@@ -16,7 +16,6 @@ App.SpringdateTransform = DS.Transform.extend({
     },
 
     serialize: function (deserialized) {
-        debugger;
         if (deserialized) {
             return moment(deserialized.toISOString()).format('YYYY/MM/DD');
         }

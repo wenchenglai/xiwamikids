@@ -6,10 +6,28 @@ function googleApiLoaded() {
     gapi.client.setApiKey('A_Dlo1Vp4KMI8d8B9QMWgPQb');
 };
 
+window.ENV = window.ENV || {};
+window.ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage'
+};
+
 Ember.Application.initializer({
     name: 'authentication',
     before: 'simple-auth',
     initialize: function (container, application) {
+        // customize the session so that it allows access to the account object
+        SimpleAuth.Session.reopen({
+            account: function () {
+                var facebookId = FB.getAuthResponse().userID;
+                var query = {
+                    facebookId: facebookId
+                };
+                if (!Ember.isEmpty(facebookId)) {
+                    return container.lookup('store:main').find('account', query);
+                }
+            }.property('facebookId')
+        });
+
         // register the Facebook and Google+ authenticators so the session can find them
         container.register('authenticator:facebook', App.FacebookAuthenticator);
         container.register('authenticator:googleplus', App.GooglePlusAuthenticator);
@@ -272,11 +290,10 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
             FB.getLoginStatus(function (fbResponse) {
                 if (fbResponse.status === 'connected') {
                     Ember.run(function () {
-                        // A place to get information about this facebook user
-                        debugger;
                         resolve({ accessToken: fbResponse.authResponse.accessToken });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
+
                     reject();
                 } else {
                     FB.login(function (fbResponse) {

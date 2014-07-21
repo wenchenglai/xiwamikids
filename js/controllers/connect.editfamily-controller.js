@@ -7,7 +7,7 @@
         edit: function (params) {
             var $this = this,
                 familyName = this.get('familyName'),
-                zipcode = this.get('zipcode'),
+                zipCode = this.get('zipCode'),
                 description = this.get('description');
 
             var fromModel = this.get('model').content;
