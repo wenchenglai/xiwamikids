@@ -290,7 +290,11 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
             FB.getLoginStatus(function (fbResponse) {
                 if (fbResponse.status === 'connected') {
                     Ember.run(function () {
-                        resolve({ accessToken: fbResponse.authResponse.accessToken });
+                        debugger;
+                        resolve({
+                            accessToken: fbResponse.authResponse.accessToken,
+                            facebookId: fbResponse.authResponse.userID
+                        });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
 
@@ -299,7 +303,11 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                     FB.login(function (fbResponse) {
                         if (fbResponse.authResponse) {
                             Ember.run(function () {
-                                resolve({ accessToken: fbResponse.authResponse.accessToken });
+                                debugger;
+                                resolve({
+                                    accessToken: fbResponse.authResponse.accessToken,
+                                    facebookId: fbResponse.authResponse.userID
+                                });
                             });
                         } else {
                             reject();

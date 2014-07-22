@@ -1,15 +1,19 @@
 ﻿<h2>My Family</h2>
 
-<div class="row">
-    <div class="col-lg-12">
-        <button class='btn btn-primary' {{action 'openAddFamilyModal' 'connect/addfamily' }}>Add New Family</button>
-    </div>
-</div>
-
+{{#if model}}
 <div class="row">
     <div class="col-lg-12">
         {{family-grid model=model editfamily="openEditFamilyModal" deletefamily="deleteFamily" addmember="openAddMemberModal" editmember="openEditMemberModal" deletemember="deleteMember" cancel="cancelUserCreation"}}
     </div>
 </div>
+{{else}}
+<div class="row">
+    <div class="col-lg-12">
+        <button class='btn btn-primary' {{action 'openAddFamilyModal' 'connect/addfamily' }}>Add New Family</button>
+    </div>
+</div>
+{{/if}}
+
+
 
 

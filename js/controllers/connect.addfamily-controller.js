@@ -1,20 +1,20 @@
 ﻿App.ConnectAddfamilyController = Ember.ObjectController.extend({
     familyName: "",
-    zipcode: "",
+    zipCode: "",
     description: "",
     disabled: function () {
-        return Ember.isEmpty(this.get('familyName')) || Ember.isEmpty(this.get('zipcode'));
-    }.property('familyName', 'zipcode'),
+        return Ember.isEmpty(this.get('familyName')) || Ember.isEmpty(this.get('zipCode'));
+    }.property('familyName', 'zipCode'),
     actions: {
         close: function () {
             return this.send('closeAddMemberModal');
         },
         add: function (params) {
+            debugger;
             var self = this,
                 familyName = this.get('familyName'),
                 zipCode = this.get('zipCode'),
                 description = this.get('description');
-            
 
             var onSuccess = function (json) {
                 var cityState = json.results[0].formatted_address;
@@ -27,9 +27,21 @@
                     description: description
                 });
 
-                newRecord.save().then(function (data) {
+                newRecord.save().then(function (family) {
                     debugger;
-                    return self.send('closeAddMemberModal');
+                    var user = self.get('session.store').restore();
+                    self.store.find('member', user.id).then(function(member) {
+                        debugger;
+                        member.set('family', family);
+                        member.save().then(function(mem) {
+                            user.familyId = family.get('id');
+                            self.get('session.store').persist(user);
+                            return self.send('closeAddMemberModal');
+                        }, function(df) {
+                            debugger;
+                        });
+                    });
+                    
                 }, function (error) {
                     // deal with the failure here
                     return self.send('closeAddMemberModal');
