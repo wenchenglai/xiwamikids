@@ -1,6 +1,6 @@
 ﻿App.ConnectMyfamilyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        debugger;
+        //debugger;
         var user = this.get('session.store').restore();
         if (user.familyId) {
             return this.store.find('family', user.familyId);
@@ -13,25 +13,33 @@
     afterModel: function (model) {
         //debugger;
     },
+    setupController: function (controller, model) {
+        controller.set('content', model);
+    },
     actions: {
         openAddMemberModal: function (modalName, id) {
-            this.controllerFor(modalName).set('familyId', id);
-            //this.generateController('connect.addmember');
-            return this.render(modalName, {
-                into: 'application',
-                outlet: 'modal'
+            var self = this;
+            this.store.find('family', id).then(function (family) {
+                var empty = self.store.createRecord('member', { family: family });
+                self.controllerFor(modalName).set('model', empty);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
             });
         },
 
         openEditMemberModal: function (modalName, id) {
-            //debugger;
-            this.controllerFor("connect.editmember").set('model', this.store.find('member', id));
-            //this.controllerFor(modalName).set('model', this.store.find('person', id));
-            //this.generateController('connect.addmember');
-            //debugger;
-            return this.render(modalName, {
-                into: 'application',
-                outlet: 'modal'
+            var self = this;
+            this.store.find('member', id).then(function(member) {
+                self.controllerFor(modalName).set('model', member);
+                //this.controllerFor(modalName).set('model', this.store.find('person', id));
+                //this.generateController('connect.addmember');
+                //debugger;
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
             });
         },
 
@@ -45,7 +53,7 @@
         },
 
         openEditFamilyModal: function (modalName, id) {
-            this.controllerFor("connect.editfamily").set('model', this.store.find('family', id));
+            this.controllerFor(modalName).set('model', this.store.find('family', id));
             //this.controllerFor(modalName).set('model', this.store.find('person', id));
             //this.generateController('connect.addmember');
             //debugger;
@@ -56,7 +64,6 @@
         },
 
         closeAddMemberModal: function () {
-            //debugger;
             return this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'

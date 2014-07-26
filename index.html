@@ -29,6 +29,9 @@
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
             <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
             {{#if session.isAuthenticated}}
+                {{# if session.facebookImage }}
+                    <img class="navbar-right" {{bind-attr src=session.facebookImage}} alt="avatar" />
+                {{/if}}
                 <a href="#" class="btn navbar-btn navbar-right" data-toggle="dropdown">{{session.store.firstName}}<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#">Action</a></li>
@@ -140,6 +143,7 @@
     <script src="js/views/activity.my-view.js"></script>
     <script src="js/views/previewuploadimage-view.js"></script>
 
+    <script src="js/models/ds-init.js"></script>
     <script src="js/models/family-model.js"></script>
     <script src="js/models/question-model.js"></script>
     <script src="js/models/member-model.js"></script>

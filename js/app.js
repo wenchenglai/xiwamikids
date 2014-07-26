@@ -293,7 +293,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                         debugger;
                         resolve({
                             accessToken: fbResponse.authResponse.accessToken,
-                            facebookId: fbResponse.authResponse.userID
+                            facebookId: fbResponse.authResponse.userID,
                         });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
@@ -306,7 +306,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                                 debugger;
                                 resolve({
                                     accessToken: fbResponse.authResponse.accessToken,
-                                    facebookId: fbResponse.authResponse.userID
+                                    facebookId: fbResponse.authResponse.userID,
                                 });
                             });
                         } else {

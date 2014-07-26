@@ -25,9 +25,9 @@
                     <p>
                         <div id="gendertype" name="gender" class="btn-group rdgender" data-toggle="buttons-radio">
 
-                            {{#view App.RadioButtonView name="selectionTest" label="Male" class="btn btn-info" selectionBinding="controller.gender" value="male"}}Male{{/view}}
+                            {{#view App.RadioButtonView name="selectionMale" selectionBinding="gender" value="male"}}Male{{/view}}
 
-                            {{#view App.RadioButtonView name="selectionTest" label="Female" class="btn btn-info" selectionBinding="controller.gender" value="female"}}Female{{/view}}
+                            {{#view App.RadioButtonView name="selectionFemale" selectionBinding="gender" value="female"}}Female{{/view}}
 
                         </div>
                     </p>
@@ -35,15 +35,19 @@
             </div>
             <div>
                 Birthday:
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" value=selectedMonth}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" value=selectedDay}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" value=selectedYear}}                
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" valueBinding=selectedMonth}} /
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" valueBinding=selectedDay}} /
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" valueBinding=selectedYear}}                
             </div>
         </div>
         <div class="col-lg-offset-8">
             {{#view Ember.View contentBinding="imageData"}}
             {{view App.FileField}}
-            {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+            {{#if imageData}}
+                {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+            {{else}}
+                {{view App.PreviewImageView width="200" height="200" srcBinding="avatarUrl"}}
+            {{/if}}
             {{/view}}
         </div>
           
@@ -59,7 +63,11 @@
     <div class="row height-forms">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" {{action "edit" }}>
+                {{#if id}}
                 Edit
+                {{else}}
+                Add
+                {{/if}}
             </button>
             <button class="btn btn-primary btn-sm" {{action "close" }}>
                 Cancel

@@ -1,4 +1,5 @@
 ﻿App.ConnectAddfamilyController = Ember.ObjectController.extend({
+    needs: ['ConnectMyfamily'],
     familyName: "",
     zipCode: "",
     description: "",
@@ -10,7 +11,6 @@
             return this.send('closeAddMemberModal');
         },
         add: function (params) {
-            debugger;
             var self = this,
                 familyName = this.get('familyName'),
                 zipCode = this.get('zipCode'),
@@ -31,12 +31,17 @@
                     debugger;
                     var user = self.get('session.store').restore();
                     self.store.find('member', user.id).then(function(member) {
-                        debugger;
                         member.set('family', family);
                         member.save().then(function(mem) {
                             user.familyId = family.get('id');
                             self.get('session.store').persist(user);
-                            return self.send('closeAddMemberModal');
+                            debugger;
+                            var test = self.store.find('family', user.familyId);
+                            test.then(function(myfam) {
+                                self.get('controllers.ConnectMyfamily').set('model', myfam);
+                                return self.send('closeAddMemberModal');
+                            });
+
                         }, function(df) {
                             debugger;
                         });
@@ -44,7 +49,7 @@
                     
                 }, function (error) {
                     // deal with the failure here
-                    return self.send('closeAddMemberModal');
+                    //return self.send('closeAddMemberModal');
                 });
             };
 

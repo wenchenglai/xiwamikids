@@ -3,6 +3,7 @@
 	cityState: DS.attr('string'),
 	familyName: DS.attr('string'),
 	description: DS.attr('string'),
+	location: DS.attr('raw'),
 	members: DS.hasMany('member', { embedded: 'always' })
 });
 

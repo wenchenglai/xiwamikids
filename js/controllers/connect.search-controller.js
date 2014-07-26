@@ -6,38 +6,28 @@
     fromAge: 0,
     actions: {
         searchfamilies: function () {
+            var self = this;
             this.set('fromAge',this.get('fromAge'));
             this.set('toAge', this.get('toAge'));
             var languages = this.get('languages');
             var distance = this.get('distance');
+            var user = self.get('session.store').restore();
 
-            var query = {
-                zipcode: '48105',
-                distance: distance,
-                languages: languages,
-                fromAge: this.get('fromAge'),
-                toAge: this.get('toAge')
-            };
+            this.store.find('family', user.familyId).then(function (family) {
+                var query = {
+                    longitude: family.get('location')[0],
+                    latitude: family.get('location')[1],
+                    distance: distance,
+                    languages: languages,
+                    fromAge: self.get('fromAge'),
+                    toAge: self.get('toAge')
+                };
 
-            var onSuccess = function (json) {
-                var cityState = json.results[0].formatted_address;
-
-            };
-
-            var onFail = function (article) {
-                // deal with the failure here
-                debugger;
-            };
-
-            //var queryString = "distance=" + distance;
-            //queryString += "&fromAge=" + fromAge;
-            //queryString += "&toAge=" + toAge;
-            //queryString += "languages";
-
-            //Ember.$.getJSON('http://localhost:8088/families/53a78f832e853854ec59d93f?address=' + zipcode + '&sensor=true').then(onSuccess, onFail);
-
-            var found = this.store.find('family', query);
-            this.set('content', found);
+                self.store.find('family', query).then(function(families) {
+                    self.set('content', families);
+                });
+                
+            });
         }
     }
 });

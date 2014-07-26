@@ -1,29 +1,20 @@
 ﻿App.ConnectEditfamilyController = Ember.ObjectController.extend({
-
     actions: {
         close: function () {
             return this.send('closeAddMemberModal');
         },
         edit: function (params) {
-            var $this = this,
-                familyName = this.get('familyName'),
-                zipCode = this.get('zipCode'),
-                description = this.get('description');
+            var self = this;
 
             var fromModel = this.get('model').content;
-            debugger;
-            var onSuccess = function (person) {
-                $this.send('closeAddMemberModal');
-            };
 
-            var onFail = function (ret) {
-                // deal with the failure here
-                if (ret.status === 200)
-                    $this.send('closeAddMemberModal');
-            };
-            
-            if (fromModel.get('isDirty'))
-                fromModel.save().then(onSuccess, onFail);
+            if (fromModel.get('isDirty')) {
+                fromModel.save().then(function(family) {
+                    self.send('closeAddMemberModal');
+                }, function(error) {
+
+                });
+            }
         }
     }
 });

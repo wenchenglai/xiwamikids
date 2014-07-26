@@ -55,10 +55,10 @@
     //firstName: "",
     //lastName: "",
     //nickName: "",
-    gender: function () {
-        var gender = this.get('model.gender');
-        return gender;
-    }.property('model.gender'),
+    //gender: function () {
+    //    var gender = this.get('model.gender');
+    //    return gender;
+    //}.property('model.gender'),
     selectedYear: function () {
         var birthday = this.get('model.birthday');
         var mydate = new Date(birthday);
@@ -86,24 +86,33 @@
 
     actions: {
         close: function () {
-            //debugger;
-            this.get('model').content.rollback();
+            var record = this.get('model');
+            if (record.get('id')) {
+                if (record.get('isDirty')) {
+                    record.rollback();
+                }
+            } else {
+                record.deleteRecord();
+            }
+
             return this.send('closeAddMemberModal');
         },
-        edit: function (params) {
+        edit: function () {
             var $this = this,
-                fromModel = this.get('model').content,
+                fromModel = this.get('model'),
                 originalBirthday = fromModel.get('birthday'),
                 birthday = new Date(this.get('selectedYear'), this.get('selectedMonth') - 1, this.get('selectedDay', 0, 0, 0, 0));
-
-            // it's difficult to compare the original date attribute with the custom date object from UI (UI uses three different textboxes instead of calendar textbox)
-            if (originalBirthday.toString() !== birthday.toString()) {
+            
+            if (originalBirthday) {
+                // it's difficult to compare the original date attribute with the custom date object from UI (UI uses three different textboxes instead of calendar textbox)
+                if (originalBirthday.toString() !== birthday.toString()) {
+                    fromModel.set('birthday', birthday);
+                }
+            } else {
                 fromModel.set('birthday', birthday);
             }
 
-            //debugger;
             var onSuccess = function (ret) {
-                debugger;
                 $this.send('closeAddMemberModal');
             };
 

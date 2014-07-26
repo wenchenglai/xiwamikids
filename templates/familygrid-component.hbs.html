@@ -4,8 +4,8 @@
     <div class="panel-heading">{{id}} | {{familyName}} | {{cityState}} | {{description}} | {{zipcode}}</div>
     <div class="panel-body">
         <p>
-            <a href="#" {{action "editfamily" "connect/editfamily" id }}>Edit</a>&nbsp;|&nbsp;
-            <a href="#" {{action "addmember" "connect.addmember" id }}>Add New Member</a>&nbsp;|&nbsp;
+            <a href="#" {{action "editfamily" "connect.editfamily" id }}>Edit</a>&nbsp;|&nbsp;
+            <a href="#" {{action "addmember" "connect.editmember" id }}>Add New Member</a>&nbsp;|&nbsp;
             <a href="#" {{action "deletefamily" id }}>Delete Family</a>
         </p>
     </div>
@@ -27,7 +27,11 @@
             <tr>
                 <td>{{id}}</td>
                 <td>
-                    {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+                    {{#if avatarUrl }}
+                        <img {{bind-attr src=avatarUrl}} alt="avatar" />
+                    {{else}}
+                        {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+                    {{/if}}
                 </td>
                 <td>{{firstName}}</td>
                 <td>{{lastName}}</td>
@@ -35,7 +39,7 @@
                 <td>{{languages}}</td>
                 <td>{{type}}</td>
                 <td>
-                    <a href="#" {{action "editmember" "connect/editmember" id }}>Edit</a>&nbsp;|&nbsp;
+                    <a href="#" {{action "editmember" "connect.editmember" id }}>Edit</a>&nbsp;|&nbsp;
                     <a href="#" {{action "deletemember" id }}>Delete</a>
                 </td>
             </tr>
