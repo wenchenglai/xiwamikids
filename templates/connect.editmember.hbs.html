@@ -35,9 +35,9 @@
             </div>
             <div>
                 Birthday:
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" valueBinding=selectedMonth}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" valueBinding=selectedDay}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" valueBinding=selectedYear}}                
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" valueBinding="birthMonth"}} /
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" valueBinding="birthDayNumber"}} /
+                {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" valueBinding="birthYear"}}              
             </div>
         </div>
         <div class="col-lg-offset-8">

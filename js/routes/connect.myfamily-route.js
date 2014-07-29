@@ -1,17 +1,11 @@
 ﻿App.ConnectMyfamilyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        //debugger;
         var user = this.get('session.store').restore();
         if (user.familyId) {
             return this.store.find('family', user.familyId);
         } else {
             return null;
         }
-        
-        //return this.store.find('family', '53a78f832e853854ec59d93f');
-    },
-    afterModel: function (model) {
-        //debugger;
     },
     setupController: function (controller, model) {
         controller.set('content', model);
@@ -33,9 +27,6 @@
             var self = this;
             this.store.find('member', id).then(function(member) {
                 self.controllerFor(modalName).set('model', member);
-                //this.controllerFor(modalName).set('model', this.store.find('person', id));
-                //this.generateController('connect.addmember');
-                //debugger;
                 return self.render(modalName, {
                     into: 'application',
                     outlet: 'modal'

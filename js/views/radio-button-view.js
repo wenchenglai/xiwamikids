@@ -25,7 +25,6 @@
         return flag;
     }.property('selection'),
     didInsertElement: function () {
-        debugger;
         var gender = this.get('controller').get('gender');
         if (gender) {
             var selector = 'div[name=selectionFemale]';
