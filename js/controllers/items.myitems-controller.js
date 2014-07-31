@@ -28,10 +28,10 @@
                 self.set('content', records);
             });
         },
-        loadDeleted: function(params) {
+        loadDealt: function(params) {
             var self = this;
             var user = self.get('session.store').restore();
-            self.store.find('item', { status: 'Deleted', seller: user.id }).then(function (records) {
+            self.store.find('item', { status: 'Dealt', seller: user.id }).then(function (records) {
                 self.set('content', records);
             });
         }
