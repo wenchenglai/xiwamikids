@@ -1,43 +1,52 @@
 ﻿App.ItemsMyitemsRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        //return Em.Object.create({});
-        return this.store.find('item', { status: 'Open' });
+        var user = this.get('session.store').restore();
+        return this.store.find('item', { status: 'Open', seller : user.id});
     },
-    afterModel: function(model) {
-        var data = model;
-        //debugger;
-    },
+
     actions: {
-        openAddItemModal: function (modalName, model) {
-            var empty = this.store.createRecord('item');
-            this.controllerFor(modalName).set('model', empty);
-            return this.render(modalName, {
-                into: 'application',
-                outlet: 'modal'
+        openAddItemModal: function (modalName) {
+            var self = this;
+            var user = self.get('session.store').restore();
+            self.store.find('member', user.id).then(function (member) {
+                var empty = self.store.createRecord('item', { seller: member });
+                self.controllerFor(modalName).set('model', empty);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
             });
         },
+        openEditItemModal: function (modalName, id) {
+            var self = this;
 
+            self.store.find('item', id).then(function (item) {
+                self.controllerFor(modalName).set('model', item);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
+            });
+        },
         closeAddItemModal: function (needReload) {
             this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'
             });
-            //debugger;
+
             if (needReload) {
-                this.transitionTo('items.myitems');
+                //this.transitionTo('items.myitems');
+                this.refresh();
             }
         },
         deleteItem: function (id) {
-            //debugger;
             var route = this;
             this.store.find('item', id).then(function (record) {
-                debugger;
-                record.set('status', 'Deleted');
+                record.destroyRecord();
                 //record.deleteRecord();
-                record.save().then(function () {
-                    debugger;
-                    route.transitionTo('items.myitems');
-                });
+                //record.save().then(function () {
+                //    //route.transitionTo('items.myitems');
+                //});
             });
         }
     }

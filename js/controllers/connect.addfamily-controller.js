@@ -28,14 +28,12 @@
                 });
 
                 newRecord.save().then(function (family) {
-                    debugger;
                     var user = self.get('session.store').restore();
                     self.store.find('member', user.id).then(function(member) {
                         member.set('family', family);
                         member.save().then(function(mem) {
                             user.familyId = family.get('id');
                             self.get('session.store').persist(user);
-                            debugger;
                             var test = self.store.find('family', user.familyId);
                             test.then(function(myfam) {
                                 self.get('controllers.ConnectMyfamily').set('model', myfam);

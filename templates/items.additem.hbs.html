@@ -28,15 +28,15 @@
                 <label class="control-label">Type</label>
                 <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
 
-                    {{#view App.RadioButtonView selectionBinding="type" value="toy"}}Toy{{/view}}
+                    {{#view App.RadioButtonView name="toy" selectionBinding="type" value="toy"}}Toy{{/view}}
 
-                    {{#view App.RadioButtonView selectionBinding="type" value="cloth"}}Clothes{{/view}}
+                    {{#view App.RadioButtonView name="cloth" selectionBinding="type" value="cloth"}}Clothes{{/view}}
 
-                    {{#view App.RadioButtonView selectionBinding="type" value="book"}}Books{{/view}}
+                    {{#view App.RadioButtonView name="book" selectionBinding="type" value="book"}}Books{{/view}}
 
-                    {{#view App.RadioButtonView selectionBinding="type" value="furniture"}}Furnitures{{/view}}
+                    {{#view App.RadioButtonView name="furniture" selectionBinding="type" value="furniture"}}Furnitures{{/view}}
 
-                    {{#view App.RadioButtonView selectionBinding="type" value="other"}}Other{{/view}}
+                    {{#view App.RadioButtonView name="other" selectionBinding="type" value="other"}}Other{{/view}}
 
                 </div>
             </div>
@@ -46,9 +46,9 @@
                 <label class="control-label">Condition</label>
                 <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
 
-                    {{#view App.RadioButtonView selectionBinding="condition" value="new"}}New{{/view}}
+                    {{#view App.RadioButtonView name="new" selectionBinding="condition" value="new"}}New{{/view}}
 
-                    {{#view App.RadioButtonView selectionBinding="condition" value="used"}}Used{{/view}}
+                    {{#view App.RadioButtonView name="used" selectionBinding="condition" value="used"}}Used{{/view}}
 
                 </div>
             </div>

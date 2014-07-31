@@ -66,18 +66,16 @@
 
                                     var previousTransition = self.get('controller').get('previousTransition');
                                     if (previousTransition) {
-                                        debugger;
                                         previousTransition.retry();
                                         return;
                                     }
-                                    debugger;
                                     this.transitionTo('index');
                                 }, function(ret) {
                                     // error in saving new member
                                 });
 
                             }, function(error) {
-                                debugger;
+
                             });
                         });
                     }

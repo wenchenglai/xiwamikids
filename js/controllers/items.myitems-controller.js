@@ -1,10 +1,10 @@
 ﻿App.ItemsMyitemsController = Ember.ArrayController.extend({
     sortProperties: ['price', 'name'],
     sortAscending: false,
-    ageRange: function () {
-        debugger;
-        return this.get('fromAge') + ' to ' + this.get('toAge');
-    }.property('@each.fromAge', '@each.toAge'),
+    //ageRange: function () {
+    //    debugger;
+    //    return this.get('fromAge') + ' to ' + this.get('toAge');
+    //}.property('@each.fromAge', '@each.toAge'),
 
     totalPrice: function () {
         var longSongs = this.filter(function (song) {
@@ -15,16 +15,25 @@
 
     actions: {
         loadOpen: function () {
-            var data = this.store.find('item', { status: 'Open' });
-            this.set('content', data);
+            var self = this;
+            var user = self.get('session.store').restore();
+            self.store.find('item', { status: 'Open', seller : user.id }).then(function(records) {
+                self.set('content', records);
+            });
         },
         loadClosed: function (params) {
-            var data = this.store.find('item', { status: 'Closed' });
-            this.set('content', data);
+            var self = this;
+            var user = self.get('session.store').restore();
+            self.store.find('item', { status: 'Closed', seller: user.id }).then(function (records) {
+                self.set('content', records);
+            });
         },
         loadDeleted: function(params) {
-            var data = this.store.find('item', {status: 'Deleted'});
-            this.set('content', data);
+            var self = this;
+            var user = self.get('session.store').restore();
+            self.store.find('item', { status: 'Deleted', seller: user.id }).then(function (records) {
+                self.set('content', records);
+            });
         }
     }
 });

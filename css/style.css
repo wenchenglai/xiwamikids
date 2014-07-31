@@ -79,4 +79,8 @@ input {
 .height-forms {
     margin-bottom: 15px;
 }
+
+.search-input-text {
+    width: 100px;
+}
 /* End of full calendar styles*/

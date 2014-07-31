@@ -26,7 +26,6 @@
             }, function (record) {
                 // deal with the failure here
                 debugger;
-                self.send('closeAddItemModal', true);
             });
         }
     }
