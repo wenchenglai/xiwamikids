@@ -12,6 +12,5 @@
     type: DS.attr('string'),
     status: DS.attr('string'),
     imageUrl: DS.attr('string'),
-    createdDate: DS.attr('date'),
-    isDeleted: DS.attr('')
+    isDeleted: DS.attr('boolean')
 });

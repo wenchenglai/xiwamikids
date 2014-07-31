@@ -1,74 +1,80 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row height-forms">
+        <div class="col-lg-6">
             <label>
+                Name:
                 {{view Ember.TextField class="form-control" placeholder="Item Name" value=name}}
             </label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <label>
-                {{view Ember.TextArea class="form-control" placeholder="Description" value=description}}
-            </label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <label>
                 Price:
                 {{view Ember.TextField class="form-control" placeholder="Price in" value=price}}
             </label>
         </div>
     </div>
-    <div class="row">
+    <div class="row height-forms">
+        <div class="col-lg-12">
+            <label>
+                Description:
+                {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
+            </label>
+        </div>
+    </div>
+    <div class="row height-forms">
         <div class="col-lg-6">
             <div class="control-group">
                 <label class="control-label">Type</label>
+                <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
 
-                <p>
-                    <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+                    {{#view App.RadioButtonView selectionBinding="type" value="toy"}}Toy{{/view}}
 
-                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Male"}}Toy{{/view}}
+                    {{#view App.RadioButtonView selectionBinding="type" value="cloth"}}Clothes{{/view}}
 
-                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Clothes{{/view}}
-                        
-                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Books{{/view}}
-                        
-                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Furnitures{{/view}}
-                        
-                        {{#view App.RadioButtonView selectionBinding="controller.type" value="Female"}}Other{{/view}}
+                    {{#view App.RadioButtonView selectionBinding="type" value="book"}}Books{{/view}}
 
-                    </div>
-                </p>
+                    {{#view App.RadioButtonView selectionBinding="type" value="furniture"}}Furnitures{{/view}}
+
+                    {{#view App.RadioButtonView selectionBinding="type" value="other"}}Other{{/view}}
+
+                </div>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="control-group">
                 <label class="control-label">Condition</label>
+                <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
 
-                <p>
-                    <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+                    {{#view App.RadioButtonView selectionBinding="condition" value="new"}}New{{/view}}
 
-                        {{#view App.RadioButtonView selectionBinding="controller.condition" value="New"}}New{{/view}}
+                    {{#view App.RadioButtonView selectionBinding="condition" value="used"}}Used{{/view}}
 
-                        {{#view App.RadioButtonView selectionBinding="controller.condition" value="Used"}}Used{{/view}}
-
-                    </div>
-                </p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
+    <div class="row height-forms">
+        <div class="col-lg-4">
             <label>
                 Size:
                 {{view Ember.TextField class="form-control" placeholder="Size" value=size}}
             </label>
         </div>
+        <div class="col-lg-4">
+            <label>
+                From Age:
+                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="fromAge" content=allAges placeholder="Age"}}
+            </label>
+        </div>
+        <div class="col-lg-4">
+            <label>
+                To Age:
+                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="toAge" content=allAges}}
+            </label>
+        </div>
     </div>
-    <div class="row">
+    <div class="row height-forms">
         <div class="col-lg-4">
             <label>
                 Width:
@@ -87,25 +93,8 @@
                 {{view Ember.TextField class="form-control" placeholder="Height" value=height}}
             </label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <label>
-                From Age:
-                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="fromAge" content=ages placeholder="Age"}}
-            </label>
-        </div>
-        <div class="col-lg-6">
-            <label>
-                To Age:
-                {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="toAge" content=ages}}
-            </label>
-        </div>
-    </div>
-    <div class="row">
-
-    </div>                
-    <div class="row">
+    </div>              
+    <div class="row height-forms">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "add" }} {{bind-attr disabled=disabled}}>Add</button>
             <button class="btn btn-primary btn-sm" {{action "close" }}>Cancel</button>
