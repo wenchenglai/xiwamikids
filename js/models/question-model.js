@@ -1,6 +1,6 @@
 ﻿App.Question = DS.Model.extend({
-    userId: DS.attr('string'),
-    question: DS.attr('string'),
+    user: DS.attr('string'),
+    questionText: DS.attr('string'),
     createdDate: DS.attr('date'),
-    isAnswered: DS.attr("boolean")
+    answers: DS.hasMany('answer', { embedded: 'always' })
 });

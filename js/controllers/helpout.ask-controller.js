@@ -1,36 +1,25 @@
 ﻿App.HelpoutAskController = Ember.ArrayController.extend({
-    question: '',
     disabled: function() {
-        return Ember.isEmpty(this.get('question'));
-    }.property('question'),
+        return Ember.isEmpty(this.get('questionText'));
+    }.property('questionText'),
     asked: false,
     actions: {
         ask: function () {
-            //debugger;
-            this.set("asked", true);
+            var self = this,
+                user = self.get('session.store').restore();
 
-            //return Ember.$.ajax({
-            //    url: 'http://192.168.244.133:8983/solr/core1/select?q=' + params.query + '&wt=json&indent=true',
-            //    dataType: 'jsonp',
-            //    jsonp: 'json.wrf'
-            //});
-            debugger;
-            var $this = this,
-                question = this.get('question');
+            self.store.find('member', user.id).then(function(member) {
+                var newRecord = self.store.createRecord('question', {
+                    user: member,
+                    questionText: self.get('questionText'),
+                    createdDate: new Date()
+                });
 
-            var newRecord = this.store.createRecord('question', {
-                userId: "wenfacebookid",
-                question: question,
-                isAnswered: false,
-                createdDate: new Date()
-            });
-
-            newRecord.save().then(function (record) {
-                //$this.send('closeAddItemModal', true);
-                debugger;
-            }, function (record) {
-                // deal with the failure here
-                debugger;
+                newRecord.save().then(function (record) {
+                    self.set("asked", true);
+                }, function (record) {
+                    debugger;
+                });
             });
         }
     }

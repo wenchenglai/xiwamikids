@@ -8,7 +8,7 @@
         App.set('currentPath', currentPath);
         //debugger;
         if (currentPath === 'index' || currentPath === '') {
-            this.set('content', [{ displayName: 'Index', linkName: 'index' }, { displayName: 'Ask for Help', linkName: 'helpout.ask' }, { displayName: 'My History', linkName: 'helpout.browse' }]);
+            this.set('content', [{ displayName: 'Index', linkName: 'index' }, { displayName: 'Ask for Help', linkName: 'helpout.ask' }, { displayName: 'Browse', linkName: 'helpout.browse' }, { displayName: 'My History', linkName: 'helpout.my' }]);
 
         } else if (currentPath === 'connect.index') {
             this.set('content', [{ displayName: 'Index', linkName: 'connect.index' }, { displayName: 'Search Families', linkName: 'connect.search' }, { displayName: 'My Family', linkName: 'connect.myfamily' }]);

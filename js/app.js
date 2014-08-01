@@ -78,22 +78,6 @@ App = Ember.Application.create({
 
         // Pages loading
         Ember.$.ajax({
-            url: '/templates/helpout.ask.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/ask'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/helpout.browse.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/browse'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
             url: '/templates/connect.hbs.html',
             async: false,
             success: function (resp) {
@@ -228,6 +212,39 @@ App = Ember.Application.create({
                 Em.TEMPLATES['activity/edit'] = Ember.Handlebars.compile(resp);
             }
         });
+
+        Ember.$.ajax({
+            url: '/templates/helpout.ask.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/ask'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/helpout.browse.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/browse'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/helpout.my.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/my'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/helpout.edit.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['helpout/edit'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
     }
 });
 
@@ -271,6 +288,7 @@ App.Router.map(function() {
     this.resource('helpout', function () {
         this.route('ask');
         this.route('browse');
+        this.route('my');
     });
 });
 

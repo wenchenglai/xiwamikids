@@ -4,16 +4,18 @@
 
     actions: {
         loadUpcoming: function () {
-            var data = this.store.find('activity');
-            this.set('content', data);
+            var self = this,
+                user = self.get('session.store').restore();
+            self.store.find('activity', { status: 'upcoming', seller: user.id }).then(function (records) {
+                self.set('content', records);
+            });
         },
         loadPast: function (params) {
-            var data = this.store.find('activity');
-            this.set('content', data);
-        },
-        loadDeleted: function (params) {
-            var data = this.store.find('activity', {isDeleted: true});
-            this.set('content', data);
+            var self = this,
+                user = self.get('session.store').restore();
+            self.store.find('activity', { status: 'past', seller: user.id }).then(function (records) {
+                self.set('content', records);
+            });
         }
     }
 });

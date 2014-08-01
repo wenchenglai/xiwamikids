@@ -1,16 +1,4 @@
-﻿App.ActivityEditController = Ember.ObjectController.extend({
-    localinit: function () {
-        //debugger;
-        //var model = this.get('model');
-        //var birthday = model.get('birthday');
-        //this.set('selectedYear', birthday.getFullYear());
-        //return this.set('content', App.Post.find({
-        //    recent: true
-        //}));
-    }.on('init'),
-
-    types: ["Education", "Fun", "Literary & Books", "Sports"],
-
+﻿App.HelpoutEditController = Ember.ObjectController.extend({
     actions: {
         closeModal: function () {
             var record = this.get('model');
@@ -26,7 +14,7 @@
         },
         addOrEdit: function (params) {
             var self = this,
-                fromModel = self.get('model'); 
+                fromModel = self.get('model');
 
             fromModel.save().then(function (record) {
                 self.send('closeAddEditModal', true);

@@ -1,27 +1,35 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
     <div class="row height-forms">
-        <div class="col-lg-6">
-            <label>
-                Name:
-                {{view Ember.TextField class="form-control" placeholder="Item Name" value=name}}
-            </label>
+        <div class="col-lg-8">
+            <div>
+                <label>
+                    Name:
+                    {{view Ember.TextField class="form-control" placeholder="Item Name" value=name}}
+                </label>                
+            </div>
+            <div>
+                <label>
+                    Description:
+                    {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
+                </label>                
+            </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
+            {{#view Ember.View contentBinding="imageData"}}
+                {{view App.FileField}}
+                {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+            {{/view}}
+        </div>
+    </div>
+    <div class="row height-forms">
+        <div class="col-lg-4">
             <label>
                 Price:
                 {{view Ember.TextField class="form-control" placeholder="Price in" value=price}}
             </label>
         </div>
-    </div>
-    <div class="row height-forms">
         <div class="col-lg-8">
-            <label>
-                Description:
-                {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
-            </label>
-        </div>
-        <div class="col-lg-4">
             <div class="control-group">
                 <label class="control-label">Status</label>
                 <div id="gendertype" class="btn-group" data-toggle="buttons-radio">

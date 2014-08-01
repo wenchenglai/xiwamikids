@@ -11,7 +11,6 @@
         <div class="btn-group">
             <button type="button" class="btn btn-primary" {{action 'loadOpen' }}>Open Items</button>
             <button type="button" class="btn btn-primary" {{action 'loadClosed' }}>Closed Items</button>
-            <button type="button" class="btn btn-primary" {{action 'loadDealt' }}>Dealt Items</button>
         </div>
     </div>
 </div>
@@ -33,7 +32,7 @@
                 {{#each}}
                 <tr>
                     <td>{{id}}</td>
-                    <td><img {{bind-attr src=avatarUrl}} alt="Avatar"></td>
+                    <td>{{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}</td>
                     <td>{{name}}</td>
                     <td>{{description}}</td>
                     <td>{{price}}</td>

@@ -19,7 +19,6 @@
         },
         openEditItemModal: function (modalName, id) {
             var self = this;
-
             self.store.find('item', id).then(function (item) {
                 self.controllerFor(modalName).set('model', item);
                 return self.render(modalName, {
@@ -35,12 +34,11 @@
             });
 
             if (needReload) {
-                //this.transitionTo('items.myitems');
                 this.refresh();
             }
         },
         deleteItem: function (id) {
-            var route = this;
+            debugger;
             this.store.find('item', id).then(function (record) {
                 record.destroyRecord();
                 //record.deleteRecord();

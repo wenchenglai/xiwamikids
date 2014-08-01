@@ -5,46 +5,46 @@
     },
 
     actions: {
-        openAddModal: function (modalName, model) {
-            this.controllerFor("activity.edit").set('model', this.store.createRecord('activity', {}));
-            //return Em.Object.create({});
-            //this.controllerFor(modalName).set('model', model);
-            //this.generateController('connect.addmember');
-            return this.render(modalName, {
-                into: 'application',
-                outlet: 'modal'
+        openAddModal: function (modalName) {
+            var self = this;
+            var user = self.get('session.store').restore();
+            self.store.find('member', user.id).then(function (member) {
+                var empty = self.store.createRecord('activity', { creator: member });
+                self.controllerFor(modalName).set('model', empty);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
             });
         },
 
         openEditModal: function (modalName, id) {
-            //debugger;
-            this.controllerFor("activity.edit").set('model', this.store.find('activity', id));
-            //this.controllerFor(modalName).set('model', this.store.find('person', id));
-            //this.generateController('connect.addmember');
-            return this.render(modalName, {
-                into: 'application',
-                outlet: 'modal'
+            var self = this;
+            self.store.find('activity', id).then(function (activity) {
+                self.controllerFor(modalName).set('model', activity);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
             });
         },
 
-        closeEditModal: function () {
-            return this.disconnectOutlet({
+        closeAddEditModal: function (needReload) {
+            this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'
             });
+
+            if (needReload) {
+                this.refresh();
+            }
         },
 
         deleteActivity: function (id) {
-            debugger;
-            var route = this;
             this.store.find('activity', id).then(function (record) {
-                debugger;
-                record.set('isDeleted', true);
-                //record.deleteRecord();
-                record.save().then(function () {
-                    debugger;
-                    route.transitionTo('activity.my');
-                });
+                //record.set('isDeleted', true);
+                record.deleteRecord();
+                record.save();
             });
         }
     }

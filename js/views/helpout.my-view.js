@@ -1,4 +1,4 @@
-﻿App.ActivityMyView = Ember.View.extend({
+﻿App.HelpoutMyView = Ember.View.extend({
     didInsertElement: function () {
         var self = this;
         self.$("#dialog-confirm-delete").dialog({
@@ -10,7 +10,7 @@
                 "Delete": function () {
                     var id = $(this).data('id');
                     $(this).dialog("close");
-                    self.get('controller').send('deleteActivity', id);
+                    self.get('controller').send('deleteQuestion', id);
                 },
                 Cancel: function () {
                     $(this).dialog("close");
