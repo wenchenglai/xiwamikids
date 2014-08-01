@@ -37,7 +37,7 @@
                             var test = self.store.find('family', user.familyId);
                             test.then(function(myfam) {
                                 self.get('controllers.ConnectMyfamily').set('model', myfam);
-                                return self.send('closeAddMemberModal');
+                                return self.send('closeAddMemberModal', true);
                             });
 
                         }, function(df) {

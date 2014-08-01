@@ -82,7 +82,6 @@
 
                     // We always get the small profile picture no matter what
                     self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
-                        debugger;
                         session.set('facebookImage', smallProfilePicture.data.url);
                     }, function (error) {
 

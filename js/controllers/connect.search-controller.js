@@ -24,7 +24,7 @@
                 };
 
                 self.store.find('family', query).then(function(families) {
-                    self.set('content', families);
+                    self.set('model', families.content);
                 });
                 
             });

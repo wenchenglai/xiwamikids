@@ -3,7 +3,8 @@
         //this.get('controller').get('model').notifyPropertyChange('birthday');
         var selector,
             type,
-            condition;
+            condition,
+            status;
 
         type = this.get('controller').get('type');
         if (type) {
@@ -17,6 +18,15 @@
         condition = this.get('controller').get('condition');
         if (condition) {
             selector = 'div[name=' + condition + ']';
+
+            if (!Em.$(selector).hasClass('active')) {
+                Em.$(selector).addClass('active');
+            }
+        }
+
+        status = this.get('controller').get('status');
+        if (status) {
+            selector = 'div[name=' + status + ']';
 
             if (!Em.$(selector).hasClass('active')) {
                 Em.$(selector).addClass('active');

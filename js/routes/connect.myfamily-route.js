@@ -54,8 +54,13 @@
             });
         },
 
-        closeAddMemberModal: function () {
-            return this.disconnectOutlet({
+        closeAddMemberModal: function (needReload) {
+            if (needReload) {
+                //this.transitionTo('items.myitems');
+                this.refresh();
+            }
+
+            this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'
             });

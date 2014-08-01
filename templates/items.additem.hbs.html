@@ -15,11 +15,25 @@
         </div>
     </div>
     <div class="row height-forms">
-        <div class="col-lg-12">
+        <div class="col-lg-8">
             <label>
                 Description:
                 {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
             </label>
+        </div>
+        <div class="col-lg-4">
+            <div class="control-group">
+                <label class="control-label">Status</label>
+                <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+
+                    {{#view App.RadioButtonView name="open" selectionBinding="status" value="open"}}Open{{/view}}
+
+                    {{#view App.RadioButtonView name="closed" selectionBinding="status" value="closed"}}Closed{{/view}}
+
+                    {{#view App.RadioButtonView name="dealt" selectionBinding="status" value="dealt"}}Dealt{{/view}}
+
+                </div>
+            </div>
         </div>
     </div>
     <div class="row height-forms">
@@ -96,7 +110,13 @@
     </div>              
     <div class="row height-forms">
         <div class="col-lg-12">
-            <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "add" }} {{bind-attr disabled=disabled}}>Add</button>
+            <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "add" }} {{bind-attr disabled=disabled}}>
+                {{#if id}}
+                Edit
+                {{else}}
+                Add
+                {{/if}}
+            </button>
             <button class="btn btn-primary btn-sm" {{action "close" }}>Cancel</button>
         </div>
     </div>

@@ -19,7 +19,7 @@
         add: function (params) {
             var self = this,
                 fromModel = this.get('model');
-
+          
             fromModel.save().then(function (record) {
                 self.send('closeAddItemModal', true);
 

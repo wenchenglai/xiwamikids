@@ -9,7 +9,7 @@
             var self = this;
             var user = self.get('session.store').restore();
             self.store.find('member', user.id).then(function (member) {
-                var empty = self.store.createRecord('item', { seller: member });
+                var empty = self.store.createRecord('item', { seller: member, status: 'open' });
                 self.controllerFor(modalName).set('model', empty);
                 return self.render(modalName, {
                     into: 'application',
