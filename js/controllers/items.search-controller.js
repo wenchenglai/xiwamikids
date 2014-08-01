@@ -15,7 +15,7 @@
                 };
 
                 self.store.find('item', query).then(function (items) {
-                    self.set('content', items);
+                    self.set('model', items.content);
                 });
             });
         }
