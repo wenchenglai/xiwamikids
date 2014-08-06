@@ -1,0 +1,14 @@
+﻿<div class="row height-forms">
+    <div class="col-lg-12">
+        <label>
+            Add Gossip
+        </label>
+        {{view Ember.TextField class="form-control" value=gossipText}}
+    </div>
+</div>
+
+<div class="row height-forms">
+    <div class="col-lg-12">
+        <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "post" }} {{bind-attr disabled=disabled}}>Post my gossip!</button>
+    </div>
+</div>

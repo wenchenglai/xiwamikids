@@ -245,6 +245,21 @@ App = Ember.Application.create({
             }
         });
 
+        Ember.$.ajax({
+            url: '/templates/gossip.my.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['gossip/my'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/gossip.browse.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['gossip/browse'] = Ember.Handlebars.compile(resp);
+            }
+        });
     }
 });
 
@@ -287,6 +302,11 @@ App.Router.map(function() {
 
     this.resource('helpout', function () {
         this.route('ask');
+        this.route('browse');
+        this.route('my');
+    });
+
+    this.resource('gossip', function () {
         this.route('browse');
         this.route('my');
     });

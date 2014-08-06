@@ -1,4 +1,4 @@
-﻿App.HelpoutMyController = Ember.ArrayController.extend({
+﻿App.GossipMyController = Ember.ArrayController.extend({
     sortProperties: ['createdDate'],
     sortAscending: false,
 

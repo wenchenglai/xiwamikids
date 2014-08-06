@@ -24,7 +24,8 @@
     <script type="text/x-handlebars">
         <nav class="navbar navbar-fixed-top">
             <a href="cover.html" class="btn btn-lg btn-success">Cover Page</a>
-            <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Q & A</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Gossip</button>
+            <button type="button" class="btn btn-default btn-lg" {{action "helpout" }}>Q & A</button>
             <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
             <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
             <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
@@ -153,6 +154,7 @@
     <script src="js/models/activity-model.js"></script>
     <script src="js/models/transaction-model.js"></script>
     <script src="js/models/answer-model.js"></script>
+    <script src="js/models/gossip-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/login-route.js"></script>
@@ -163,6 +165,8 @@
     <script src="js/routes/activity.my-route.js"></script>
     <script src="js/routes/activity.edit-route.js"></script>
     <script src="js/routes/helpout.my-route.js"></script>
+    <script src="js/routes/gossip.my-route.js"></script>
+    <script src="js/routes/gossip.browse-route.js"></script>
 
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/index-controller.js"></script>
@@ -181,6 +185,8 @@
     <script src="js/controllers/activity.search-controller.js"></script>
     <script src="js/controllers/helpout.my-controller.js"></script>
     <script src="js/controllers/helpout.edit-controller.js"></script>
+    <script src="js/controllers/gossip.browse-controller.js"></script>
+    <script src="js/controllers/gossip.my-controller.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>
