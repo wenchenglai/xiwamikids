@@ -1,7 +1,7 @@
 ﻿App.GossipMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         var user = this.get('session.store').restore();
-        return this.store.find('gossip', { status: 'my', userId: user.id });
+        return this.store.find('gossip', { status: 'my', userId: user.id, longitude: user.longitude, latitude: user.latitude });
     },
 
     actions: {

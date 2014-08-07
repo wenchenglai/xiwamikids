@@ -33,6 +33,8 @@
                         member.set('family', family);
                         member.save().then(function(mem) {
                             user.familyId = family.get('id');
+                            user.longitude = family.get('location')[0];
+                            user.latitude = family.get('location')[1];
                             self.get('session.store').persist(user);
                             var test = self.store.find('family', user.familyId);
                             test.then(function(myfam) {

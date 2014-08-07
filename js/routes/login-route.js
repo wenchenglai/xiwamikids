@@ -6,10 +6,13 @@
             id: member.get('id'),
             facebookId: member.get('facebookId'),
             firstName: member.get('firstName')
-        };
+        },
+        family = member.get('family');
 
-        if (member.get('family')) {
-            data.familyId = member.get('family').id;
+        if (family) {
+            data.familyId = family.id;
+            data.longitude = family.get('location')[0];
+            data.latitude = family.get('location')[1];
         }
 
         session.get('store').persist(data);
