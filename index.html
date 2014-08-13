@@ -55,7 +55,14 @@
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
                         {{#each menuitem in model}}
-                        <li>{{#link-to menuitem.linkName activeClass="selected"}}{{menuitem.displayName}}{{/link-to}}</li>
+                        <li>
+                            {{#link-to menuitem.linkName activeClass="selected"}}{{menuitem.displayName}}{{/link-to}}
+                            <ul>
+                                {{#each sub in menuitem.subMenuitems}}
+                                {{#link-to sub.linkName 'test' activeClass="selected"}}{{sub.displayName}}{{/link-to}}
+                                {{/each}}
+                            </ul>
+                        </li>
                         {{/each}}
                     </ul>
                 </div>

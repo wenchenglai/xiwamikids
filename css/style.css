@@ -1,4 +1,20 @@
 /* Put your CSS here */
+.features-background {
+    background-image: url(../assets/images/SophieLawn.jpg);
+}
+
+.peace-background {
+    background-image: url(../assets/images/Peace.jpg);
+}
+
+.sophiekneel-background {
+    background-image: url(../assets/images/SophieKneel.jpg);
+}
+
+.theater-background {
+    background-image: url(../assets/images/Theater.jpg);
+}
+
 .ember-application {
     margin: 20px;
 }
