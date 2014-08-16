@@ -9,7 +9,7 @@
         //debugger;
         if (currentPath === 'index' || currentPath === '') {
             this.set('content', [{ displayName: 'Index', linkName: 'index' },
-                                 { displayName: 'Browse', linkName: 'gossip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'gossip.browse' }] },
+                                 { displayName: 'Browse', linkName: 'gossip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'gossip.browse' }, { displayName: 'Education', linkName: 'gossip.browse' }, { displayName: 'Health', linkName: 'gossip.browse' }] },
                                  { displayName: 'My Gossips', linkName: 'gossip.my' }]);
 
         } else if (currentPath === 'helpout.index') {
