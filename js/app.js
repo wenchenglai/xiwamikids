@@ -1,6 +1,9 @@
 // setup Facebook SDK
 FB.init({ appId: '290368724455193' });
 
+// test app ID
+//FB.init({ appId: '339314479560617' });
+
 // setup Google+ API
 function googleApiLoaded() {
     gapi.client.setApiKey('A_Dlo1Vp4KMI8d8B9QMWgPQb');
@@ -198,6 +201,14 @@ App = Ember.Application.create({
         });
 
         Ember.$.ajax({
+            url: '/templates/activity.map.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['activity/map'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
             url: '/templates/activity.my.hbs.html',
             async: false,
             success: function (resp) {
@@ -263,6 +274,7 @@ App = Ember.Application.create({
     }
 });
 
+// Root URL is used when user logged out of app
 App.Router.reopen({
     rootURL: 'index.html'
 });
@@ -296,6 +308,7 @@ App.Router.map(function() {
     this.resource('activity', function () {
         this.route('search');
         this.route('calendar');
+        this.route('map');
         this.route('my');
         this.route('edit');
     });
@@ -327,28 +340,32 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
         return new Ember.RSVP.Promise(function (resolve, reject) {
             FB.getLoginStatus(function (fbResponse) {
                 if (fbResponse.status === 'connected') {
+                    // if logged in before, the cookie will have this status
                     Ember.run(function () {
-                        debugger;
                         resolve({
                             accessToken: fbResponse.authResponse.accessToken,
-                            facebookId: fbResponse.authResponse.userID,
+                            facebookId: fbResponse.authResponse.userID
                         });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
-
+                    // if facebook App setup is wrong, we could come here
                     reject();
+                    //reject();
                 } else {
+                    // status is unknown, then we must prompt with facebook login page
                     FB.login(function (fbResponse) {
+                        debugger;
                         if (fbResponse.authResponse) {
+                            debugger;
                             Ember.run(function () {
-                                debugger;
                                 resolve({
                                     accessToken: fbResponse.authResponse.accessToken,
-                                    facebookId: fbResponse.authResponse.userID,
+                                    facebookId: fbResponse.authResponse.userID
                                 });
                             });
                         } else {
                             reject();
+                            //reject();
                         }
                     });
                 }

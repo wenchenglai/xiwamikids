@@ -37,10 +37,17 @@
             var self = this,
                 session = self.get('session');
 
-            session.authenticate('authenticator:facebook', {}).then(function(test1, test2) {
+            session.authenticate('authenticator:facebook', {}).then(function() {
                 var query = {
                     facebookId: session.get('facebookId')
                 };
+
+                // We always get the small profile picture no matter what
+                self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
+                    session.set('facebookImage', smallProfilePicture.data.url);
+                }, function (error) {
+
+                });
 
                 self.store.find('member', query).then(function (members) {
                     if (members.content.length > 0) {
@@ -52,7 +59,6 @@
                             var fbImageUrl = '';
 
                             self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
-                                //debugger;
                                 fbImageUrl = largeProfilePicture.data.url;
 
                                 var newMember = self.store.createRecord('member', {
@@ -83,15 +89,7 @@
                         });
                     }
 
-                    // We always get the small profile picture no matter what
-                    self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
-                        session.set('facebookImage', smallProfilePicture.data.url);
-                    }, function (error) {
-
-                    });
-
                 }, function (error) {
-                    debugger;
                     self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
                     self.get('controller').set('showError', true);
                     //self.get('session').invalidate();
@@ -104,11 +102,11 @@
         },
         // action to trigger authentication with Google+
         authenticateWithGooglePlus: function () {
-            debugger;
+
             this.get('session').authenticate('authenticator:googleplus', {}).then(function() {
-                debugger;
+
             }, function() {
-                debugger;
+
             });
         }
     }

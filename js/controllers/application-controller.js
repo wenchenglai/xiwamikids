@@ -10,7 +10,7 @@
         if (currentPath === 'index' || currentPath === '') {
             this.set('content', [{ displayName: 'Index', linkName: 'index' },
                                  { displayName: 'Browse', linkName: 'gossip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'gossip.browse' }, { displayName: 'Education', linkName: 'gossip.browse' }, { displayName: 'Health', linkName: 'gossip.browse' }] },
-                                 { displayName: 'My Gossips', linkName: 'gossip.my' }]);
+                                 { displayName: 'My Tips', linkName: 'gossip.my' }]);
 
         } else if (currentPath === 'helpout.index') {
             this.set('content', [{ displayName: 'Index', linkName: 'helpout.index' },
@@ -32,6 +32,7 @@
             this.set('content', [{ displayName: 'Index', linkName: 'activity.index' },
                                  { displayName: 'Search Events', linkName: 'activity.search' },
                                  { displayName: 'Calendar', linkName: 'activity.calendar' },
+                                 { displayName: 'Map', linkName: 'activity.map' },
                                  { displayName: 'My Events', linkName: 'activity.my' }]);
 
         }
