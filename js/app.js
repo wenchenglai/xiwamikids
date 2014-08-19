@@ -419,7 +419,7 @@ App.GooglePlusAuthenticator = SimpleAuth.Authenticators.Base.extend({
 //});
 
 App.ApplicationAdapter = DS.RESTAdapter.extend({
-    host: 'http://localhost:8088'
+    host: 'http://localhost:8080'
     //headers: { 
     //'Content-Type': 'application/json'
     //}
