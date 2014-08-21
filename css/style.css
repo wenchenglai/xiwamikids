@@ -1,10 +1,10 @@
 /* Put your CSS here */
-.features-background {
-    background-image: url(../assets/images/SophieLawn.jpg);
+.bubble-background {
+    background-image: url(../assets/images/bubble.jpg);
 }
 
-.peace-background {
-    background-image: url(../assets/images/Peace.jpg);
+.three-background {
+    background-image: url(../assets/images/three.jpg);
 }
 
 .sophiekneel-background {
@@ -13,6 +13,14 @@
 
 .theater-background {
     background-image: url(../assets/images/Theater.jpg);
+}
+
+.feedingbw-background {
+    background-image: url(../assets/images/feedingbw.jpg);
+}
+
+.feedingaged-background {
+    background-image: url(../assets/images/feedingaged.jpg);
 }
 
 .ember-application {
