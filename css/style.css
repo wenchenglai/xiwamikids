@@ -1,10 +1,11 @@
 /* Put your CSS here */
-.bubble-background {
-    background-image: url(../assets/images/bubble.jpg);
+.earth-background {
+    background-image: url(../assets/images/earth.jpg);
 }
 
 .three-background {
     background-image: url(../assets/images/three.jpg);
+    background-position: center;
 }
 
 .sophiekneel-background {
@@ -15,12 +16,12 @@
     background-image: url(../assets/images/Theater.jpg);
 }
 
-.feedingbw-background {
-    background-image: url(../assets/images/feedingbw.jpg);
+.behindtoy-background {
+    background-image: url(../assets/images/behindtoy.jpg);
 }
 
-.feedingaged-background {
-    background-image: url(../assets/images/feedingaged.jpg);
+.feeding-background {
+    background-image: url(../assets/images/feeding.jpg);
 }
 
 .ember-application {
