@@ -1,8 +1,8 @@
-// setup Facebook SDK
-FB.init({ appId: '290368724455193' });
+// facebook production app id
+//FB.init({ appId: '290368724455193' });
 
-// test app ID
-//FB.init({ appId: '339314479560617' });
+// facebook test app id
+FB.init({ appId: '343069969185068' });
 
 // setup Google+ API
 function googleApiLoaded() {
@@ -354,9 +354,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                 } else {
                     // status is unknown, then we must prompt with facebook login page
                     FB.login(function (fbResponse) {
-                        debugger;
                         if (fbResponse.authResponse) {
-                            debugger;
                             Ember.run(function () {
                                 resolve({
                                     accessToken: fbResponse.authResponse.accessToken,
