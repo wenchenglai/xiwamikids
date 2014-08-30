@@ -4,181 +4,88 @@
             this.controllerFor('login').set('previousTransition', transition);
         }
     },
+
+    _createSessionUser: function (session, member) {
+        var data = {
+            id: member.get('id'),
+            facebookId: member.get('facebookId'),
+            firstName: member.get('firstName')
+        },
+        family = member.get('family');
+
+        if (family) {
+            data.familyId = family.id;
+            data.longitude = family.get('location')[0];
+            data.latitude = family.get('location')[1];
+        } else {
+            data.latitude = geoplugin_latitude();
+            data.longitude = geoplugin_longitude();
+        }
+
+        session.get('store').persist(data);
+    },
+
     setupController: function (controller, post) {
         this._super(controller);
         this.generateController('login');
     },
-    model: function () {
-        //this.get('store').findAll('family').then(function (record) {
-        //    record.content.forEach(function (rec) {
-        //        Ember.run.once(this, function () {
-        //            rec.deleteRecord();
-        //            rec.save();
-        //        });
-        //    }, this);
-        //});
 
-        //this.get('store').findAll('person').then(function (record) {
-        //    record.content.forEach(function (rec) {
-        //        Ember.run.once(this, function () {
-        //            rec.deleteRecord();
-        //            rec.save();
-        //        });
-        //    }, this);
-        //});
-        
-        //var newFamily = this.store.createRecord('family', {
-        //    id: 1,
-        //    zipcode: '48105',
-        //    familyName: 'Wen Lai Family',
-        //    description: 'We are a happy family living in Ann Arbor, MI',
-        //    cityState: 'Ann Arbor, MI 48105',
-        //    createdDate: new Date()
-        //});
-        //var store = this.store;
-        //newFamily.save().then(function (family) {
-        //    debugger;
-        //    var p1 = store.createRecord('person', {
-        //        id: 1,
-        //        lastName: 'Lai',
-        //        firstName: 'Wen',
-        //        nickName: 'Wayne',
-        //        email: 'wenchenglai@gmail.com',
-        //        birthday: '1978-07-01',
-        //        languages: ['English', 'Chinese'],
-        //        type: 1,
-        //        gender: 'male',
-        //        createdDate: new Date(),
-        //        family: family
-        //    });
-        //    p1.save();
-
-        //    var p2 = store.createRecord('person', {
-        //        id: 2,
-        //        lastName: 'Chen',
-        //        firstName: 'Jia',
-        //        email: 'jiac@umich.edu',
-        //        birthday: '1981-09-01',
-        //        languages: ['English', 'Chinese'],
-        //        type: 2,
-        //        gender: 'female',
-        //        createdDate: new Date(),
-        //        family: family
-        //    });
-        //    p2.save();
-        //    //p2.save().then(function (p) { f.get('kids').content.push(p); });
-
-        //    var p3 = store.createRecord('person', {
-        //        id: 3,
-        //        lastName: 'Lai',
-        //        firstName: 'Sophie',
-        //        email: 'a@a.com',
-        //        birthday: '2011-07-01',
-        //        languages: ['English', 'Chinese'],
-        //        type: 4,
-        //        gender: 'female',
-        //        createdDate: new Date(),
-        //        family: family
-        //    });
-        //    //p3.save();
-        //    p3.save().then(function (p) { family.save(); });
-        //});
-
-        //var item1 = store.createRecord('item', {
-        //    id: 1,
-        //    name: 'Baby Doll',
-        //    description: 'A baby doll that can talk',
-        //    price: 2,
-        //    size: '',
-        //    width: 5,
-        //    length: 12,
-        //    height: 3,
-        //    fromAge: 1,
-        //    toAge: 4,
-        //    condition: 'Used',
-        //    type: 'Toy',
-        //    status: 'Open',
-        //    imageUrl: '',
-        //    createdDate: new Date(2014, 04, 18),
-        //    isDeleted: false
-        //});
-        //item1.save();
-
-        //var item2 = store.createRecord('item', {
-        //    id: 2,
-        //    name: 'Blue Skirt',
-        //    description: 'A blue skirt',
-        //    price: 5,
-        //    size: '3T',
-        //    width: 5,
-        //    length: 12,
-        //    height: 3,
-        //    fromAge: 3,
-        //    toAge: 4,
-        //    condition: 'Used',
-        //    type: 'Cloth',
-        //    status: 'Open',
-        //    imageUrl: '',
-        //    createdDate: new Date(2014, 04, 18),
-        //    isDeleted: false
-        //});
-        //item2.save();
-
-        //var item3 = store.createRecord('item', {
-        //    id: 3,
-        //    name: 'Chinese Character',
-        //    description: 'A beginner chinese learning book',
-        //    price: 2,
-        //    size: '',
-        //    width: 5,
-        //    length: 8,
-        //    height: 0.5,
-        //    fromAge: 4,
-        //    toAge: 5,
-        //    condition: 'Used',
-        //    type: 'Book',
-        //    status: 'Closed',
-        //    imageUrl: '',
-        //    createdDate: new Date(2014, 04, 18),
-        //    isDeleted: false
-        //});
-        //item3.save();
-
-        //var activity1 = store.createRecord('activity', {
-        //    id: 1,
-        //    title: 'Dancing Babies',
-        //    description: 'A kids dancing party by Ann Arbor Public Library',
-        //    fromTime: new Date(2014, 7, 10, 10, 0, 0, 0),
-        //    toTime: new Date(2014, 7, 10, 11, 0, 0 ,0),
-        //    location: 'Ann Arbor Public Library - Downtown',
-        //    category: 'Physical Exercise',
-        //    originalLink: 'http://www.aadl.org/node/254176',
-        //    facebookEventUrl: '',
-        //    imageUrl: '',
-        //    createdDate: new Date(2014, 04, 18),
-        //    isDeleted: false
-        //});
-        //activity1.save();
-
-        //var activity2 = store.createRecord('activity', {
-        //    id: 2,
-        //    title: 'Spanish Cultural Event',
-        //    description: 'teach kids about spanish culture',
-        //    fromTime: new Date(2014, 8, 21, 10, 0, 0, 0),
-        //    toTime: new Date(2014, 8, 21, 11, 0, 0, 0),
-        //    location: 'Ann Arbor Public Library - Downtown',
-        //    category: 'Physical Exercise',
-        //    originalLink: 'http://www.aadl.org/node/254176',
-        //    facebookEventUrl: '',
-        //    imageUrl: '',
-        //    createdDate: new Date(2014, 05, 18),
-        //    isDeleted: false
-        //});
-        //activity2.save();
-    },
     actions: {
         willTransition: function (transition) {
             this._saveTransition(transition);
+        },
+
+        setupUser: function () {
+            var query = {
+                facebookId: session.get('facebookId')
+            };
+
+            self.store.find('member', query).then(function (members) {
+                if (members.content.length > 0) {
+                    // this facebook user already has an account in the system
+                    self._createSessionUser(session, members.content[0]);
+                } else {
+                    // this facebook user is not in the system, we have to create a new one
+                    FB.api('/me', function (fbUser) {
+                        var fbImageUrl = '';
+
+                        self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
+                            fbImageUrl = largeProfilePicture.data.url;
+
+                            var newMember = self.store.createRecord('member', {
+                                firstName: fbUser.first_name,
+                                lastName: fbUser.last_name,
+                                gender: fbUser.gender,
+                                facebookId: fbUser.id,
+                                avatarUrl: fbImageUrl,
+                                isUser: true
+                            });
+
+                            newMember.save().then(function (member) {
+                                self._createSessionUser(session, member);
+
+                                var previousTransition = self.get('controller').get('previousTransition');
+                                if (previousTransition) {
+                                    previousTransition.retry();
+                                    return;
+                                }
+                                this.transitionTo('index');
+                            }, function (ret) {
+                                // error in saving new member
+                            });
+
+                        }, function (error) {
+
+                        });
+                    });
+                }
+
+            }, function (error) {
+                self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
+                self.get('controller').set('showError', true);
+                //self.get('session').invalidate();
+                //self.transitionTo('login');
+            });
         }
         //sessionAuthenticationSucceeded: function() {
         //    debugger;

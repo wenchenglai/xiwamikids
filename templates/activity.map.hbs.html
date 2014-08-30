@@ -1,2 +1,14 @@
-﻿<div id="map-canvas" />
-adsf
+﻿<div id="map-canvas" style="height:1000px"></div>
+
+
+<script type="text/javascript">
+    function initialize() {
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(geoplugin_latitude(), geoplugin_longitude())
+        };
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+    }
+</script>
