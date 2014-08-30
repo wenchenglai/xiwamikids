@@ -42,8 +42,9 @@
             createSlider("#slider11", "#a11");
 
             $("#submit").on("click", function () {
-                debugger;
-                $.ajax("http://localhost:8088/surveys", {
+                var url = "http://localhost:8088/surveys";
+                //var url = "http://199.223.236.115:8088/xiwamirest-0.0.1/surveys";
+                $.ajax(url, {
                     type: "POST",
                     contentType: "application/json",
                     data: JSON.stringify({
