@@ -75,56 +75,61 @@
     <style>
         .height-forms {
     margin-bottom: 25px;
-}
+    }
     </style>
 </head>
+
 <body>
     <!--<script type="text/x-handlebars">-->
-    <div class="site-wrapper">
-
-        <div class="site-wrapper-inner">
-
-            <div class="cover-container">
-
-                <div class="masthead clearfix">
-                    <div class="inner">
-                        <h3 class="masthead-brand">Xiwami Kids</h3>
-                        <ul class="nav masthead-nav">
+    <!-- <div class="site-wrapper"> -->
+    <div class="container">  
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+             <a class="navbar-brand"><strong>Xiwamikids</strong></a>
+            </div>
+            
+              <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-left">
                             <li><a href="cover.html">Home</a></li>
                             <li><a href="features.html">Features</a></li>
                             <li><a href="aboutus.html">About Us</a></li>
                             <li><a href="contact.html">Contact</a></li>
                             <li class="active"><a href="survey.html">Survey</a></li>
                         </ul>
-                    </div>
-                </div>
-                
-                <div class="inner cover">
-                    <div class="container-fluid">
-                        <div class="row height-forms">
-                            <div class="col-lg-12">
-                                <h1 class="">Help us by filling out this survey</h1>
-                                <p>
-                                    If you have kid age 6 or younger, We need your feedback so we know what we should focus on.  
-                                    We try to make this survey short so you just need about 30 seconds to complete it.  
-                                    If you would like to be notified
-                                    about the release of this software, please enter your email.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row height-forms">
-                            <div class="col-lg-12">
+               </div>
+        </div>
+    </nav>
+                  
+            <div class="jumbotron" style="background-color: #ffede0">
+               <center>
+               <h1 class="">We want to know what you think</h1>
+                      <p class="lead">
+                          If you have a child age 6 or younger, we want your feedback.  We want to know we should focus on.<br />
+                          Please complete this short survey.<br />
+                          We'll send you an email when the website is ready.
+                      </p>
+                </center>        
+            </div>
+                           
+                <div class="row height-forms">
+                            <div class="col-lg-6">
                                 <label>
                                     Your email: <input type="text" id="email" style="width:250px" />
                                 </label>
                             </div>
-                        </div>
+                </div>
                         <div class="row height-forms">
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>
-                                            1. Selec the option that best describe about your need as a parent.
+                                            1. Select the option that best describe your need as a parent.
                                         </label>
                                     </div>
                                 </div>
@@ -133,7 +138,8 @@
                                         <input type="radio" value="a" name="parenttype" id="parenttypea" />
                                     </div>
                                     <div class="col-sm-11">
-                                        a.  I am a parent who would like to exchange/sell/buy kids items such as books, toys and clothing from other parents.  I am doing this because I know I could save some money and it’s good for the environment.
+                                        a.  I am a parent who would like to exchange/sell/buy kids items such as books, toys and clothing from other parents.  
+                                        I am doing this because I know I could save some money and it’s good for the environment.
                                     </div>
                                 </div>
                                 <div class="row">
@@ -141,7 +147,8 @@
                                         <input type="radio" value="b" name="parenttype" id="parenttypeb" />
                                     </div>
                                     <div class="col-sm-11">
-                                        b.  I am a parent who is more interested in sharing parenting experience, learning more about parenting and meeting new friends for myself and my kids.
+                                        b.  I am a parent who is more interested in sharing parenting experience, 
+                                        learning more about parenting and meeting new friends for myself and my kids.  In short, emotional connection is more important for me than material need.
                                     </div>
                                 </div>
                                 <div class="row">
@@ -167,7 +174,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <label>
-                                            2. What best describe about you?
+                                            2. What best describe you?
                                         </label>
                                     </div>
                                 </div>
@@ -192,16 +199,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            3. I would like to meet more local parents who share similar values and have similar aged kids.
+                                            3. I would like to meet more local parents who share similar values and have similar aged children.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a3" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agreely Agree
-                                        
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a3" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+                                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>                                       
                                         <div id="slider3"></div>
                                     </div>
                                 </div>
@@ -210,15 +218,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            4. Sometimes I would like to ask questions that I know only other parents in the neighborhoods could provide the best answer (e.g. good child care center in town)
+                                            4. Sometimes I have questions that I know only other local parents could provide the best answers. (e.g. good child care center in town)
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a4" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a4" readonly style="border:0; color:#f6931f; font-weight:bold;">
+ 										<span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider4"></div>
                                     </div>
                                 </div>
@@ -227,15 +237,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            5. I am willing to help out other parents if they have any questions regarding parenting.
+                                            5. I am willing to help other parents who may have questions regarding parenting.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a5" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a5" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider5"></div>
                                     </div>
                                 </div>
@@ -244,15 +256,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            6. I would like to sell, buy or exchange toys with other families, so my kids can always play with more variety of toys and I could save some money.
+                                            6. I would like to sell, buy or exchange toys with other families.  This allows my children to play with more toys and I could save money.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a6" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a6" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider6"></div>
                                     </div>
                                 </div>
@@ -261,15 +275,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            7. I would like to know a few more families to form a baby group so we can help out each other such as baby sitting or potluck.
+                                            7. I would like to know a few more families to form a baby group so we can help each other. (e.g. baby sitting or potluck dinners)
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a7" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a7" readonly style="border:0; color:#f6931f; font-weight:bold;"/>
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider7"></div>
                                     </div>
                                 </div>
@@ -278,15 +294,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            8. I am interested in learning more about local events or activities that I can bring my kids to attend.
+                                            8. I am interested in learning more about local events or activities that I can bring my children to.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a8" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a8" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider8"></div>
                                     </div>
                                 </div>
@@ -295,15 +313,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            9. If possible, I always look for companion families when attending events or activities, so my kids could interact with other kids.
+                                            9. I am always looking for companion families to attend events or activities, so that my children could interact with other children.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" id="a9" readonly style="border:0; color:#f6931f; font-weight:bold;">0 = Disagree, 5 = Neutral, 10 = Strongly Agree
+                                    <div class="col-lg-8">
+                                        <input type="text" id="a9" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider9"></div>
                                     </div>
                                 </div>
@@ -312,15 +332,17 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-10">
                                         <label>
-                                            10. I am interested in deals on groceries, baby items and tickets to museums/events/theme parks all the time.
+                                            10. I am interested in deals/promotions on groceries, baby items and tickets to museums/events/theme parks.
                                         </label>
                                     </div>
                                 </div>
+                                <br />
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-8">
                                         <input type="text" id="a10" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                                         <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span> 
                                         <div id="slider10"></div>
                                     </div>
                                 </div>
@@ -329,9 +351,9 @@
                         <div class="row height-forms">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-8">
                                         <label>
-                                            11. Is there any thing else you want to suggest?  (e.g. missing a feature that you want, or any possible improvement on current features)
+                                            11. Do you have any other suggestions?  (e.g. missing a feature that you want, or any possible improvement on current features)
                                         </label>
                                     </div>
                                 </div>
@@ -342,35 +364,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row height-forms">
-                            <div class="col-lg-1">
-                                <input type="button" id="submit" class="btn btn-primary btn-block" value="Submit" />
-                            </div>
+             
+                        <div class="row height-forms">                      
+                            <div class="col-md-4">                     	
+                                <input type="button" id="submit" class="btn btn-block" style="background-color: #ff9d5c" value="Submit" />                              
+                            </div>                          
                         </div>
-                    </div>
-
-                </div>
-                
+                           
                 <div class="mastfoot">
                     <div class="inner">
                         <p>Copyright © 2014 Adarp LLC. All Rights Reserved.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-
-    </div>
+          </div> 
     <!--</script>-->
 
 
     <script src="js/libs/bootstrap.min.js"></script>
-
+	<script src="js/libs/modernizr-2.0.6.min.js"></script>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
+                (i[r].q = i[r].q || []).push(arguments);
             }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
         })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-54086987-1', 'auto');
