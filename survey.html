@@ -14,6 +14,8 @@
     <!--<link rel="stylesheet" href="css/style.css">-->
     <script src="js/libs/jquery-1.11.1.min.js"></script>
     <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>
+    <!-- the code below help us to get geolocation from user's IP address http://www.geoplugin.com/quickstart#how_to_geo-localize_your_visitors -->
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script>
         $(function () {
             function createSlider(slider, answer) {
@@ -61,7 +63,7 @@
                 $('input:checked').each(function () {
                     features.push(this.value);
                 });
-                
+
                 $.ajax(url, {
                     type: "POST",
                     contentType: "application/json",
@@ -78,8 +80,11 @@
                         a9: $('#a9').val(),
                         a10: $('#a10').val(),
                         a11: features,
-                        a12: $('#a12').val()
-                    })
+                        a12: $('#a12').val(),
+                        city: geoplugin_city(),
+                        state: geoplugin_region(),
+                        country: geoplugin_countryName()
+            })
                 }).done(function () {
                     $(".alert-danger").hide();
                     $(".alert-success").show();
