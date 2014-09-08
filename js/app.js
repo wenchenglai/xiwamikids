@@ -32,16 +32,26 @@ App = Ember.Application.create({
     LOG_ACTIVE_GENERATION: true,
     currentPath: '',
 
+    _loadTemplate: function(url, indexName) {
+        Ember.$.ajax({
+            url: url,
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES[indexName] = Ember.Handlebars.compile(resp);
+            }
+        });
+    },
     ready: function () {
 
         // Components loading
-        Ember.$.ajax({
-            url: '/templates/familylist-component.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['components/family-list'] = Ember.Handlebars.compile(resp);
-            }
-        });
+        this._loadTemplate('/templates/familylist-component.hbs.html', 'components/family-list');
+        //Ember.$.ajax({
+        //    url: '/templates/familylist-component.hbs.html',
+        //    async: false,
+        //    success: function (resp) {
+        //        Em.TEMPLATES['components/family-list'] = Ember.Handlebars.compile(resp);
+        //    }
+        //});
 
         Ember.$.ajax({
             url: '/templates/familygrid-component.hbs.html',
@@ -65,6 +75,14 @@ App = Ember.Application.create({
             async: false,
             success: function (resp) {
                 Em.TEMPLATES['login'] = Ember.Handlebars.compile(resp);
+            }
+        });
+
+        Ember.$.ajax({
+            url: '/templates/signup.hbs.html',
+            async: false,
+            success: function (resp) {
+                Em.TEMPLATES['signup'] = Ember.Handlebars.compile(resp);
             }
         });
 

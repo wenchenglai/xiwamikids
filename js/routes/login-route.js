@@ -16,7 +16,8 @@
             var self = this,
                 session = self.get('session');
 
-            session.authenticate('authenticator:facebook', {}).then(function() {
+            session.authenticate('authenticator:facebook', {}).then(function () {
+                // if facebook logins successfully, we'll come here and then redirect to index route
                 session.getProfile();
 
             }, function (error) {
@@ -31,6 +32,26 @@
 
             }, function() {
 
+            });
+        },
+
+        authenticateCustom: function () {
+            var self = this,
+                session = self.get('session');
+
+            session.authenticate('authenticator:custom', {}).then(function () {
+                
+
+            }, function (error) {
+                self.get('controller').set('errorMessage', 'Login Failed.');
+                self.get('controller').set('showError', true);
+            });        
+        },
+
+        openSingUpModal: function () {
+            return this.render("signup", {
+                into: 'application',
+                outlet: 'modal'
             });
         }
     }

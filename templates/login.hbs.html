@@ -25,7 +25,8 @@
                 <label for="password">Password</label>
                 {{input id='password' placeholder='Enter Password' class='form-control' type='password' value=password}}
             </div>
-            <button type="submit" class="btn btn-default">Login</button>
+            <button type="submit" {{action "authenticateCustom" }} class="btn btn-default">Login</button>
+            Don't have an account yet?  <a {{ action 'openSingUpModal' }} class="alert-link" style="cursor: pointer;">Sign up here</a>.
         </form>
     </div>
 </div>
