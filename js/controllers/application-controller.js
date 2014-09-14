@@ -76,13 +76,6 @@
                 into: 'application',
                 outlet: 'modal'
             });
-        },
-        closeAddMemberModal: function () {
-            debugger;
-            return this.disconnectOutlet({
-                outlet: 'modal',
-                parentView: 'application'
-            });
         }
     }
 });

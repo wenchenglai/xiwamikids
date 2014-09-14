@@ -35,8 +35,6 @@
         },
 
         openAddFamilyModal: function (modalName, model) {
-            //this.controllerFor(modalName).set('model', model);
-            //this.generateController('connect.addmember');
             return this.render(modalName, {
                 into: 'application',
                 outlet: 'modal'

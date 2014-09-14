@@ -3,6 +3,7 @@
     firstName: DS.attr('string'),
     nickName: DS.attr('string'),
     email: DS.attr('string'),
+    password: DS.attr('string'),
     birthday: DS.attr('springdate'),
     languages: DS.attr('raw'),
     type: DS.attr('string'),

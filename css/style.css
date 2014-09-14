@@ -8,27 +8,40 @@ label { clear: both }
 
 .earth-background {
     background-image: url(../assets/images/earth.jpg);
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .three-background {
     background-image: url(../assets/images/three.jpg);
+    background-repeat: no-repeat;
     background-position: center;
 }
 
 .sophiekneel-background {
     background-image: url(../assets/images/SophieKneel.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .theater-background {
     background-image: url(../assets/images/Theater.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .behindtoy-background {
     background-image: url(../assets/images/behindtoy.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .feeding-background {
     background-image: url(../assets/images/feeding.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .ember-application {

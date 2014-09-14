@@ -45,239 +45,38 @@ App = Ember.Application.create({
 
         // Components loading
         this._loadTemplate('/templates/familylist-component.hbs.html', 'components/family-list');
-        //Ember.$.ajax({
-        //    url: '/templates/familylist-component.hbs.html',
-        //    async: false,
-        //    success: function (resp) {
-        //        Em.TEMPLATES['components/family-list'] = Ember.Handlebars.compile(resp);
-        //    }
-        //});
-
-        Ember.$.ajax({
-            url: '/templates/familygrid-component.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['components/family-grid'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/chosenmultiselect-component.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['components/chosen-multiselect'] = Ember.Handlebars.compile(resp);
-            }
-        });
+        this._loadTemplate('/templates/familygrid-component.hbs.html', 'components/family-grid');
+        this._loadTemplate('/templates/chosenmultiselect-component.hbs.html', 'components/chosen-multiselect');
 
         // Authentication
-        Ember.$.ajax({
-            url: '/templates/login.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['login'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/signup.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['signup'] = Ember.Handlebars.compile(resp);
-            }
-        });
+        this._loadTemplate('/templates/login.hbs.html', 'login');
+        this._loadTemplate('/templates/signup.hbs.html', 'signup');
 
         // Pages loading
-        Ember.$.ajax({
-            url: '/templates/connect.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.index.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/index'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.search.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/search'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.myfamily.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/myfamily'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.addmember.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/addmember'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.editmember.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/editmember'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.addfamily.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/addfamily'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/connect.editfamily.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['connect/editfamily'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/items.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['items'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/items.search.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['items/search'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/items.myitems.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['items/myitems'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/items.additem.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['items/additem'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.search.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity/search'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.calendar.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity/calendar'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.map.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity/map'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.my.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity/my'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/activity.edit.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['activity/edit'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/helpout.ask.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/ask'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/helpout.browse.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/browse'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/helpout.my.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/my'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/helpout.edit.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['helpout/edit'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/gossip.my.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['gossip/my'] = Ember.Handlebars.compile(resp);
-            }
-        });
-
-        Ember.$.ajax({
-            url: '/templates/gossip.browse.hbs.html',
-            async: false,
-            success: function (resp) {
-                Em.TEMPLATES['gossip/browse'] = Ember.Handlebars.compile(resp);
-            }
-        });
+        this._loadTemplate('/templates/connect.hbs.html', 'connect');
+        this._loadTemplate('/templates/connect.index.hbs.html', 'connect/index');
+        this._loadTemplate('/templates/connect.search.hbs.html', 'connect/search');
+        this._loadTemplate('/templates/connect.myfamily.hbs.html', 'connect/myfamily');
+        this._loadTemplate('/templates/connect.addmember.hbs.html', 'connect/addmember');
+        this._loadTemplate('/templates/connect.editmember.hbs.html', 'connect/editmember');
+        this._loadTemplate('/templates/connect.addfamily.hbs.html', 'connect/addfamily');
+        this._loadTemplate('/templates/connect.editfamily.hbs.html', 'connect/editfamily');
+        this._loadTemplate('/templates/items.hbs.html', 'items');
+        this._loadTemplate('/templates/items.search.hbs.html', 'items/search');
+        this._loadTemplate('/templates/items.myitems.hbs.html', 'items/myitems');
+        this._loadTemplate('/templates/items.additem.hbs.html', 'items/additem');
+        this._loadTemplate('/templates/activity.hbs.html', 'activity');
+        this._loadTemplate('/templates/activity.search.hbs.html', 'activity/search');
+        this._loadTemplate('/templates/activity.calendar.hbs.html', 'activity/calendar');
+        this._loadTemplate('/templates/activity.map.hbs.html', 'activity/map');
+        this._loadTemplate('/templates/activity.my.hbs.html', 'activity/my');
+        this._loadTemplate('/templates/activity.edit.hbs.html', 'activity/edit');
+        this._loadTemplate('/templates/helpout.ask.hbs.html', 'helpout/ask');
+        this._loadTemplate('/templates/helpout.browse.hbs.html', 'helpout/browse');
+        this._loadTemplate('/templates/helpout.my.hbs.html', 'helpout/my');
+        this._loadTemplate('/templates/helpout.edit.hbs.html', 'helpout/edit');
+        this._loadTemplate('/templates/gossip.my.hbs.html', 'gossip/my');
+        this._loadTemplate('/templates/gossip.browse.hbs.html', 'gossip/browse');
     }
 });
 
@@ -289,6 +88,7 @@ App.Router.reopen({
 App.Router.map(function() {
 
     this.route('login');
+    this.route('signup');
 
     this.resource('connect', function () {
         this.route('search');

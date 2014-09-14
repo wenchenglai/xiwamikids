@@ -27,9 +27,8 @@
         },
         // action to trigger authentication with Google+
         authenticateWithGooglePlus: function () {
-
-            this.get('session').authenticate('authenticator:googleplus', {}).then(function() {
-
+            this.get('session').authenticate('authenticator:googleplus', {}).then(function(ddd) {
+                debugger;
             }, function() {
 
             });
@@ -37,22 +36,20 @@
 
         authenticateCustom: function () {
             var self = this,
-                session = self.get('session');
+                session = self.get('session'),
+                controller = self.get('controller'),
+                email = controller.get('email'),
+                password = controller.get('password'),
+                host = self.store.adapterFor('application').get('host');
 
-            session.authenticate('authenticator:custom', {}).then(function () {
+            session.authenticate('authenticator:custom', {
+                email: email, password: password, host: host}).then(function () {
                 
 
             }, function (error) {
                 self.get('controller').set('errorMessage', 'Login Failed.');
                 self.get('controller').set('showError', true);
             });        
-        },
-
-        openSingUpModal: function () {
-            return this.render("signup", {
-                into: 'application',
-                outlet: 'modal'
-            });
         }
     }
 });

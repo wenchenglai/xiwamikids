@@ -35,6 +35,13 @@
             this._saveTransition(transition);
         },
 
+        closeModal: function () {
+            return this.disconnectOutlet({
+                outlet: 'modal',
+                parentView: 'application'
+            });
+        },
+
         setupUser: function () {
             var query = {
                 facebookId: session.get('facebookId')
