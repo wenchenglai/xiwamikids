@@ -68,11 +68,5 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                 Ember.run(resolve);
             });
         });
-    },
-    getProfile: function(session) {
-        // We always get the small profile picture no matter what
-        self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
-            this.set('facebookImage', smallProfilePicture.data.url);
-        });
     }
 });

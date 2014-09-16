@@ -1,4 +1,4 @@
-﻿App.CustomAuthenticator = SimpleAuth.Authenticators.Base.extend({
+﻿App.CustomAuthenticator = App.AppBaseAuthenticator.extend({
     restore: function (properties) {
         return new Ember.RSVP.Promise(function (resolve, reject) {
             if (!Ember.isEmpty(properties.accessToken)) {
@@ -23,7 +23,12 @@
             ).then(function (data) {
                 if (data.auth === 'success') {
                     Ember.run(function () {
-                        resolve({a: 'a'});
+                        var user = data.member;
+                        resolve({
+                            firstName: 'Wen',
+                            lastName: 'Lai',
+                            familyId: '1234'
+                        });
                     });
                 } else {
                     reject();

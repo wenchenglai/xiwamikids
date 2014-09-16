@@ -1,7 +1,4 @@
-﻿App.LoginRoute = Ember.Route.extend({
-    showError: false,
-    errorMessage: '',
-    
+﻿App.AppBaseAuthenticator = SimpleAuth.Authenticators.Base.extend({
     _createSessionUser: function (session, member) {
         var data = {
             id: member.get('id'),
@@ -22,7 +19,7 @@
         session.get('store').persist(data);
     },
 
-    _setupUser: function (self, session) {
+    _setupUser: function () {
         var query = {
             facebookId: session.get('facebookId')
         };
@@ -73,63 +70,5 @@
             //self.get('session').invalidate();
             //self.transitionTo('login');
         });
-    },
-
-    _getFacebookProfile: function(session) {
-        // We always get the small profile picture no matter what
-        self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
-            this.set('facebookImage', smallProfilePicture.data.url);
-        });
-    },
-
-    actions: {
-        error: function(error, transition) {
-            debugger;
-        },
-
-        willTransition: function (transition) {
-            var a = transition;
-        },
-
-    // action to trigger authentication with Facebook
-        authenticateWithFacebook: function () {
-            var self = this,
-                session = self.get('session');
-
-            session.authenticate('authenticator:facebook', {}).then(function () {
-                // if facebook logins successfully, we'll come here and then redirect to index route
-                self._setupUser(self, session);
-                //self._getFacebookProfile();
-            }, function (error) {
-                self.get('controller').set('errorMessage', 'Facebook Login Failed.');
-                self.get('controller').set('showError', true);
-            });
-        },
-        // action to trigger authentication with Google+
-        authenticateWithGooglePlus: function () {
-            this.get('session').authenticate('authenticator:googleplus', {}).then(function(ddd) {
-                debugger;
-            }, function() {
-
-            });
-        },
-
-        authenticateCustom: function () {
-            var self = this,
-                session = self.get('session'),
-                controller = self.get('controller'),
-                email = controller.get('email'),
-                password = controller.get('password'),
-                host = self.store.adapterFor('application').get('host');
-
-            session.authenticate('authenticator:custom', {
-                email: email, password: password, host: host}).then(function () {
-                
-
-            }, function (error) {
-                self.get('controller').set('errorMessage', 'Login Failed.');
-                self.get('controller').set('showError', true);
-            });        
-        }
     }
 });
