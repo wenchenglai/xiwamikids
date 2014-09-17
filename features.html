@@ -7,10 +7,57 @@
 
     <title>Xiwami - Features</title>
     <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/jqueryui/smoothness/jquery-ui-1.11.1.custom.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/cover.css">
+
+    <script src="js/libs/jquery-1.11.1.min.js"></script>
+    <script src="js/libs/jquery-ui-1.11.1.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#dialog-window").dialog({
+                autoOpen: false,
+                modal: true,
+                width: 600,
+                height: 300,
+                dialogClass: "no-close",
+                resizable: false,
+                buttons: {
+                    Close: function () {
+                        $('#alert').hide();
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            $('#btnModalPopup').click(function () {
+                $("#dialog-window").dialog("open");
+                event.preventDefault();
+            });
+
+            $('#btnLogin').click(function () {
+                $('#alert').show();
+                event.preventDefault();
+            });
+
+            $('#btnSurvey').click(function () {
+                window.location = "survey.html";
+                event.preventDefault();
+            });
+
+            $('#btnCloseError').click(function () {
+                $('#alert').hide();
+                event.preventDefault();
+            });
+
+            $('#alert').hide();
+        });
+    </script>
+
 </head>
 <body class="behindtoy-background">
     <!--<script type="text/x-handlebars">-->
@@ -38,7 +85,70 @@
                     <div class="jumbotron">
                         <h2>Welcome!</h2>
                         <p class="lead">We know that parents who have younger children need a lot of help.  A smart way to get help is by connecting with other parents who have young children too.</p>
-                        <p><a class="btn btn-lg btn-success" href="index.html" role="button">Join Us</a></p>
+                        <!--<p><a class="btn btn-lg btn-success" href="index.html" role="button">Join Us</a></p>-->
+                    </div>
+
+                    <div class="cover-container">
+                        <input type="button" id="btnModalPopup" class="btn btn-lg btn-success" value="Join Us" />
+                    </div>
+                    
+                    <!-- dialog window -->
+                    <div id="dialog-window" title="Login">
+                        <div class="modal-left">
+                            <div class="row height-forms">
+                                <div class="col-xs-12">
+
+                                </div>
+                            </div>
+                            <div class="row height-forms">
+                                <div class="col-xs-3">
+                                    Email:
+                                </div>
+                                <div class="col-xs-4">
+                                    <input />
+                                </div>
+                            </div>
+                            <div class="row height-forms">
+                                <div class="col-xs-3">
+                                    Password:
+                                </div>
+                                <div class="col-xs-4">
+                                    <input />
+                                </div>
+                            </div>
+                            <div class="row height-forms">
+                                <div class="col-xs-3">
+                                    Code:
+                                </div>
+                                <div class="col-xs-4">
+                                    <input />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-7">
+                                    <div id="alert" class="alert alert-modal alert-danger alert-dismissible" role="alert">
+                                        <button id="btnCloseError" type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                                        <strong>Error!</strong>
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <input type="button" id="btnLogin" class="btn btn-primary" value="Login" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-right">
+                            <p>
+                                <strong>Don't have an access code yet?</strong>
+                            </p>
+                            <p>
+                                We are looking for beta testers.  Please fill out our survey first and we'll send you an acces code if you fit with our customer profile.
+                            </p>
+                            <div class="row">
+                                <div class="col-xs-2 col-xs-offset-7">
+                                    <input type="button" id="btnSurvey" class="btn btn-primary" value="Survey" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Example row of columns -->
@@ -86,21 +196,20 @@
     </div>
     <!--</script>-->
 
-    <script src="js/libs/jquery-1.10.2.js"></script>
-    <script src="js/libs/bootstrap.min.js"></script>
-    
+
+
+
     <script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-54086987-1', 'auto');
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
-
+        ga('create', 'UA-54086987-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
     </script>
 </body>
 </html>

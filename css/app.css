@@ -7,55 +7,74 @@ body { height: 100%; margin: 0; padding: 0 }
 label { clear: both }
 
 .earth-background {
-    background-image: url(../assets/images/earth.jpg);
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+	background-image: url(../assets/images/earth.jpg);
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 .three-background {
-    background-image: url(../assets/images/three.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(../assets/images/three.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .sophiekneel-background {
-    background-image: url(../assets/images/SophieKneel.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(../assets/images/SophieKneel.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .theater-background {
-    background-image: url(../assets/images/Theater.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(../assets/images/Theater.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .behindtoy-background {
-    background-image: url(../assets/images/behindtoy.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(../assets/images/behindtoy.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .feeding-background {
-    background-image: url(../assets/images/feeding.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
+	background-image: url(../assets/images/feeding.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
-.ember-application {
-    margin: 20px;
+.modal-left {
+	float: left;
 }
+
+.modal-right {
+    margin-left: 250px;
+}
+
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+
+.alert-modal {
+    padding: 6px;
+    margin-bottom: 0px;
+}
+
+/* Below are styles for Ember app*/
+.ember-application {
+	margin: 20px;
+}
+
 
 .wenmodal {
-    position: absolute;
-    margin: 10px auto;
-    width: 800px;
-    background-color: #fff;
-    padding: 1em;
-    top: 250px;
-    left: 100px;
+	position: absolute;
+	margin: 10px auto;
+	width: 800px;
+	background-color: #fff;
+	padding: 1em;
+	top: 250px;
+	left: 100px;
 }
 
 /*input {
@@ -122,10 +141,10 @@ label { clear: both }
 	}
 
 .height-forms {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 .search-input-text {
-    width: 100px;
+	width: 100px;
 }
 /* End of full calendar styles*/
