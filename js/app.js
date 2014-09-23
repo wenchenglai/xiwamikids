@@ -49,6 +49,10 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/chosenmultiselect-component.hbs.html', 'components/chosen-multiselect');
 
         // Authentication
+        this._loadTemplate('/templates/user.account.hbs.html', 'useraccount');
+        this._loadTemplate('/templates/user.profile.hbs.html', 'userprofile');
+
+        // Account
         this._loadTemplate('/templates/login.hbs.html', 'login');
         this._loadTemplate('/templates/signup.hbs.html', 'signup');
 

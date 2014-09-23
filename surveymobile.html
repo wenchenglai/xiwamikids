@@ -1,0 +1,472 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Xiwami Kids - Survey</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/jqueryui/smoothness/jquery-ui-1.10.4.custom.css">
+    <!--<link rel="stylesheet" href="css/cover.css">-->
+    <!--<link rel="stylesheet" href="css/app.css">-->
+    <script src="js/libs/jquery-1.11.1.min.js"></script>
+    <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>
+    <!-- the code below help us to get geolocation from user's IP address http://www.geoplugin.com/quickstart#how_to_geo-localize_your_visitors -->
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    <script>
+        $(function () {
+            function createSlider(slider, answer) {
+                $(slider).slider({
+                    value: 10,
+                    min: 0,
+                    max: 10,
+                    step: 1,
+                    slide: function (event, ui) {
+                        $(answer).val(ui.value);
+                    }
+                });
+
+                $(slider).slider("value", '5');
+                $(answer).val($(slider).slider("value"));
+
+                //$(answer).val('5');
+            }
+            createSlider("#slider3", "#a3");
+            createSlider("#slider4", "#a4");
+            createSlider("#slider5", "#a5");
+            createSlider("#slider6", "#a6");
+            createSlider("#slider7", "#a7");
+            createSlider("#slider8", "#a8");
+            createSlider("#slider9", "#a9");
+            createSlider("#slider10", "#a10");
+            //createSlider("#slider11", "#a11");
+
+            var limit = 3;
+            $(':checkbox').on('change', function (evt) {
+                if ($(this).siblings(':checked').length >= limit) {
+                    this.checked = false;
+                }
+            });
+
+            $('.alert-success').hide();
+            $('.alert-danger').hide();
+
+            $("#submit").on("click", function () {
+                var url = "http://localhost:8088/surveys?type=mobile";
+                //var url = "http://199.223.236.115:8088/xiwamirest-0.0.1/surveys?type=mobile";
+
+                // get the selected check boxes for question 11
+                var features = [];
+                $('input:checked').each(function () {
+                    features.push(this.value);
+                });
+
+                $.ajax(url, {
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: $('#email').val(),
+                        a1: $("input[name='parenttype']:checked").val(),
+                        a2: $("input[name='a2']:checked").val(),
+                        a3: $('#a3').val(),
+                        a4: $('#a4').val(),
+                        a5: $('#a5').val(),
+                        a6: $('#a6').val(),
+                        a7: $('#a7').val(),
+                        a8: $('#a8').val(),
+                        a9: $('#a9').val(),
+                        a10: $('#a10').val(),
+                        a11: features,
+                        a12: $('#a12').val(),
+                        city: geoplugin_city(),
+                        state: geoplugin_region(),
+                        country: geoplugin_countryName()
+            })
+                }).done(function () {
+                    $(".alert-danger").hide();
+                    $(".alert-success").show();
+
+                }).fail(function() {
+                    $(".alert-danger").show();
+                    $(".alert-success").hide();
+                });
+            });
+        });
+    </script>
+    <style>
+        .height-forms {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--<script type="text/x-handlebars">-->
+    <!-- <div class="site-wrapper"> -->
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand"><strong>Xiwami</strong></a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="cover.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li class="active"><a href="survey.html">Survey</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron" style="background-color: #ffede0">
+            <center>
+                <h1 class="">Are you a parent?</h1>
+                <p class="lead">
+                    Do
+                </p>
+            </center>
+        </div>
+
+        <div class="row height-forms">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">Thank you for your feedback!</div>
+                <div class="alert alert-danger" role="alert">Oops, something went wrong.  Please send us an email at info@adarp.com.</div>
+            </div>
+        </div>
+
+        <div class="row height-forms">
+            <div class="col-lg-6">
+                <label>
+                    Your email: <input type="text" id="email" style="width:250px" />
+                </label>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>
+                            1. On Average, how many hours of playing game time do you allow for your children?
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="a" name="parenttype" />
+                    </div>
+                    <div class="col-sm-11">
+                        a.  No, I still don't allow my children to play any type of games on smart phone, tablet, and laptop etc..
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="b" name="parenttype" />
+                    </div>
+                    <div class="col-sm-11">
+                        b.  0 to 1 hours
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="c" name="parenttype" />
+                    </div>
+                    <div class="col-sm-11">
+                        c.  1 to 3 hours
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="d" name="parenttype" />
+                    </div>
+                    <div class="col-sm-11">
+                        c.  3 to 6 hours
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="e" name="parenttype" />
+                    </div>
+                    <div class="col-sm-11">
+                        c.  6 hours or above
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label>
+                            2. What best describe you?
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="a" name="a2" />
+                    </div>
+                    <div class="col-sm-11">
+                        a.  I am a shy person but still would like to meet more parents.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="b" name="a2" />
+                    </div>
+                    <div class="col-sm-11">
+                        b.  I like to socialize and proactively connect with other parents.
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <input type="radio" value="c" name="a2" />
+                    </div>
+                    <div class="col-sm-11">
+                        c.  I am both a and b, depends on circumstances.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            3. I would like to meet more local parents who share similar values and have similar aged children.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a3" readonly style="border:0; color:#f6931f; font-weight:bold;" />
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            4. Sometimes I have questions that only other local parents could provide the best answers. (e.g. what is good child care center in town?)
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a4" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            5. I am willing to help other parents who may have questions regarding parenting.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a5" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            6. I would like to sell, buy or exchange toys with other families.  This allows my children to play with more toys and I could save money.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a6" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider6"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            7. I would like to know a few more families to form a baby group so we can help each other. (e.g. baby sitting or potluck dinners)
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a7" readonly style="border:0; color:#f6931f; font-weight:bold;" />
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider7"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            8. I am interested in learning more about local events or activities that I can bring my children to.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a8" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            9. I am always looking for companion families to attend events or activities, so that my children could interact with other children.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a9" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider9"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            10. I am interested in deals/promotions on groceries, baby items and tickets to museums/events/theme parks.
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="text" id="a10" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        <span class="text-danger">0 = Disagree, 5 = Neutral, 10 = Strongly Agree</span>
+                        <div id="slider10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <label>
+                            11. Please select the top 3 features you want the most:
+                        </label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-8">
+                        <input type="checkbox" value="Connect" />Connect with other local families.<br />
+                        <input type="checkbox" value="QA" />Ask and answer questions.<br />
+                        <input type="checkbox" value="Tip" />Share tips on shopping deals, health, education and entertainment.<br />
+                        <input type="checkbox" value="Item" />Sell/exchange children items such as toys and books.<br />
+                        <input type="checkbox" value="Event" />Search local activities/events and share schedules with other parents.<br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row height-forms">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <label>
+                            12. Do you have any other suggestions?  (e.g. missing a feature that you want, or any possible improvement on current features)
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <textarea id="a12" cols="100" rows="7"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row height-forms">
+            <div class="col-md-4">
+                <input type="button" id="submit" class="btn btn-block" style="background-color: #ff9d5c" value="Submit" />
+            </div>
+        </div>
+
+        <div class="row height-forms">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert">Thank you for your feedback!</div>
+                <div class="alert alert-danger" role="alert">Oops, something went wrong.  Please send us an email at info@adarp.com.</div>
+            </div>
+        </div>
+
+        <div class="mastfoot">
+            <div class="inner">
+                <p>Copyright © 2014 Adarp LLC. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+    <!--</script>-->
+
+
+    <script src="js/libs/bootstrap.min.js"></script>
+    <!--<script src="js/libs/modernizr-2.0.6.min.js"></script>-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments);
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-54086987-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
+
+

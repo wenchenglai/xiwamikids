@@ -22,7 +22,12 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
     restore: function (properties) {
         return new Ember.RSVP.Promise(function (resolve, reject) {
             if (!Ember.isEmpty(properties.accessToken)) {
-                resolve(properties);
+                // this will be called when user has logged in and cookie is still valid
+                DS.Store.find('member', { facebookId: properties.facebookId}).then(function() {
+                    resolve(properties);
+                }, function() {
+                    reject();
+                });
             } else {
                 reject();
             }
@@ -42,7 +47,6 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                 } else if (fbResponse.status === 'not_authorized') {
                     // if facebook App setup is wrong, we could come here
                     reject();
-                    //reject();
                 } else {
                     // status is unknown, then we must prompt with facebook login page
                     FB.login(function (fbResponse) {
@@ -55,7 +59,6 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                             });
                         } else {
                             reject();
-                            //reject();
                         }
                     });
                 }

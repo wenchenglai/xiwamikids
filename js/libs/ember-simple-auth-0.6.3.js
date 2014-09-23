@@ -584,7 +584,8 @@ define("simple-auth/mixins/application-route-mixin",
 
           @method actions.invalidateSession
         */
-        invalidateSession: function() {
+        invalidateSession: function () {
+            debugger;
           this.get(Configuration.sessionPropertyName).invalidate();
         },
 

@@ -22,29 +22,42 @@
             });
         },
 
-        //sessionAuthenticationSucceeded: function() {
-        //    debugger;
-        //},
+        openUserProfileAccountModal: function (modalName) {
+            var self = this,
+                id = self.get('session.store.id');
 
-        //sessionAuthenticationFailed: function() {
-        //    debugger;
-        //},
+            self.store.find('member', id).then(function (member) {
+                self.controllerFor(modalName).set('model', member);
+                return self.render(modalName, {
+                    into: 'application',
+                    outlet: 'modal'
+                });
+            });
+        },
 
-        //invalidateSession: function() {
-        //    debugger;
-        //    this._super();
-        //},
+        sessionAuthenticationSucceeded: function() {
+            debugger;
+        },
+
+        sessionAuthenticationFailed: function() {
+            debugger;
+        },
+
+        invalidateSession: function() {
+            debugger;
+            this._super();
+        },
         
-        //sessionInvalidationSucceeded: function() {
-        //    debugger;
-        //},
+        sessionInvalidationSucceeded: function() {
+            debugger;
+        },
 
-        //sessionInvalidationFailed: function() {
-        //    debugger;
-        //},
+        sessionInvalidationFailed: function() {
+            debugger;
+        },
 
-        //authorizationFailed: function() {
-        //    debugger;
-        //}
+        authorizationFailed: function() {
+            debugger;
+        }
     }
 });

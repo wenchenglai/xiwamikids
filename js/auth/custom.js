@@ -1,4 +1,4 @@
-﻿App.CustomAuthenticator = App.AppBaseAuthenticator.extend({
+﻿App.CustomAuthenticator = SimpleAuth.Authenticators.Base.extend({
     restore: function (properties) {
         return new Ember.RSVP.Promise(function (resolve, reject) {
             if (!Ember.isEmpty(properties.accessToken)) {
@@ -38,9 +38,7 @@
     },
     invalidate: function () {
         return new Ember.RSVP.Promise(function (resolve, reject) {
-            FB.logout(function (response) {
-                Ember.run(resolve);
-            });
+            Ember.run(resolve);
         });
     },
     _customLogin: function (url, options) {
