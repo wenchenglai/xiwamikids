@@ -7,27 +7,11 @@ FB.init({ appId: '343069969185068' });
 
 // the custom authenticator that initiates the authentication process with Facebook
 App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
-    _getFacebookProfilePicture: function (type) {
-        return new Ember.RSVP.Promise(function (resolve, reject) {
-            FB.api('/me/picture?type=' + type, function (response) {
-                if (response && !response.error) {
-                    Ember.run(resolve(response));
-                } else {
-                    reject(response);
-                }
-            });
-        });
-    },
-
     restore: function (properties) {
         return new Ember.RSVP.Promise(function (resolve, reject) {
             if (!Ember.isEmpty(properties.accessToken)) {
                 // this will be called when user has logged in and cookie is still valid
-                DS.Store.find('member', { facebookId: properties.facebookId}).then(function() {
-                    resolve(properties);
-                }, function() {
-                    reject();
-                });
+                resolve(properties);
             } else {
                 reject();
             }

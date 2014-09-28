@@ -35,29 +35,29 @@
             });
         },
 
-        sessionAuthenticationSucceeded: function() {
-            debugger;
-        },
+        //sessionAuthenticationSucceeded: function() {
+        //    debugger;
+        //},
 
-        sessionAuthenticationFailed: function() {
-            debugger;
-        },
+        //sessionAuthenticationFailed: function() {
+        //    debugger;
+        //},
 
-        invalidateSession: function() {
-            debugger;
-            this._super();
-        },
+        //invalidateSession: function() {
+        //    debugger;
+        //    this._super();
+        //},
         
-        sessionInvalidationSucceeded: function() {
-            debugger;
-        },
+        //sessionInvalidationSucceeded: function() {
+        //    debugger;
+        //},
 
-        sessionInvalidationFailed: function() {
-            debugger;
-        },
+        //sessionInvalidationFailed: function() {
+        //    debugger;
+        //},
 
-        authorizationFailed: function() {
-            debugger;
-        }
+        //authorizationFailed: function() {
+        //    debugger;
+        //}
     }
 });

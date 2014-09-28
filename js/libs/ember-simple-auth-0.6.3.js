@@ -526,7 +526,6 @@ define("simple-auth/mixins/application-route-mixin",
           @method actions.authenticateSession
         */
           authenticateSession: function () {
-              debugger;
           this.transitionTo(Configuration.authenticationRoute);
         },
 
@@ -547,7 +546,6 @@ define("simple-auth/mixins/application-route-mixin",
             attemptedTransition.retry();
             this.get(Configuration.sessionPropertyName).set('attemptedTransition', null);
           } else {
-              debugger;
             this.transitionTo(Configuration.routeAfterAuthentication);
           }
         },
@@ -585,7 +583,6 @@ define("simple-auth/mixins/application-route-mixin",
           @method actions.invalidateSession
         */
         invalidateSession: function () {
-            debugger;
           this.get(Configuration.sessionPropertyName).invalidate();
         },
 

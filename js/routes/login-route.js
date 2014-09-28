@@ -22,6 +22,18 @@
         session.get('store').persist(data);
     },
 
+    _getFacebookProfilePicture: function (type) {
+        return new Ember.RSVP.Promise(function (resolve, reject) {
+            FB.api('/me/picture?type=' + type, function (response) {
+                if (response && !response.error) {
+                    Ember.run(resolve(response));
+                } else {
+                    reject(response);
+                }
+            });
+        });
+    },
+
     _setupUser: function (self, session) {
         var query = {
             facebookId: session.get('facebookId')
@@ -31,6 +43,7 @@
             if (members.content.length > 0) {
                 // this facebook user already has an account in the system
                 self._createSessionUser(session, members.content[0]);
+                self._getFacebookProfilePicture('large');
             } else {
                 // this facebook user is not in the system, we have to create a new one
                 FB.api('/me', function (fbUser) {
@@ -56,8 +69,8 @@
                                 previousTransition.retry();
                                 return;
                             }
-                            this.transitionTo('index');
-                        }, function (ret) {
+                            //this.transitionTo('index');
+                        }, function (error) {
                             // error in saving new member
                         });
 
@@ -70,7 +83,7 @@
         }, function (error) {
             self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
             self.get('controller').set('showError', true);
-            //self.get('session').invalidate();
+            session.invalidate();
             //self.transitionTo('login');
         });
     },
@@ -99,7 +112,6 @@
             session.authenticate('authenticator:facebook', {}).then(function () {
                 // if facebook logins successfully, we'll come here and then redirect to index route
                 self._setupUser(self, session);
-                //self._getFacebookProfile();
             }, function (error) {
                 self.get('controller').set('errorMessage', 'Facebook Login Failed.');
                 self.get('controller').set('showError', true);
