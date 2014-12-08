@@ -1,79 +1,44 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
     <div class="row height-forms">
-        <div class="col-lg-8">
+        <div class="col-md-12">
+            <div>
+                <label>
+                    User Id:
+                    {{view Ember.TextField class="edit_box" value=id}}
+                </label>
+            </div>
+            <div>
+                <label>
+                    Facebook Id:
+                    {{view Ember.TextField class="edit_box" value=facebookId}}
+                </label>
+            </div>
             <div>
                 <label>
                     Email:
-                    {{view Ember.TextField class="edit_box" value=firstName}}
+                    {{view Ember.TextField class="edit_box" value=email}}
                 </label>
             </div>
             <div>
                 <label>
-                    Last Name:
-                    {{view Ember.TextField class="edit_box" value=lastName}}
+                    Password:
+                    {{view Ember.TextField class="edit_box" value=password}}
                 </label>
             </div>
-            <div>
-                <label>
-                    Nickname:
-                    {{view Ember.TextField class="edit_box" value=nickName}}
-                </label>
-            </div>
-            <div class="control-group">
-                <div class="controls">
-                    <p>
-                        <div id="gendertype" name="gender" class="btn-group rdgender" data-toggle="buttons-radio">
-
-                            {{#view App.RadioButtonView name="selectionMale" selectionBinding="gender" value="male"}}Male{{/view}}
-
-                            {{#view App.RadioButtonView name="selectionFemale" selectionBinding="gender" value="female"}}Female{{/view}}
-
-                        </div>
-                    </p>
-                </div>
-            </div>
-            <div>
-                Birthday:
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" valueBinding="birthMonth"}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" valueBinding="birthDayNumber"}} /
-                {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" valueBinding="birthYear"}}
-            </div>
         </div>
-        <div class="col-lg-offset-8">
-            {{#view Ember.View contentBinding="imageData"}}
-            {{view App.FileField}}
-            {{#if imageData}}
-            {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
-            {{else}}
-            {{view App.PreviewImageView width="200" height="200" srcBinding="avatarUrl"}}
-            {{/if}}
-            {{/view}}
-        </div>
+
 
     </div>
     <div class="row height-forms">
-        <div class="col-lg-6">
-            {{pronoun}} can speak: {{view Ember.Select class="btn btn-default dropdown-toggle" selectionBinding="languages" content=allLanguages multiple=true}}
-        </div>
-        <div class="col-lg-6">
-            Family Role: {{view Ember.Select class="btn btn-default dropdown-toggle" content=allRelationships prompt="Relationship" value=type}}
-        </div>
-    </div>
-    <div class="row height-forms">
-        <div class="col-lg-12">
-            <button class="btn btn-primary btn-sm" {{action "edit" }}>
-                {{#if id}}
-                Edit
-                {{else}}
-                Add
-                {{/if}}
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-sm" {{action "save" }}>
+                Save
             </button>
-            <button class="btn btn-primary btn-sm" {{action "close" }}>
+            <button class="btn btn-primary btn-sm" {{action "closeModal" }}>
                 Cancel
             </button>
         </div>
     </div>
-
 </div>
 

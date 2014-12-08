@@ -1,3 +1,5 @@
+// Ember Simple Auth persists the session state so it survives page reloads. 
+// There is only one store per application that can be configured in the application's environment object
 window.ENV = window.ENV || {};
 window.ENV['simple-auth'] = {
     store: 'simple-auth-session-store:local-storage'
@@ -9,20 +11,39 @@ Ember.Application.initializer({
     initialize: function (container, application) {
         // customize the session so that it allows access to the account object
         SimpleAuth.Session.reopen({
-            account: function () {
-                var facebookId = FB.getAuthResponse().userID;
+            userAccount: function () {
+                var session = container.lookup('simple-auth-session:main');
+                var facebookId = session.get("facebookId");
+                //var facebookId = FB.getAuthResponse().userID;
                 var query = {
                     facebookId: facebookId
                 };
                 if (!Ember.isEmpty(facebookId)) {
-                    return container.lookup('store:main').find('account', query);
+                    return container.lookup('store:main').find('member', query);
                 }
             }.property('facebookId')
         });
 
+        //var session = container.lookup('simple-auth-session:main');
+        //var applicationRoute = container.lookup('route:application');
+
+        //session.on('sessionAuthenticationSucceeded', function () {
+        //    applicationRoute.transitionTo('error');
+        //});
+        //session.on('sessionAuthenticationFailed', function () {
+        //    Ember.Logger.debug('Session authentication failed!');
+        //});
+        //session.on('sessionInvalidationSucceeded', function () {
+        //    applicationRoute.transitionTo('error');
+        //});
+        //session.on('sessionInvalidationFailed', function () {
+        //    Ember.Logger.debug('Session invalidation failed!');
+        //});
+
         // register the Facebook and Google+ authenticators so the session can find them
         container.register('authenticator:facebook', App.FacebookAuthenticator);
         //container.register('authenticator:googleplus', App.GooglePlusAuthenticator);
+        container.register('authenticator:custom', App.CustomAuthenticator);
     }
 });
 
@@ -49,12 +70,13 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/chosenmultiselect-component.hbs.html', 'components/chosen-multiselect');
 
         // Authentication
-        this._loadTemplate('/templates/user.account.hbs.html', 'useraccount');
-        this._loadTemplate('/templates/user.profile.hbs.html', 'userprofile');
+        this._loadTemplate('/templates/user.account.hbs.html', 'user/account');
+        this._loadTemplate('/templates/user.profile.hbs.html', 'user/profile');
 
         // Account
         this._loadTemplate('/templates/login.hbs.html', 'login');
         this._loadTemplate('/templates/signup.hbs.html', 'signup');
+        this._loadTemplate('/templates/error.hbs.html', 'error');
 
         // Pages loading
         this._loadTemplate('/templates/connect.hbs.html', 'connect');
@@ -93,6 +115,12 @@ App.Router.map(function() {
 
     this.route('login');
     this.route('signup');
+    this.route('error');
+
+    this.resource('user', function() {
+        this.route('account');
+        this.route('profile');
+    });
 
     this.resource('connect', function () {
         this.route('search');

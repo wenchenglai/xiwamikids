@@ -24,16 +24,49 @@
 
         openUserProfileAccountModal: function (modalName) {
             var self = this,
-                id = self.get('session.store.id');
+                id = self.get('session.id'),
+                facebookId = self.get('session.facebookId');
 
-            self.store.find('member', id).then(function (member) {
-                self.controllerFor(modalName).set('model', member);
-                return self.render(modalName, {
+            if (id || facebookId) {
+                if (id) {
+                    self.store.find('member', myid).then(function(member) {
+                        self.controllerFor(modalName).set('model', member);
+                        return self.render(modalName, {
+                            into: 'application',
+                            outlet: 'modal'
+                        });
+                    });
+                } else {
+                    var query = {
+                        facebookId: facebookId
+                    };
+
+                    self.store.find('member', query).then(function (members) {
+                        self.controllerFor(modalName).set('model', members.content[0]);
+                        return self.render(modalName, {
+                            into: 'application',
+                            outlet: 'modal'
+                        });
+
+                    }, function (error) {
+                        self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
+                        self.get('controller').set('showError', true);
+                        session.invalidate();
+                        //self.transitionTo('login');
+                    });
+                }
+
+            } else {
+                this.controllerFor('error').set('errorMessage', 'Missing ID');
+                //this.controllerFor(modalName).set('model', this.store.find('person', id));
+                //this.generateController('connect.addmember');
+                //debugger;
+                return this.render('error', {
                     into: 'application',
                     outlet: 'modal'
                 });
-            });
-        },
+            }
+        }
 
         //sessionAuthenticationSucceeded: function() {
         //    debugger;

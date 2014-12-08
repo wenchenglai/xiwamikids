@@ -37,10 +37,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#" {{ action 'openUserProfileAccountModal' 'userprofile' }}>My Profile</a></li>
-                            <li><a href="#" {{ action 'openUserProfileAccountModal' 'useraccount' }}>My Account</a></li>
+                            <li><a href="#" {{ action 'openUserProfileAccountModal' 'user.profile' }}>My Profile</a></li>
+                            <li><a href="#" {{ action 'openUserProfileAccountModal' 'user.account' }}>My Account</a></li>
                             <li class="divider"></li>
-                            <li><a {{ action 'invalidateSession' }}>Logout</a></li>
+                            <li><a style="cursor:pointer" {{ action 'invalidateSession' }}>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -81,34 +81,26 @@
     </script>
 
     <script type="text/x-handlebars" id="index">
-        <h2>Welcome to Xiwami</h2>
+        <h2>Welcome to XiwamiKids Network</h2>
+        <div>
+            {{#if session.isAuthenticated}}
+                {{#if session.id }}
+                    You logged in using custom account.  Your id is {{ session.id }}.  Your email is {{ session.email }}
+                {{else}}
+                    You logged in using facebook.  Your facebook id is {{ session.facebookId }}.  Your first name is {{ session.member.firstName }}
+                {{/if}}
+            {{else}}
+                Currently you are not logged in.
+            {{/if}}
+        </div>
+        <div style="height:100px">
+
+        </div>
         <div>
             Items activities
         </div>
         <div>
             Upcoming events<br />
-        </div>
-        <div>
-            Facebook Data:
-            <div id="fb">
-                <ul>
-                    <li>
-                        Name: <span id="username"></span>
-                    </li>
-                    <li>
-                        id: <span id="fbid"></span>
-                    </li>
-                    <li>
-                        gender: <span id="gender"></span>
-                    </li>
-                </ul>
-            </div>
-            <div id="feeds">
-                {{#each feed in model}}
-                <li>{{feed.id}}</li>
-                {{/each}}
-            </div>
-            <div class="fb-like" data-send="true" data-width="450" data-show-faces="true"></div>
         </div>
     </script>
 
@@ -127,6 +119,8 @@
     <!-- the code below help us to get geolocation from user's IP address http://www.geoplugin.com/quickstart#how_to_geo-localize_your_visitors -->
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     
+    <!--<script src="js/libs/handlebars-v1.3.0.js"></script>
+    <script src="js/libs/ember-1.8.1.js"></script>-->
     <script src="js/libs/handlebars-1.1.2.js"></script>
     <script src="js/libs/ember-1.5.0.js"></script>
     <script src="js/libs/ember-data-1.0.0-beta.js"></script>
@@ -172,6 +166,7 @@
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/index-route.js"></script>
+    <script src="js/routes/error-route.js"></script>
     <script src="js/routes/login-route.js"></script>
     <script src="js/routes/signup-route.js"></script>
     <script src="js/routes/connect.myfamily-route.js"></script>
@@ -186,6 +181,8 @@
 
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/index-controller.js"></script>
+    <script src="js/controllers/login-controller.js"></script>
+    <script src="js/controllers/error-controller.js"></script>
     <script src="js/controllers/connect.myfamily-controller.js"></script>
     <script src="js/controllers/connect.addmember-controller.js"></script>
     <script src="js/controllers/connect.editmember-controller.js"></script>
@@ -203,6 +200,8 @@
     <script src="js/controllers/helpout.edit-controller.js"></script>
     <script src="js/controllers/gossip.browse-controller.js"></script>
     <script src="js/controllers/gossip.my-controller.js"></script>
+    <script src="js/controllers/user.account-controller.js"></script>
+    <script src="js/controllers/user.profile-controller.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

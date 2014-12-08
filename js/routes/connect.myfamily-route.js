@@ -11,6 +11,11 @@
         controller.set('content', model);
     },
     actions: {
+        error: function (error, transition) {
+            this.controllerFor('error').set('errorMessage', 'Error in connect.myfamily-route');
+            this.transitionTo('error');
+        },
+
         openAddMemberModal: function (modalName, id) {
             var self = this;
             this.store.find('family', id).then(function (family) {
@@ -35,6 +40,9 @@
         },
 
         openAddFamilyModal: function (modalName, model) {
+            var self = this;
+            var emptyModel = self.store.createRecord('family');
+            self.controllerFor(modalName).set('model', emptyModel);
             return this.render(modalName, {
                 into: 'application',
                 outlet: 'modal'

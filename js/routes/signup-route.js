@@ -24,7 +24,8 @@
 
     actions: {
         error: function (error, transition) {
-            debugger;
+            this.controllerFor('error').set('errorMessage', 'Error in signup-route');
+            this.transitionTo('error');
         },
 
         signup: function () {

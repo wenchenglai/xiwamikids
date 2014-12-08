@@ -1,21 +1,8 @@
 ﻿App.IndexRoute = Ember.Route.extend({
-    beforeModel: function (transition) {
-        // debugger;
-    },
-    model: function () {
-        //debugger;
-        if ($("#isAuth").text() === 'Yes') {
-            //debugger;
-            FB.api('/625848591/feed', function (response) {
-                //debugger;
-                return response;
-            });
-        } else {
-            return [];
+    actions: {
+        error: function (error, transition) {
+            this.controllerFor('error').set('errorMessage', 'Error in index-route');
+            this.transitionTo('error');
         }
-    },
-    setupController: function (controller, feeds) {
-        //debugger;
-        //controller.set('model', playlist.get('songs'));
     }
 });

@@ -1,7 +1,7 @@
 ﻿App.LoginRoute = Ember.Route.extend({
     showError: false,
     errorMessage: '',
-    
+
     _createSessionUser: function (session, member) {
         var data = {
             id: member.get('id'),
@@ -30,6 +30,41 @@
                 } else {
                     reject(response);
                 }
+            });
+        });
+    },
+
+    _createNewMemberFromFacebookProfile: function (self, session) {
+        FB.api('/me', function (fbUser) {
+            var fbImageUrl = '';
+
+            self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
+                fbImageUrl = largeProfilePicture.data.url;
+
+                var newMember = self.store.createRecord('member', {
+                    firstName: fbUser.first_name,
+                    lastName: fbUser.last_name,
+                    gender: fbUser.gender,
+                    facebookId: fbUser.id,
+                    avatarUrl: fbImageUrl,
+                    isUser: true
+                });
+
+                newMember.save().then(function (member) {
+                    self._createSessionUser(session, member);
+
+                    var previousTransition = self.get('controller').get('previousTransition');
+                    if (previousTransition) {
+                        previousTransition.retry();
+                        return;
+                    }
+                    //this.transitionTo('index');
+                }, function (error) {
+                    // error in saving new member
+                });
+
+            }, function (error) {
+                // error in get facebook Profile picture
             });
         });
     },
@@ -96,22 +131,34 @@
     },
 
     actions: {
-        error: function(error, transition) {
-            debugger;
+        error: function (error, transition) {
+            this.controllerFor('error').set('errorMessage', 'Error in login-route');
+            this.transitionTo('error');
         },
 
         willTransition: function (transition) {
             var a = transition;
         },
 
-    // action to trigger authentication with Facebook
+        // action to trigger authentication with Facebook
         authenticateWithFacebook: function () {
             var self = this,
                 session = self.get('session');
 
-            session.authenticate('authenticator:facebook', {}).then(function () {
+            session.authenticate('authenticator:facebook', {loginRoute: self}).then(function () {
                 // if facebook logins successfully, we'll come here and then redirect to index route
-                self._setupUser(self, session);
+                //self._setupUser(self, session);
+                //var member = session.get('member');
+                ////var a = 4;
+                //if (!member.get("longitude")) {
+                //    var data = {
+                //        latitude: geoplugin_latitude(),
+                //        longitude: geoplugin_longitude
+                //    },
+
+                //    session.get('store').persist(data);
+                //}
+                
             }, function (error) {
                 self.get('controller').set('errorMessage', 'Facebook Login Failed.');
                 self.get('controller').set('showError', true);
@@ -126,6 +173,7 @@
             });
         },
 
+        // This action is fired when user click on Login button on Login page
         authenticateCustom: function () {
             var self = this,
                 session = self.get('session'),
@@ -135,8 +183,8 @@
                 host = self.store.adapterFor('application').get('host');
 
             session.authenticate('authenticator:custom', {
-                email: email, password: password, host: host}).then(function () {
-                
+                email: email, password: password, host: host}).then(function (test) {
+                var mysession = session;
 
             }, function (error) {
                 self.get('controller').set('errorMessage', 'Login Failed.');

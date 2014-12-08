@@ -25,9 +25,12 @@
                     Ember.run(function () {
                         var user = data.member;
                         resolve({
-                            firstName: 'Wen',
-                            lastName: 'Lai',
-                            familyId: '1234'
+                            id: user.id,
+                            firstName: user.firstName,
+                            lastName: user.lastName,
+                            nickName: user.nickName,
+                            email: user.email,
+                            familyId: user.familyId
                         });
                     });
                 } else {
