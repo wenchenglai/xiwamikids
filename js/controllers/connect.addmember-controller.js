@@ -44,10 +44,11 @@
 
     actions: {
         close: function () {
-            return this.send('closeAddMemberModal');
+            return this.send('closeFamilyMemberModal');
         },
-        addkid: function (params) {
-            var $this = this,
+        addMember: function (params) {
+            var self = this,
+                model = this.get('model'),
                 firstName = this.get('firstName'),
                 lastName = this.get('lastName'),
                 nickName = this.get('nickName'),
@@ -58,38 +59,55 @@
                 selectedLanguage = this.get('selectedLanguage'),
                 selectedRelation = this.get('selectedRelation');
 
-            debugger;
             // create a record and save it to the store
-            var newkid = this.store.createRecord('member', {
-                firstName: firstName,
-                lastName: lastName,
-                nickname: nickName,
-                gender: gender,
-                birthday: new Date(selectedYear, selectedMonth, selectedDay),
-                languages: ['Chinese', 'English'],
-                type: selectedRelation
-            });
+            //var newkid = this.store.createRecord('member', {
+            //    firstName: firstName,
+            //    lastName: lastName,
+            //    nickname: nickName,
+            //    gender: gender,
+            //    birthday: new Date(selectedYear, selectedMonth, selectedDay),
+            //    languages: ['Chinese', 'English'],
+            //    type: selectedRelation
+            //});
+            model.set('birthday', new Date(selectedYear, selectedMonth, selectedDay));
+            
+            var onSuccess = function (article) {
+                //debugger;
+                //f.save().then(function () {
+                //$this.transitionToRoute('connect.index');
+                return self.send('closeFamilyMemberModal');
+                //});
+            };
 
-            this.store.find('family', this.get("familyId")).then(function (family) {
-                newkid.set('family', family);
-                var f = family;
-                var onSuccess = function (article) {
-                    //debugger;
-                    //f.save().then(function () {
-                        //$this.transitionToRoute('connect.index');
-                        return $this.send('closeAddMemberModal');
-                    //});
-                };
+            var onFail = function (ret) {
+                // deal with the failure here
+                if (ret.status === 200)
+                    return self.send('closeFamilyMemberModal');
+                debugger;
+            };
 
-                var onFail = function (ret) {
-                    // deal with the failure here
-                    if (ret.status === 200)
-                        return $this.send('closeAddMemberModal');
-                    debugger;
-                };
+            model.save().then(onSuccess, onFail);
 
-                newkid.save().then(onSuccess, onFail);
-            });
+            //this.store.find('family', this.get("familyId")).then(function (family) {
+            //    newkid.set('family', family);
+            //    var f = family;
+            //    var onSuccess = function (article) {
+            //        //debugger;
+            //        //f.save().then(function () {
+            //            //$this.transitionToRoute('connect.index');
+            //        return self.send('closeFamilyMemberModal');
+            //        //});
+            //    };
+
+            //    var onFail = function (ret) {
+            //        // deal with the failure here
+            //        if (ret.status === 200)
+            //            return self.send('closeFamilyMemberModal');
+            //        debugger;
+            //    };
+
+            //    newkid.save().then(onSuccess, onFail);
+            //});
         }
     }
 });

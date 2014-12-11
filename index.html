@@ -103,6 +103,27 @@
             Upcoming events<br />
         </div>
     </script>
+    
+    <!-- Loading Progress spinner 
+    Learned from : http://balinterdi.com/2014/06/18/indicating-progress-loading-routes-in-ember-dot-js.html    
+    -->
+    <script type="text/x-handlebars" data-template-name="loading">
+        <div class="loading-pane">
+            <div class="loading-message">
+                Loading stuff, please have a cold beer.
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/x-handlebars" data-template-name="connect/loading">
+        <div class="loading-pane">
+            <div class="loading-message">
+                Loading at Connect Resource Level, thank you for your patience.
+            </div>
+            <div class="spinner"></div>
+        </div>
+    </script>
 
     <script src="js/libs/jquery-1.10.2.js"></script>
     <script src="js/libs/jquery-ui-1.10.4.custom.js"></script>

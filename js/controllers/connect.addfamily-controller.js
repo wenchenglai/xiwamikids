@@ -9,7 +9,7 @@
 
     actions: {
         close: function () {
-            return this.send('closeAddMemberModal');
+            return this.send('closeFamilyMemberModal');
         },
         add: function (params) {
             var self = this,
@@ -29,31 +29,27 @@
                 //});
 
                 fromModel.save().then(function (family) {
-                    //var user = self.get('session.store').restore();
-                    var user,
+                    var user = self.get('session.store').restore(),
                         userId,
                         session = self.get('session');
 
-                    if (session.get('facebookId')) {
-                        user = session.get('userAccount').content.content[0];
-                        userId = user.get('id');
-                    } else {
-                        userId = session.get('id');
-                    }
+                    //userId = session.get('currentUser').get('id');
+                    userId = user.id;
+
 
                     // after we create a new family, we should add current user as a member of the family
                     self.store.find('member', userId).then(function(member) {
                         member.set('family', family);
                         member.save().then(function(mem) {
-                            //user.familyId = family.get('id');
-                            //user.longitude = family.get('location')[0];
-                            //user.latitude = family.get('location')[1];
-                            //self.get('session.store').persist(user);
-                            //var test = self.store.find('family', user.familyId);
-                            //test.then(function(myfam) {
-                            //    self.get('controllers.ConnectMyfamily').set('model', myfam);
-                            //    return self.send('closeAddMemberModal', true);
-                            //});
+                            user.familyId = family.get('id');
+                            user.longitude = family.get('location')[0];
+                            user.latitude = family.get('location')[1];
+                            self.get('session.store').persist(user);
+
+                            self.store.find('family', user.familyId).then(function(myfam) {
+                                self.get('controllers.ConnectMyfamily').set('model', myfam);
+                                return self.send('closeFamilyMemberModal', true);
+                            });
 
                         }, onFail);
                     }, onFail);

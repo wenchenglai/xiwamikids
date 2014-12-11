@@ -21,7 +21,22 @@ Ember.Application.initializer({
                 if (!Ember.isEmpty(facebookId)) {
                     return container.lookup('store:main').find('member', query);
                 }
-            }.property('facebookId')
+            }.property('facebookId'),
+
+            setCurrentUser: function () {
+                var self = this,
+                    session = container.lookup('simple-auth-session:main'),
+                    facebookId = session.get("facebookId");
+                    
+                var query = {
+                    facebookId: facebookId
+                };
+                if (!Ember.isEmpty(facebookId)) {
+                    return container.lookup('store:main').find('member', facebookId).then(function(user) {
+                        self.set('currentUser', user);
+                    });
+                }
+            }.observes('facebookId')
         });
 
         //var session = container.lookup('simple-auth-session:main');
@@ -158,6 +173,7 @@ App.Router.map(function() {
 
 App.ApplicationAdapter = DS.RESTAdapter.extend({
     host: 'http://localhost:8088'
+    //host: 'http://10.0.0.5:8088'
     //host: 'http://199.223.236.115:8088/',
     //namespace: 'xiwamirest-0.0.1'
     //headers: { 

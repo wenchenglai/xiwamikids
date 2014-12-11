@@ -1,7 +1,7 @@
 ﻿App.ConnectEditfamilyController = Ember.ObjectController.extend({
     actions: {
         close: function () {
-            return this.send('closeAddMemberModal');
+            return this.send('closeFamilyMemberModal');
         },
         edit: function (params) {
             var self = this;
@@ -10,7 +10,7 @@
 
             if (fromModel.get('isDirty')) {
                 fromModel.save().then(function(family) {
-                    self.send('closeAddMemberModal');
+                    self.send('closeFamilyMemberModal');
                 }, function(error) {
 
                 });

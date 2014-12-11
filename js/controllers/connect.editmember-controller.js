@@ -1,4 +1,7 @@
 ﻿App.ConnectEditmemberController = Ember.ObjectController.extend({
+    showError: false,
+    errorMessage: '',
+
     localinit: function() {
         //debugger;
 
@@ -50,7 +53,7 @@
                 record.deleteRecord();
             }
 
-            return this.send('closeAddMemberModal');
+            return this.send('closeFamilyMemberModal');
         },
         edit: function () {
             var $this = this,
@@ -68,12 +71,12 @@
             }
 
             var onSuccess = function (ret) {
-                $this.send('closeAddMemberModal');
+                $this.send('closeFamilyMemberModal');
             };
 
             var onFail = function (ret) {
-                if (ret.status === 200)
-                    $this.send('closeAddMemberModal');
+                //if (ret.status === 200)
+                //    $this.send('closeFamilyMemberModal');
                 // deal with the failure here
             };
 

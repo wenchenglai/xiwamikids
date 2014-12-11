@@ -22,3 +22,29 @@ App.SpringdateTransform = DS.Transform.extend({
         return deserialized;
     }
 });
+
+// 2014-12-09 Array type
+// from http://stackoverflow.com/questions/12168570/how-to-represent-arrays-within-ember-data-models
+
+DS.ArrayTransform = DS.Transform.extend({
+    deserialize: function (serialized) {
+        return (Ember.typeOf(serialized) == "array")
+            ? serialized
+            : [];
+    },
+
+    serialize: function (deserialized) {
+        var type = Ember.typeOf(deserialized);
+        if (type == 'array') {
+            return deserialized
+        } else if (type == 'string') {
+            return deserialized.split(',').map(function (item) {
+                return jQuery.trim(item);
+            });
+        } else {
+            return [];
+        }
+    }
+});
+
+//App.register("transform:array", DS.ArrayTransform);

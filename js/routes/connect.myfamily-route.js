@@ -1,14 +1,24 @@
 ﻿App.ConnectMyfamilyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        var user = this.get('session.store').restore();
-        if (user.familyId) {
-            return this.store.find('family', user.familyId);
+        //var user = this.get('session.store').restore();
+        var self = this,
+            currentUser = self.get('session.currentUser');
+
+        if (currentUser) {
+            if (currentUser.get('family').id)
+                return this.store.find('family', currentUser.get('family').id);
         } else {
-            return null;
+            throw new Error("Message");
         }
+        return null;
     },
     setupController: function (controller, model) {
         controller.set('content', model);
+    },
+    didTransition: function (infos) {
+        // 2014-12-09 Set document title on every route
+        // http://balinterdi.com/2014/05/28/setting-the-document-title-in-ember-apps.html
+        $(document).attr('title', ' songs - Rock & Roll');
     },
     actions: {
         error: function (error, transition) {
@@ -60,7 +70,7 @@
             });
         },
 
-        closeAddMemberModal: function (needReload) {
+        closeFamilyMemberModal: function (needReload) {
             if (needReload) {
                 //this.transitionTo('items.myitems');
                 this.refresh();

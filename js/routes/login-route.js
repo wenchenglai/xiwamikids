@@ -70,55 +70,25 @@
     },
 
     _setupUser: function (self, session) {
-        var query = {
-            facebookId: session.get('facebookId')
-        };
+        //var query = {
+        //    facebookId: session.get('facebookId')
+        //};
 
-        self.store.find('member', query).then(function (members) {
-            if (members.content.length > 0) {
+        self.store.find('member', session.get('facebookId')).then(function (member) {
+            if (member) {
                 // this facebook user already has an account in the system
-                self._createSessionUser(session, members.content[0]);
+                self._createSessionUser(session, member);
                 self._getFacebookProfilePicture('large');
             } else {
                 // this facebook user is not in the system, we have to create a new one
-                FB.api('/me', function (fbUser) {
-                    var fbImageUrl = '';
-
-                    self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
-                        fbImageUrl = largeProfilePicture.data.url;
-
-                        var newMember = self.store.createRecord('member', {
-                            firstName: fbUser.first_name,
-                            lastName: fbUser.last_name,
-                            gender: fbUser.gender,
-                            facebookId: fbUser.id,
-                            avatarUrl: fbImageUrl,
-                            isUser: true
-                        });
-
-                        newMember.save().then(function (member) {
-                            self._createSessionUser(session, member);
-
-                            var previousTransition = self.get('controller').get('previousTransition');
-                            if (previousTransition) {
-                                previousTransition.retry();
-                                return;
-                            }
-                            //this.transitionTo('index');
-                        }, function (error) {
-                            // error in saving new member
-                        });
-
-                    }, function (error) {
-
-                    });
-                });
+                self._createNewMemberFromFacebookProfile(self, session);
             }
 
         }, function (error) {
-            self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
-            self.get('controller').set('showError', true);
-            session.invalidate();
+            self._createNewMemberFromFacebookProfile(self, session);
+            //self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
+            //self.get('controller').set('showError', true);
+            //session.invalidate();
             //self.transitionTo('login');
         });
     },
@@ -147,7 +117,7 @@
 
             session.authenticate('authenticator:facebook', {loginRoute: self}).then(function () {
                 // if facebook logins successfully, we'll come here and then redirect to index route
-                //self._setupUser(self, session);
+                self._setupUser(self, session);
                 //var member = session.get('member');
                 ////var a = 4;
                 //if (!member.get("longitude")) {
