@@ -9,8 +9,8 @@
         //debugger;
         if (currentPath === 'index' || currentPath === '') {
             this.set('content', [{ displayName: 'Index', linkName: 'index' },
-                                 { displayName: 'Browse', linkName: 'gossip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'gossip.browse' }, { displayName: 'Education', linkName: 'gossip.browse' }, { displayName: 'Health', linkName: 'gossip.browse' }] },
-                                 { displayName: 'My Tips', linkName: 'gossip.my' }]);
+                                 { displayName: 'Browse', linkName: 'tip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'tip.browse' }, { displayName: 'Education', linkName: 'tip.browse' }, { displayName: 'Health', linkName: 'tip.browse' }] },
+                                 { displayName: 'My Tips', linkName: 'tip.my' }]);
 
         } else if (currentPath === 'helpout.index') {
             this.set('content', [{ displayName: 'Index', linkName: 'helpout.index' },

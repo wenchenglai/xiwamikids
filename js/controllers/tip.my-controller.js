@@ -1,4 +1,4 @@
-﻿App.GossipMyController = Ember.ArrayController.extend({
+﻿App.TipMyController = Ember.ArrayController.extend({
     sortProperties: ['createdDate'],
     sortAscending: false,
 

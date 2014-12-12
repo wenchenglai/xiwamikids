@@ -1,10 +1,8 @@
-﻿<h2>My Gossips</h2>
-
-<div class="row height-forms">
+﻿<div class="row height-forms">
     <div class="col-lg-12">
         <div class="btn-group">
-            <button type="button" class="btn btn-info" {{action 'loadOpen' }}>Open</button>
-            <button type="button" class="btn btn-info" {{action 'loadAnswered' }}>Answered</button>
+            <button type="button" class="btn btn-info" {{action 'loadPopular' }}>Popular</button>
+            <button type="button" class="btn btn-info" {{action 'loadAll' }}>All</button>
         </div>
     </div>
 </div>
@@ -14,9 +12,9 @@
         <table class="table">
             <thead>
             <th>#</th>
-            <th>Question</th>
-            <th>Asked Date</th>
-            <th>Replies</th>
+            <th>Description</th>
+            <th>Link</th>
+            <th>Expired Date</th>
             </thead>
             <tbody>
                 {{#each}}
@@ -39,4 +37,3 @@
 <div id="dialog-confirm-delete" title="Delete an activity?">
     <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This question will be deleted. Are you sure?</p>
 </div>
-

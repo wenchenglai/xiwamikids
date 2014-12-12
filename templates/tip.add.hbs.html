@@ -1,0 +1,65 @@
+﻿<div class="overlay"></div>
+<div class="wenmodal">
+    <div class="row height-forms">
+        <div class="col-md-12">
+            <div>
+                <label>
+                    Title:
+                    {{view Ember.TextField class="form-control" width="80" placeholder="10 words or less" value=title}}
+                </label>
+            </div>
+            <div>
+                <label>
+                    Url:
+                    {{view Ember.TextField class="form-control" placeholder="web url if there is any" value=url}}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row height-forms">
+        <div class="col-md-12">
+            <label>
+                Description:
+                {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
+            </label>
+        </div>
+    </div>
+    <div class="row height-forms">
+        <div class="col-md-8">
+            <div class="control-group">
+                <label class="control-label">Type</label>
+                <div id="gendertype" class="btn-group" data-toggle="buttons-radio">
+
+                    {{#view App.RadioButtonView name="toy" selectionBinding="type" }}Deal{{/view}}
+
+                    {{#view App.RadioButtonView name="cloth" selectionBinding="type" }}Education{{/view}}
+
+                    {{#view App.RadioButtonView name="book" selectionBinding="type" }}Health{{/view}}
+
+                    {{#view App.RadioButtonView name="furniture" selectionBinding="type" }}Entertainment{{/view}}
+
+                    {{#view App.RadioButtonView name="other" selectionBinding="type" }}Misc{{/view}}
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label>
+                Expiration Date:
+                {{view Ember.TextField class="form-control" placeholder="Expiration Date" value=expiredDate}}
+            </label>
+        </div>
+    </div>
+    <div class="row height-forms">
+        <div class="col-lg-12">
+            <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "add" }} {{bind-attr disabled=disabled}}>
+                {{#if id}}
+                Edit
+                {{else}}
+                Add
+                {{/if}}
+            </button>
+            <button class="btn btn-primary btn-sm" {{action "close" }}>Cancel</button>
+        </div>
+    </div>
+</div>

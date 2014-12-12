@@ -4,6 +4,14 @@
         return this.store.find('activity', { status: 'Upcoming', creator: user.id });
     },
 
+    afterModel: function(activities, transition) {
+        if (activities.get('length') === 1) {
+            var b = 3;
+        }
+
+        var a = 4;
+    },
+
     actions: {
         openAddModal: function (modalName) {
             var self = this;

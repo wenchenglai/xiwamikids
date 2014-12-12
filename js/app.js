@@ -19,7 +19,7 @@ Ember.Application.initializer({
                     facebookId: facebookId
                 };
                 if (!Ember.isEmpty(facebookId)) {
-                    return container.lookup('store:main').find('member', query);
+                    return container.lookup('store:main').find('member', facebookId);
                 }
             }.property('facebookId'),
 
@@ -27,12 +27,12 @@ Ember.Application.initializer({
                 var self = this,
                     session = container.lookup('simple-auth-session:main'),
                     facebookId = session.get("facebookId");
-                    
+
                 var query = {
                     facebookId: facebookId
                 };
                 if (!Ember.isEmpty(facebookId)) {
-                    return container.lookup('store:main').find('member', facebookId).then(function(user) {
+                    return container.lookup('store:main').find('member', facebookId).then(function (user) {
                         self.set('currentUser', user);
                     });
                 }
@@ -116,8 +116,9 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/helpout.browse.hbs.html', 'helpout/browse');
         this._loadTemplate('/templates/helpout.my.hbs.html', 'helpout/my');
         this._loadTemplate('/templates/helpout.edit.hbs.html', 'helpout/edit');
-        this._loadTemplate('/templates/gossip.my.hbs.html', 'gossip/my');
-        this._loadTemplate('/templates/gossip.browse.hbs.html', 'gossip/browse');
+        this._loadTemplate('/templates/tip.my.hbs.html', 'tip/my');
+        this._loadTemplate('/templates/tip.browse.hbs.html', 'tip/browse');
+        this._loadTemplate('/templates/tip.add.hbs.html', 'tip/add');
     }
 });
 
@@ -165,9 +166,10 @@ App.Router.map(function() {
         this.route('my');
     });
 
-    this.resource('gossip', function () {
+    this.resource('tip', function () {
         this.route('browse');
         this.route('my');
+        this.route('add');
     });
 });
 

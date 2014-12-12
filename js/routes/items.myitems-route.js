@@ -1,13 +1,16 @@
 ﻿App.ItemsMyitemsRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        var user = this.get('session.store').restore();
-        return this.store.find('item', { status: 'Open', seller : user.id});
+        var self = this,
+            user = self.get('session.currentUser');
+
+        return self.store.find('item', { status: 'Open', seller : user.id});
     },
 
     actions: {
         openAddItemModal: function (modalName) {
-            var self = this;
-            var user = self.get('session.store').restore();
+            var self = this,
+                user = self.get('session.currentUser');
+
             self.store.find('member', user.id).then(function (member) {
                 var empty = self.store.createRecord('item', { seller: member, status: 'Open' });
                 self.controllerFor(modalName).set('model', empty);
@@ -28,14 +31,14 @@
             });
         },
         closeAddItemModal: function (needReload) {
+            if (needReload) {
+                this.refresh();
+            }
+
             this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'
             });
-
-            if (needReload) {
-                this.refresh();
-            }
         },
         deleteItem: function (id) {
             debugger;
