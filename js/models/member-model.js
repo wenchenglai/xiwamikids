@@ -19,13 +19,25 @@
     avartarHostUrl: function () {
         return this.store.adapterFor('application').get('host') + '/assets/img/' + this.get('avatarUrl');
     }.property('avatarUrl'),
+
     birthYear: function() {
         return new Date(this.get('birthday')).getFullYear();
     }.property('birthday'),
+
     birthMonth: function () {
         return new Date(this.get('birthday')).getMonth() + 1;
     }.property('birthday'),
+
     birthDayNumber: function () {
         return new Date(this.get('birthday')).getDate();
-    }.property('birthday')
+    }.property('birthday'),
+
+    displayName: function() {
+        if (this.get('nickName'))
+            return this.get('nickName');
+        else if (this.get('firstName'))
+            return this.get('firstName');
+        else
+            return '';
+    }
 });

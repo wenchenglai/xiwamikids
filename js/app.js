@@ -112,10 +112,10 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/activity.map.hbs.html', 'activity/map');
         this._loadTemplate('/templates/activity.my.hbs.html', 'activity/my');
         this._loadTemplate('/templates/activity.edit.hbs.html', 'activity/edit');
-        this._loadTemplate('/templates/helpout.ask.hbs.html', 'helpout/ask');
-        this._loadTemplate('/templates/helpout.browse.hbs.html', 'helpout/browse');
-        this._loadTemplate('/templates/helpout.my.hbs.html', 'helpout/my');
-        this._loadTemplate('/templates/helpout.edit.hbs.html', 'helpout/edit');
+        this._loadTemplate('/templates/question.ask.hbs.html', 'question/ask');
+        this._loadTemplate('/templates/question.browse.hbs.html', 'question/browse');
+        this._loadTemplate('/templates/question.my.hbs.html', 'question/my');
+        this._loadTemplate('/templates/question.edit.hbs.html', 'question/edit');
         this._loadTemplate('/templates/tip.my.hbs.html', 'tip/my');
         this._loadTemplate('/templates/tip.browse.hbs.html', 'tip/browse');
         this._loadTemplate('/templates/tip.add.hbs.html', 'tip/add');
@@ -160,7 +160,7 @@ App.Router.map(function() {
         this.route('edit');
     });
 
-    this.resource('helpout', function () {
+    this.resource('question', function () {
         this.route('ask');
         this.route('browse');
         this.route('my');

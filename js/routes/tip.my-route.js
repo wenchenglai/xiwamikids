@@ -2,9 +2,9 @@
     model: function () {
         var self = this,
             //user = self.get('session.currentUser'),
-            user2 = self.get('session.userAccount');
+            userPromise = self.get('session.userAccount');
 
-        user2.then(function(user) {
+        userPromise.then(function (user) {
             return self.store.find('tip', { status: 'my', userId: user.id, longitude: user.longitude, latitude: user.latitude });
         });
 

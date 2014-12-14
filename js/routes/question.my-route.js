@@ -1,7 +1,9 @@
-﻿App.HelpoutMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
+﻿App.QuestionMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        var user = this.get('session.store').restore();
-        return this.store.find('question', { status: 'Open', creator: user.id });
+        var self = this,
+            user = self.get('session.currentUser');
+
+        return self.store.find('question', { status: 'Open', creator: user.id });
     },
 
     actions: {

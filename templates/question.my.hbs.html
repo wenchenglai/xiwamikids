@@ -16,18 +16,18 @@
                 <th>#</th>
                 <th>Question</th>
                 <th>Asked Date</th>
-                <th>Replies</th>
+                <th>Status</th>
             </thead>
             <tbody>
-                {{#each}}
+                {{#each question in model}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{questionText}}</td>
-                    <td>{{createdDate}}</td>
-                    <td>{{total}}</td>
+                    <td>{{question.id}}</td>
+                    <td>{{question.title}}</td>
+                    <td>{{question.createdDate}}</td>
+                    <td>{{question.status}}</td>
                     <td>
-                        <a href="#" {{action "openEditModal" "helpout.edit" id }}>Edit</a>&nbsp;|&nbsp;
-                        <a href="#" {{action "openDeleteDialog" id target="view" bubbles=false }}>Delete</a>
+                        <a href="#" {{action "openEditModal" "question.edit" question.id }}>Edit</a>&nbsp;|&nbsp;
+                        <a href="#" {{action "openDeleteDialog" question.id target="view" bubbles=false }}>Delete</a>
                     </td>
                 </tr>
                 {{/each}}

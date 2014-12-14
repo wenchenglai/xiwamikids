@@ -1,4 +1,4 @@
-﻿App.HelpoutMyController = Ember.ArrayController.extend({
+﻿App.QuestionMyController = Ember.ArrayController.extend({
     sortProperties: ['createdDate'],
     sortAscending: false,
 
@@ -6,14 +6,14 @@
         loadOpen: function () {
             var self = this,
                 user = self.get('session.store').restore();
-            self.store.find('question', { status: 'Open', seller: user.id }).then(function (records) {
+            self.store.find('question', { status: 'Open', creator: user.id }).then(function (records) {
                 self.set('content', records);
             });
         },
         loadAnswered: function () {
             var self = this,
                 user = self.get('session.store').restore();
-            self.store.find('question', { status: 'Answered', seller: user.id }).then(function (records) {
+            self.store.find('question', { status: 'Answered', creator: user.id }).then(function (records) {
                 self.set('content', records);
             });
         }

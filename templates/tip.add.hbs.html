@@ -46,7 +46,7 @@
         <div class="col-md-4">
             <label>
                 Expiration Date:
-                {{view Ember.TextField class="form-control" placeholder="Expiration Date" value=expiredDate}}
+                {{view App.DatePicker dateBinding="expiredDate"}}
             </label>
         </div>
     </div>

@@ -12,11 +12,11 @@
                                  { displayName: 'Browse', linkName: 'tip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'tip.browse' }, { displayName: 'Education', linkName: 'tip.browse' }, { displayName: 'Health', linkName: 'tip.browse' }] },
                                  { displayName: 'My Tips', linkName: 'tip.my' }]);
 
-        } else if (currentPath === 'helpout.index') {
-            this.set('content', [{ displayName: 'Index', linkName: 'helpout.index' },
-                                 { displayName: 'Ask for Help', linkName: 'helpout.ask' },
-                                 { displayName: 'Browse', linkName: 'helpout.browse' },
-                                 { displayName: 'My History', linkName: 'helpout.my' }]);
+        } else if (currentPath === 'question.index') {
+            this.set('content', [{ displayName: 'Index', linkName: 'question.index' },
+                                 { displayName: 'Ask for Help', linkName: 'question.ask' },
+                                 { displayName: 'Browse', linkName: 'question.browse' },
+                                 { displayName: 'My History', linkName: 'question.my' }]);
 
         } else if (currentPath === 'connect.index') {
             this.set('content', [{ displayName: 'Index', linkName: 'connect.index' },
@@ -47,8 +47,8 @@
         home: function() {
             this.transitionToRoute('index');
         },
-        helpout: function () {
-            this.transitionToRoute('helpout');
+        question: function () {
+            this.transitionToRoute('question');
         },
         connect: function() {
             this.transitionToRoute('connect');

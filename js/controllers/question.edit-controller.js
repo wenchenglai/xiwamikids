@@ -1,4 +1,4 @@
-﻿App.HelpoutEditController = Ember.ObjectController.extend({
+﻿App.QuestionEditController = Ember.ObjectController.extend({
     actions: {
         closeModal: function () {
             var record = this.get('model');

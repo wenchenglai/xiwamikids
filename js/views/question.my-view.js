@@ -1,4 +1,4 @@
-﻿App.HelpoutMyView = Ember.View.extend({
+﻿App.QuestionMyView = Ember.View.extend({
     didInsertElement: function () {
         var self = this;
         self.$("#dialog-confirm-delete").dialog({

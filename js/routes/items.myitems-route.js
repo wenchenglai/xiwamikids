@@ -3,7 +3,7 @@
         var self = this,
             user = self.get('session.currentUser');
 
-        return self.store.find('item', { status: 'Open', seller : user.id});
+        return self.store.find('item', { status: 'Open', seller: user.id });
     },
 
     actions: {

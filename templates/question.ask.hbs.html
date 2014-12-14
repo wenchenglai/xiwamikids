@@ -9,16 +9,32 @@
             <br/>
             I plan to buy a local museum membership, is it worth it?            
         </p>
+        <p>
+            Sometimes the questions can be best answered by parents who live closeby to you.  Sometimes we need to expand our scope and ask parents nation wide.
+            The fact is not every question gets answered, and it's even harder to get great answeres.  We have the following tips that you can follow:
+        </p>
+        <p>
+            <ul>
+                <li>Be on topic</li>
+                <li>Be specific</li>
+                <li>Help others first - if you help others a lot, the karmaic consequnce is your questions will be displayed at more prominent location by our software</li>
+            </ul>
+        </p>
     </div>
 </div>
 
 <div class="row height-forms">
-    <div class="col-lg-6">
+    <div class="col-xs-12">
         <label for="lblQ">
             Type your question here:
         </label>
-        {{view Ember.TextField id="lblQ" class="form-control" value=questionText}}
-
+        {{view Ember.TextField id="lblQ" class="form-control" value=title}}
+    </div>
+    <div class="col-xs-12">
+        <label for="lblQDescription">
+            If you want, you can give more detail description of your question
+        </label>
+        {{view Ember.TextArea id="lblQDescription" cols="60" rows="5"  class="form-control" value=description}}
     </div>
 </div>
 
