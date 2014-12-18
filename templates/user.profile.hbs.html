@@ -1,42 +1,77 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
-    <div class="row height-forms">
-        <div class="col-lg-12">
+    <div class="row row-xs-height">
+        <div class="col-xs-8">
             <div>
                 <label>
                     First Name:
                     {{view Ember.TextField class="edit_box" value=firstName}}
                 </label>
             </div>
-            <div>
-                <label>
-                    Last Name:
-                    {{view Ember.TextField class="edit_box" value=lastName}}
-                </label>
-            </div>
-            <div>
-                <label>
-                    Nick Name:
-                    {{view Ember.TextField class="edit_box" value=nickName}}
-                </label>
-            </div>
-            <div>
-                <label>
-                    Birthday:
-                    {{view Ember.TextField class="edit_box" value=birthday}}
-                </label>
-            </div>
-            <div>
-                <label>
-                    Gender:
-                    {{view Ember.TextField class="edit_box" value=gender}}
-                </label>
-            </div>
         </div>
-
-
+        <div class="col-xs-4">
+            <button class="btn btn-primary btn-sm" {{action "importFromFacebook" }}>
+                Import my profile from facebook
+            </button>
+        </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Last Name:
+                {{view Ember.TextField class="edit_box" value=lastName}}
+            </label>            
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Nick Name:
+                {{view Ember.TextField class="edit_box" value=nickName}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Birthday:
+                {{view Ember.TextField class="edit_box" value=birthday}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Gender:
+                {{view Ember.TextField class="edit_box" value=gender}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Hometown:
+                {{view Ember.TextField class="edit_box" value=fhometown}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Current Location:
+                {{view Ember.TextField class="edit_box" value=flocation}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
+        <div class="col-xs-12 col-xs-height">
+            <label>
+                Education:
+                {{view Ember.TextField class="edit_box" value=feducation}}
+            </label>
+        </div>
+    </div>
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" {{action "save" }}>
                 Save

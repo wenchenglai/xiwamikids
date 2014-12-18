@@ -26,6 +26,8 @@
                     Ember.run(function () {
                         FB.api('/me?fields=id,name,address,email,birthday', function (fbUser) {
                             fromModel.set('email', fbUser.email);
+
+                            fromModel.save();
                         });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
@@ -47,14 +49,6 @@
                     });
                 }
             });
-
-            //FB.api('/me?fields=id,name,age_range,bio,birthday,email,devices,about,context', function (fbUser) {
-            //    var self = this,
-            //        fromModel = this.get('model');
-
-            //    fromModel.set('email', fromUser.email);
-
-            //});
         }
     }
 });

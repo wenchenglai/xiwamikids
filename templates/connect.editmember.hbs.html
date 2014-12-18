@@ -1,6 +1,6 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-8">
             <div>
                 <label>
@@ -52,7 +52,7 @@
         </div>
           
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-6">
             {{pronoun}} can speak: {{view Ember.Select class="btn btn-default dropdown-toggle" selectionBinding="languages" content=allLanguages multiple=true}}
         </div>
@@ -60,7 +60,7 @@
             Family Role: {{view Ember.Select class="btn btn-default dropdown-toggle" content=allRelationships prompt="Relationship" value=type}}
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" {{action "edit" }}>
                 {{#if id}}

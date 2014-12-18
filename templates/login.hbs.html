@@ -1,4 +1,4 @@
-﻿<div class="row height-forms">
+﻿<div class="row row-xs-height">
     <div class="col-lg-12">
         {{#if showError }}
         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -8,12 +8,12 @@
         {{/if}}
     </div>
 </div>
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         <h1>Secure Login</h1>
     </div>
 </div>
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         {{! login form; the fields must be named "identification" and "password"; the controller action is "authenticate" }}
         <form {{action 'authenticate' on='submit' }}>
@@ -30,7 +30,7 @@
         </form>
     </div>
 </div>
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         Login with <a {{ action 'authenticateWithFacebook' }} class="alert-link" style="cursor: pointer;"><i class="fa fa-facebook-square"></i> Facebook</a>
         <!--or <a {{ action 'authenticateWithGooglePlus' }} class="alert-link" style="cursor: pointer;"><i class="fa fa-google-plus-square"></i> Google+</a>.-->

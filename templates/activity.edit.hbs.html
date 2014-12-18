@@ -1,6 +1,6 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-4">
             <label>
                 Title:
@@ -14,7 +14,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <label>
                 Description:
@@ -22,7 +22,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-4">
             <label>
                 From:
@@ -36,7 +36,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <label>
                 Location:
@@ -44,13 +44,13 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             Category:
             {{view Ember.Select class="btn btn-default dropdown-toggle" prompt="Select Type" content=types value=type}}
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" {{action "addOrEdit" }}>
                 {{#if id}}

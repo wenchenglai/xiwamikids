@@ -1,12 +1,12 @@
 ﻿<h2>Connect other parents!</h2>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         I am looking for families which have children:
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         Age from 
         {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="fromAge" selectionBinding="fromAge" content=ages placeholder="Age"}} to 
@@ -14,20 +14,20 @@
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         The children can speak 
         {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="languages" content=allLanguages placeholder="Language" multiple=true}}
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         Within the distance of {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="distance" content=distances placeholder="Distance"}}
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         <div class="input-group">
             <button type="button" class="btn btn-primary btn-sm" {{action "searchfamilies" }}>Search</button>
@@ -35,13 +35,13 @@
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         You are searching families which have children from age {{toAge}} to {{fromAge}} in your neighborhood.
     </div>
 </div>
 
-<div class="row height-forms">
+<div class="row row-xs-height">
     <div class="col-lg-12">
         {{family-list families=model}}
     </div>

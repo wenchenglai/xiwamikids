@@ -1,6 +1,6 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <label>
                 First Name:
@@ -8,7 +8,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <label>
                 Last Name:
@@ -16,7 +16,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <label>
                 Nickname:
@@ -24,7 +24,7 @@
             </label>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <div class="control-group">
                 <label class="control-label">Gender</label>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             Birthday:
             {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" value=selectedMonth}} /
@@ -48,17 +48,17 @@
             {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" value=selectedYear}}
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             {{pronoun}} can speak: {{view Ember.Select class="btn btn-default dropdown-toggle" content=languages prompt="Language" value=selectedLanguage}}
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             {{view Ember.Select class="btn btn-default dropdown-toggle" content=relationships optionValuePath="content.id" optionLabelPath="content.text" prompt="Relationship" value=selectedRelation}}
         </div>
     </div>
-    <div class="row height-forms">
+    <div class="row row-xs-height">
         <div class="col-lg-12">
             <button class="btn btn-primary btn-sm" {{action "addMember" }} {{bind-attr disabled=disabled}}>
                 Add
