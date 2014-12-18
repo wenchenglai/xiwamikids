@@ -1,4 +1,4 @@
-﻿App.QuestionAskController = Ember.ArrayController.extend({
+﻿App.QuestionAskController = Ember.ObjectController.extend({
     disabled: function() {
         return Ember.isEmpty(this.get('title'));
     }.property('title'),

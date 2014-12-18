@@ -1,7 +1,6 @@
 ﻿App.QuestionBrowseRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         var self = this;
-
         return self.store.find('question', { status: 'Open' });
     },
 

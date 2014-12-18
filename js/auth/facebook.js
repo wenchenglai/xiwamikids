@@ -1,9 +1,11 @@
-﻿// facebook production app id
-//FB.init({ appId: '290368724455193' });
-
-// facebook test app id
-FB.init({ appId: '343069969185068' });
-
+﻿FB.init({
+    appId: '343069969185068',
+    //appId: '290368724455193', 
+    cookie: true,  // enable cookies to allow the server to access 
+    // the session
+    xfbml: true,  // parse social plugins on this page
+    version: 'v2.2' // use version 2.2
+});
 
 // the custom authenticator that initiates the authentication process with Facebook
 App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({

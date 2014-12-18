@@ -22,14 +22,14 @@
             });
         },
 
-        openUserProfileAccountModal: function (modalName) {
+        openUserModal: function (modalName) {
             var self = this,
                 id = self.get('session.id'),
                 facebookId = self.get('session.facebookId');
 
             if (id || facebookId) {
                 if (id) {
-                    self.store.find('member', myid).then(function(member) {
+                    self.store.find('member', id).then(function(member) {
                         self.controllerFor(modalName).set('model', member);
                         return self.render(modalName, {
                             into: 'application',
@@ -37,12 +37,8 @@
                         });
                     });
                 } else {
-                    var query = {
-                        facebookId: facebookId
-                    };
-
-                    self.store.find('member', query).then(function (members) {
-                        self.controllerFor(modalName).set('model', members.content[0]);
+                    self.store.find('member', facebookId).then(function (member) {
+                        self.controllerFor(modalName).set('model', member.id);
                         return self.render(modalName, {
                             into: 'application',
                             outlet: 'modal'

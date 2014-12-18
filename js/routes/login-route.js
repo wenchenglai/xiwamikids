@@ -12,8 +12,10 @@
 
         if (family) {
             data.familyId = family.id;
-            data.longitude = family.get('location')[0];
-            data.latitude = family.get('location')[1];
+            if (family.get('location')) {
+                data.longitude = family.get('location')[0];
+                data.latitude = family.get('location')[1];
+            }
         } else {
             data.latitude = geoplugin_latitude();
             data.longitude = geoplugin_longitude();
@@ -40,6 +42,7 @@
 
             self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
                 fbImageUrl = largeProfilePicture.data.url;
+                session.set('facebookImage', fbImageUrl);
 
                 var newMember = self.store.createRecord('member', {
                     firstName: fbUser.first_name,
@@ -47,6 +50,12 @@
                     gender: fbUser.gender,
                     facebookId: fbUser.id,
                     avatarUrl: fbImageUrl,
+                    feducation: self._getFacebookEducation(fbUser.education),
+                    fhometown: fbUser.hometown.name,
+                    flink: fbUser.link,
+                    flocale: fbUser.locale,
+                    flocation: fbUser.location.name,
+                    ftimezone: fbUser.timezone,
                     isUser: true
                 });
 
@@ -78,7 +87,9 @@
             if (member) {
                 // this facebook user already has an account in the system
                 self._createSessionUser(session, member);
-                self._getFacebookProfilePicture('large');
+                self._getFacebookProfilePicture('large').then(function(largeProfilePicture) {
+                    session.set('facebookImage', largeProfilePicture.data.url);
+                });
             } else {
                 // this facebook user is not in the system, we have to create a new one
                 self._createNewMemberFromFacebookProfile(self, session);

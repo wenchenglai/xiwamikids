@@ -8,5 +8,6 @@
     url: DS.attr('string'),
     imageUrl: DS.attr('string'),
     imageData: DS.attr('string'),
+    like: DS.attr('number'),
     type: DS.attr('string')
 });
