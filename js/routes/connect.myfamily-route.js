@@ -1,14 +1,13 @@
 ﻿App.ConnectMyfamilyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        //var user = this.get('session.store').restore();
         var self = this,
-            currentUser = self.get('session.currentUser');
+            currentUser = self.get('session.user');
 
         if (currentUser) {
-            if (currentUser.get('family').id)
+            if (currentUser.get('family'))
                 return this.store.find('family', currentUser.get('family').id);
         } else {
-            throw new Error("Message");
+            throw new Error("There is no user in session");
         }
         return null;
     },
@@ -18,14 +17,9 @@
     didTransition: function (infos) {
         // 2014-12-09 Set document title on every route
         // http://balinterdi.com/2014/05/28/setting-the-document-title-in-ember-apps.html
-        $(document).attr('title', ' songs - Rock & Roll');
+        $(document).attr('title', 'Connect - My Family');
     },
     actions: {
-        error: function (error, transition) {
-            this.controllerFor('error').set('errorMessage', 'Error in connect.myfamily-route');
-            this.transitionTo('error');
-        },
-
         openAddMemberModal: function (modalName, id) {
             var self = this;
             this.store.find('family', id).then(function (family) {

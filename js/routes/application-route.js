@@ -11,6 +11,12 @@
     },
 
     actions: {
+        error: function (error, transition) {
+            this.controllerFor('error').set('error', error);
+            this.controllerFor('error').set('transition', transition);
+            this.transitionTo('error');
+        },
+
         willTransition: function (transition) {
             this._saveTransition(transition);
         },
@@ -24,8 +30,8 @@
 
         openUserModal: function (modalName) {
             var self = this,
-                id = self.get('session.id'),
-                facebookId = self.get('session.facebookId');
+                id = self.get('session.user.id'),
+                facebookId = self.get('session.user.facebookId');
 
             if (id || facebookId) {
                 if (id) {
@@ -62,10 +68,16 @@
                     outlet: 'modal'
                 });
             }
-        }
+        },
 
-        //sessionAuthenticationSucceeded: function() {
-        //    debugger;
+        //sessionAuthenticationSucceeded: function(test1, test2) {
+        //    //var previousTransition = this.controllerFor('login').get('previousTransition');
+        //    //if (previousTransition) {
+        //    //    previousTransition.retry();
+        //    //    return;
+        //    //}
+
+        //    //this.transitionTo("error");
         //},
 
         //sessionAuthenticationFailed: function() {

@@ -23,11 +23,6 @@
     },
 
     actions: {
-        error: function (error, transition) {
-            this.controllerFor('error').set('errorMessage', 'Error in signup-route');
-            this.transitionTo('error');
-        },
-
         signup: function () {
             var self = this,
                 controller = self.get('controller'),

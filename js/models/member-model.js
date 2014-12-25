@@ -9,19 +9,25 @@
     type: DS.attr('string'),
     gender: DS.attr('string'),
     avatarUrl: DS.attr('string'),
+    largePicture: DS.attr('string'),
+    smallPicture: DS.attr('string'),
     family: DS.belongsTo('family'),
     isUser: DS.attr('boolean'),
     facebookId: DS.attr('string'),
-    imageData: DS.attr('string'),
-    feducation: DS.attr('array'),
+    highSchool: DS.attr('string'),
+    college: DS.attr('string'),
     fhometown: DS.attr('string'),
     flink: DS.attr('string'),
     flocale: DS.attr('string'),
     flocation: DS.attr('string'),
     ftimezone: DS.attr('number'),
+    zipCode: DS.attr('string'),
+    isDeleted: DS.attr('boolean'),
+
     //male: function () {
     //    return this.get('gender') == 'Male';
     //}.property('gender'),
+
     avartarHostUrl: function () {
         return this.store.adapterFor('application').get('host') + '/assets/img/' + this.get('avatarUrl');
     }.property('avatarUrl'),

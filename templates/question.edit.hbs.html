@@ -4,14 +4,14 @@
         <div class="col-xs-12">
             <label>
                 Question:
-                {{view Ember.TextField class="edit_box" value=title}}
+                {{input class="edit_box" value=title}}
             </label>
         </div>
         <div class="col-xs-12">
             <label for="lblQDescription">
                 Description
             </label>
-            {{view Ember.TextArea id="lblQDescription" cols="60" rows="5"  class="form-control" value=description}}
+            {{textarea id="lblQDescription" cols="60" rows="5"  class="form-control" value=description}}
         </div>
     </div>
     <div class="row row-xs-height">

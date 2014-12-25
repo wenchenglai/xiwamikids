@@ -1,4 +1,8 @@
 ﻿App.UserAccountController = Ember.ObjectController.extend({
+    disabledImportFacebook: function () {
+        return Ember.isEmpty(this.get('facebookId'));
+    }.property('facebookId'),
+
     actions: {
         save: function (params) {
             var self = this,
@@ -25,9 +29,11 @@
                     // if logged in before, the cookie will have this status
                     Ember.run(function () {
                         FB.api('/me?fields=id,name,address,email,birthday', function (fbUser) {
-                            fromModel.set('email', fbUser.email);
+                            if (!fromModel.get('email'))
+                                fromModel.set('email', fbUser.email);
 
-                            fromModel.save();
+                            if (!fromModel.get('facebookId'))
+                                fromModel.set('facebookId', fbUser.id);
                         });
                     });
                 } else if (fbResponse.status === 'not_authorized') {

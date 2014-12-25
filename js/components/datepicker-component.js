@@ -1,4 +1,4 @@
-﻿App.DatePicker = Ember.TextField.extend({
+﻿App.DatePickerView = Ember.TextField.extend({
     classNames: ['date-picker'],
     textToDateTransform: (function (key, value) {
         var date, month, parts;

@@ -1,7 +1,7 @@
 ﻿App.QuestionMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         var self = this,
-            user = self.get('session.currentUser');
+            user = self.get('session.user');
 
         return self.store.find('question', { status: 'Open', creator: user.id });
     },

@@ -14,8 +14,9 @@
 
     actions: {
         openAddModal: function (modalName) {
-            var self = this;
-            var user = self.get('session.store').restore();
+            var self = this,
+                user = self.get('session.user');
+
             self.store.find('member', user.id).then(function (member) {
                 var empty = self.store.createRecord('activity', { creator: member });
                 self.controllerFor(modalName).set('model', empty);

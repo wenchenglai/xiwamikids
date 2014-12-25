@@ -24,11 +24,14 @@
     <script type="text/x-handlebars">
         <nav class="navbar navbar-fixed-top">
             <a href="cover.html" class="btn btn-lg btn-success">Cover Page</a>
-            <button type="button" class="btn btn-default btn-lg" {{action "home" }}>Tips</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "question" }}>Q & A</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "connect" }}>Connect</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "items" }}>Items</button>
-            <button type="button" class="btn btn-default btn-lg" {{action "activity" }}>Activities</button>
+            <a href="index.html" class="btn btn-lg btn-info">Home</a>
+            {{#link-to 'tip' class="btn btn-default btn-lg navbar-btn"}}Tips{{/link-to}}
+            {{#link-to 'activity' class="btn btn-default btn-lg navbar-btn"}}Activities{{/link-to}}
+            {{#link-to 'question' class="btn btn-default btn-lg navbar-btn"}}Q & A{{/link-to}}
+            {{#link-to 'connect' class="btn btn-default btn-lg navbar-btn"}}Connect{{/link-to}}
+            {{#link-to 'items' class="btn btn-default btn-lg navbar-btn"}}Items{{/link-to}}
+
+
             {{#if session.isAuthenticated}}
                 {{# if session.facebookImage }}
                     <img class="navbar-right" {{bind-attr src=session.facebookImage}} alt="avatar" />
@@ -55,21 +58,24 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
-                        {{#each menuitem in model}}
+                        {{#each menuitem in content}}
                         <li>
                             {{#link-to menuitem.linkName activeClass="selected"}}{{menuitem.displayName}}{{/link-to}}
-                            <ul>
-                                {{#each sub in menuitem.subMenuitems}}
-                                <li>{{#link-to sub.linkName activeClass="selected"}}{{sub.displayName}}{{/link-to}}</li>
-                                {{/each}}
-                            </ul>
+                            {{#if menuitem.subMenuItems}}
+                                <ul>
+                                    {{#each sub in menuitem.subMenuitems}}
+                                    <li>{{#link-to sub.linkName activeClass="selected"}}{{sub.displayName}}{{/link-to}}</li>
+                                    {{/each}}
+                                </ul>
+                            {{/if}}
                         </li>
                         {{/each}}
                     </ul>
+
                 </div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                     {{outlet}}
-                    {{outlet modal}}
+                    {{outlet "modal"}}
                 </div>
             </div>
         </div>
@@ -139,14 +145,18 @@
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     
     <!--<script src="js/libs/handlebars-v1.3.0.js"></script>
-    <script src="js/libs/ember-1.8.1.js"></script>-->
-    <script src="js/libs/handlebars-1.1.2.js"></script>
-    <script src="js/libs/ember-1.5.0.js"></script>
-    <script src="js/libs/ember-data-1.0.0-beta.js"></script>
+        <script src="js/libs/ember-1.9.0.js"></script>-->
+
+    <!--<script src="js/libs/handlebars-1.1.2.js"></script>-->
+    <script src="js/libs/handlebars-v2.0.0.js"></script>
+    <!--<script src="js/libs/ember-1.5.0.js"></script>-->
+    <script src="js/libs/ember-1.9.0.js"></script>
+    <!--<script src="js/libs/ember-data-1.0.0-beta.js"></script>-->
+    <script src="js/libs/ember-data-1.0.1-beta.js"></script>
     <script src="js/libs/localstorage_adapter.js"></script>
-    <script src="js/libs/ember-simple-auth-0.6.3.js"></script>
-    <script src="js/libs/ember-simple-auth-cookie-store-0.6.3.js"></script>
-    <script src="js/libs/ember-simple-auth-oauth2-0.6.3.js"></script>
+    <script src="js/libs/ember-simple-auth-0.7.2.js"></script>
+    <script src="js/libs/ember-simple-auth-cookie-store-0.7.2.js"></script>
+    <!--<script src="js/libs/ember-simple-auth-oauth2-0.6.3.js"></script>-->
     <script src="js/libs/ember-google-analytics.js"></script>
       
     <script src="js/app.js"></script>
@@ -182,6 +192,7 @@
     <script src="js/models/transaction-model.js"></script>
     <script src="js/models/answer-model.js"></script>
     <script src="js/models/tip-model.js"></script>
+    <script src="js/models/like-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/index-route.js"></script>

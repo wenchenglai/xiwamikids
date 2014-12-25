@@ -27,17 +27,17 @@
             <th>Location</th>
             </thead>
             <tbody>
-                {{#each}}
+                {{#each activity in model}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td>{{fromTime}}</td>
-                    <td>{{toTime}}</td>
-                    <td>{{location}}</td>
+                    <td>{{activity.id}}</td>
+                    <td>{{activity.title}}</td>
+                    <td>{{activity.description}}</td>
+                    <td>{{activity.fromTime}}</td>
+                    <td>{{activity.toTime}}</td>
+                    <td>{{activity.location}}</td>
                     <td>
-                        <a href="#" {{action "openEditModal" "activity.edit" id }}>Edit</a>&nbsp;|&nbsp;
-                        <a href="#" {{action "openDeleteDialog" id target="view" bubbles=false }}>Delete</a>
+                        <a href="#" {{action "openEditModal" "activity.edit" activity.id }}>Edit</a>&nbsp;|&nbsp;
+                        <a href="#" {{action "openDeleteDialog" activity.id target="view" bubbles=false }}>Delete</a>
                     </td>
                 </tr>
                 {{/each}}

@@ -1,4 +1,4 @@
-﻿App.FileField = Ember.TextField.extend({
+﻿App.FileFieldView = Ember.TextField.extend({
     type: 'file',
     //attributeBindings: ['name'],
     change: function (evt) {

@@ -5,12 +5,12 @@
             <div>
                 <label>
                     First Name:
-                    {{view Ember.TextField class="edit_box" value=firstName}}
+                    {{input class="edit_box" value=firstName}}
                 </label>
             </div>
         </div>
         <div class="col-xs-4">
-            <button class="btn btn-primary btn-sm" {{action "importFromFacebook" }}>
+            <button class="btn btn-primary btn-sm" {{action "importFromFacebook" }} {{bind-attr disabled=disabledImportFacebook}}>
                 Import my profile from facebook
             </button>
         </div>
@@ -19,7 +19,7 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Last Name:
-                {{view Ember.TextField class="edit_box" value=lastName}}
+                {{input class="edit_box" value=lastName}}
             </label>            
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Nick Name:
-                {{view Ember.TextField class="edit_box" value=nickName}}
+                {{input class="edit_box" value=nickName}}
             </label>
         </div>
     </div>
@@ -35,7 +35,7 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Birthday:
-                {{view Ember.TextField class="edit_box" value=birthday}}
+                {{input class="edit_box" value=birthday}}
             </label>
         </div>
     </div>
@@ -43,7 +43,7 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Gender:
-                {{view Ember.TextField class="edit_box" value=gender}}
+                {{input class="edit_box" value=gender}}
             </label>
         </div>
     </div>
@@ -51,7 +51,7 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Hometown:
-                {{view Ember.TextField class="edit_box" value=fhometown}}
+                {{input class="edit_box" value=fhometown}}
             </label>
         </div>
     </div>
@@ -59,16 +59,21 @@
         <div class="col-xs-12 col-xs-height">
             <label>
                 Current Location:
-                {{view Ember.TextField class="edit_box" value=flocation}}
+                {{input class="edit_box" value=flocation}}
             </label>
         </div>
     </div>
     <div class="row row-xs-height">
         <div class="col-xs-12 col-xs-height">
-            <label>
-                Education:
-                {{view Ember.TextField class="edit_box" value=feducation}}
-            </label>
+            Education:
+            <div>
+                <label>
+
+                    High School : {{input class="edit_box" value=feducation.0.school.name size="50"}} <br />
+                    College: {{input class="edit_box" value=feducation.1.school.name size="50"}}
+                </label>                
+            </div>
+
         </div>
     </div>
     <div class="row row-xs-height">

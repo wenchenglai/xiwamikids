@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <label>
                 First Name:
-                {{view Ember.TextField class="form-control" placeholder="First Name" value=firstName}}
+                {{input class="form-control" placeholder="First Name" value=firstName}}
             </label>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <label>
                 Last Name:
-                {{view Ember.TextField class="form-control" placeholder="Last Name" value=lastName}}
+                {{input class="form-control" placeholder="Last Name" value=lastName}}
             </label>
         </div>
     </div>
@@ -20,7 +20,7 @@
         <div class="col-lg-12">
             <label>
                 Nickname:
-                {{view Ember.TextField class="form-control" placeholder="Nickname" valueBinding="nickName"}}
+                {{input class="form-control" placeholder="Nickname" valueBinding="nickName"}}
             </label>
         </div>
     </div>
@@ -43,19 +43,19 @@
     <div class="row row-xs-height">
         <div class="col-lg-12">
             Birthday:
-            {{view Ember.Select class="btn btn-default dropdown-toggle" content=months prompt="Month" value=selectedMonth}} /
-            {{view Ember.Select class="btn btn-default dropdown-toggle" content=days prompt="Day" value=selectedDay}} /
-            {{view Ember.Select class="btn btn-default dropdown-toggle" content=years prompt="Year" value=selectedYear}}
+            {{view "select" class="btn btn-default dropdown-toggle" content=months prompt="Month" value=selectedMonth}} /
+            {{view "select" class="btn btn-default dropdown-toggle" content=days prompt="Day" value=selectedDay}} /
+            {{view "select" class="btn btn-default dropdown-toggle" content=years prompt="Year" value=selectedYear}}
         </div>
     </div>
     <div class="row row-xs-height">
         <div class="col-lg-12">
-            {{pronoun}} can speak: {{view Ember.Select class="btn btn-default dropdown-toggle" content=languages prompt="Language" value=selectedLanguage}}
+            {{pronoun}} can speak: {{view "select" class="btn btn-default dropdown-toggle" content=languages prompt="Language" value=selectedLanguage}}
         </div>
     </div>
     <div class="row row-xs-height">
         <div class="col-lg-12">
-            {{view Ember.Select class="btn btn-default dropdown-toggle" content=relationships optionValuePath="content.id" optionLabelPath="content.text" prompt="Relationship" value=selectedRelation}}
+            {{view "select" class="btn btn-default dropdown-toggle" content=relationships optionValuePath="content.id" optionLabelPath="content.text" prompt="Relationship" value=selectedRelation}}
         </div>
     </div>
     <div class="row row-xs-height">

@@ -1,4 +1,5 @@
 ﻿App.ErrorController = Ember.ObjectController.extend({
     showError: true,
-    errorMessage: '',
+    error: null,
+    transition: null
 });

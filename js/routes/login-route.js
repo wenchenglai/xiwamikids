@@ -2,26 +2,29 @@
     showError: false,
     errorMessage: '',
 
-    _createSessionUser: function (session, member) {
-        var data = {
-            id: member.get('id'),
-            facebookId: member.get('facebookId'),
-            firstName: member.get('firstName')
-        },
-        family = member.get('family');
+    _setLongitudeAndLatitude: function (session, member) {
+        var family = member.get('family'),
+            longitude = 0.0,
+            latitude = 0.0;
 
         if (family) {
-            data.familyId = family.id;
             if (family.get('location')) {
-                data.longitude = family.get('location')[0];
-                data.latitude = family.get('location')[1];
+                longitude = family.get('location')[0];
+                latitude = family.get('location')[1];
             }
-        } else {
-            data.latitude = geoplugin_latitude();
-            data.longitude = geoplugin_longitude();
+        } else if (member.get('location')) {
+            longitude = member.get('location')[0];
+            latitude = member.get('location')[1];
         }
 
-        session.get('store').persist(data);
+        if (longitude === 0.0)
+            longitude = geoplugin_longitude();
+
+        if (latitude === 0.0)
+            latitude = geoplugin_latitude();
+        
+        session.set('longitude', longitude);
+        session.set('latitude', latitude);
     },
 
     _getFacebookProfilePicture: function (type) {
@@ -42,7 +45,6 @@
 
             self._getFacebookProfilePicture('large').then(function (largeProfilePicture) {
                 fbImageUrl = largeProfilePicture.data.url;
-                session.set('facebookImage', fbImageUrl);
 
                 var newMember = self.store.createRecord('member', {
                     firstName: fbUser.first_name,
@@ -50,107 +52,54 @@
                     gender: fbUser.gender,
                     facebookId: fbUser.id,
                     avatarUrl: fbImageUrl,
-                    feducation: self._getFacebookEducation(fbUser.education),
+                    largePicture: fbImageUrl,
+                    //feducation: self._getFacebookEducation(fbUser.education),
                     fhometown: fbUser.hometown.name,
                     flink: fbUser.link,
                     flocale: fbUser.locale,
                     flocation: fbUser.location.name,
                     ftimezone: fbUser.timezone,
-                    isUser: true
+                    isUser: true,
+                    isDeleted: false
                 });
 
                 newMember.save().then(function (member) {
-                    self._createSessionUser(session, member);
-
-                    var previousTransition = self.get('controller').get('previousTransition');
-                    if (previousTransition) {
-                        previousTransition.retry();
-                        return;
-                    }
-                    //this.transitionTo('index');
-                }, function (error) {
-                    // error in saving new member
+                    session.set('user', member);
+                    self._setLongitudeAndLatitude(session, member);
                 });
-
-            }, function (error) {
-                // error in get facebook Profile picture
             });
         });
     },
 
     _setupUser: function (self, session) {
-        //var query = {
-        //    facebookId: session.get('facebookId')
-        //};
-
         self.store.find('member', session.get('facebookId')).then(function (member) {
             if (member) {
                 // this facebook user already has an account in the system
-                self._createSessionUser(session, member);
-                self._getFacebookProfilePicture('large').then(function(largeProfilePicture) {
-                    session.set('facebookImage', largeProfilePicture.data.url);
-                });
+                session.set('user', member);
+                self._setLongitudeAndLatitude(session, member);
+
             } else {
                 // this facebook user is not in the system, we have to create a new one
                 self._createNewMemberFromFacebookProfile(self, session);
             }
 
         }, function (error) {
-            self._createNewMemberFromFacebookProfile(self, session);
-            //self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
-            //self.get('controller').set('showError', true);
-            //session.invalidate();
-            //self.transitionTo('login');
-        });
-    },
-
-    _getFacebookProfile: function(session) {
-        // We always get the small profile picture no matter what
-        self._getFacebookProfilePicture('small').then(function (smallProfilePicture) {
-            this.set('facebookImage', smallProfilePicture.data.url);
+            self.get('controller').set('errorMessage', 'Server Error - Getting Member by Facebook ID');
+            self.get('controller').set('showError', true);
+            session.invalidate();
         });
     },
 
     actions: {
-        error: function (error, transition) {
-            this.controllerFor('error').set('errorMessage', 'Error in login-route');
-            this.transitionTo('error');
-        },
-
-        willTransition: function (transition) {
-            var a = transition;
-        },
-
-        // action to trigger authentication with Facebook
         authenticateWithFacebook: function () {
             var self = this,
                 session = self.get('session');
 
-            session.authenticate('authenticator:facebook', {loginRoute: self}).then(function () {
-                // if facebook logins successfully, we'll come here and then redirect to index route
-                self._setupUser(self, session);
-                //var member = session.get('member');
-                ////var a = 4;
-                //if (!member.get("longitude")) {
-                //    var data = {
-                //        latitude: geoplugin_latitude(),
-                //        longitude: geoplugin_longitude
-                //    },
-
-                //    session.get('store').persist(data);
-                //}
-                
+            session.authenticate('authenticator:facebook', {}).then(function () {              
+                self._setLongitudeAndLatitude(session, session.get('user'));
             }, function (error) {
-                self.get('controller').set('errorMessage', 'Facebook Login Failed.');
+                self.get('controller').set('errorMessage', 'Facebook Login Error:' + error);
                 self.get('controller').set('showError', true);
-            });
-        },
-        // action to trigger authentication with Google+
-        authenticateWithGooglePlus: function () {
-            this.get('session').authenticate('authenticator:googleplus', {}).then(function(ddd) {
-                debugger;
-            }, function() {
-
             });
         },
 
@@ -163,12 +112,10 @@
                 password = controller.get('password'),
                 host = self.store.adapterFor('application').get('host');
 
-            session.authenticate('authenticator:custom', {
-                email: email, password: password, host: host}).then(function (test) {
-                var mysession = session;
-
+            session.authenticate('authenticator:custom', {email: email, password: password, host: host}).then(function () {
+                self._setLongitudeAndLatitude(session, session.get('user'));
             }, function (error) {
-                self.get('controller').set('errorMessage', 'Login Failed.');
+                self.get('controller').set('errorMessage', 'Login Error:' + error);
                 self.get('controller').set('showError', true);
             });        
         }

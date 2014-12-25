@@ -62,11 +62,18 @@ Ember.Application.initializer({
     }
 });
 
+//Ember.Application.initializer({
+//    name: 'Inject Store',
+//    initialize: function (container, application) {
+//        container.injection('application:main', 'store', 'store:main');
+//    }
+//});
+
 App = Ember.Application.create({
     LOG_TRANSITIONS: true,
     LOG_TRANSITIONS_INTERNAL: true,
     LOG_ACTIVE_GENERATION: true,
-    currentPath: '',
+    currentPath: '',  // keep the currentPath from Application.Controller, so we can access curentPath anywhere in the app by App.get('currentPath')
 
     _loadTemplate: function(url, indexName) {
         Ember.$.ajax({

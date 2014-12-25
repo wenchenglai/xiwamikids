@@ -5,13 +5,13 @@
             <div>
                 <label>
                     Title:
-                    {{view Ember.TextField class="form-control" width="80" placeholder="10 words or less" value=title}}
+                    {{input class="form-control" width="80" placeholder="10 words or less" value=title}}
                 </label>
             </div>
             <div>
                 <label>
                     Url:
-                    {{view Ember.TextField class="form-control" placeholder="web url if there is any" value=url}}
+                    {{input class="form-control" placeholder="web url if there is any" value=url}}
                 </label>
             </div>
         </div>
@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <label>
                 Description:
-                {{view Ember.TextArea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
+                {{textarea class="form-control" placeholder="Description" rows="5" cols="60" value=description}}
             </label>
         </div>
     </div>

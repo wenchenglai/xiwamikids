@@ -23,18 +23,13 @@
             ).then(function (data) {
                 if (data.auth === 'success') {
                     Ember.run(function () {
-                        var user = data.member;
+                        var user = self.get('container').lookup('store:main').createRecord('Member', data.member);
                         resolve({
-                            id: user.id,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
-                            nickName: user.nickName,
-                            email: user.email,
-                            familyId: user.familyId
+                            user: user
                         });
                     });
                 } else {
-                    reject();
+                    reject(data.auth);
                 }
             });
         });

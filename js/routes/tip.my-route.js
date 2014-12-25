@@ -1,19 +1,16 @@
 ﻿App.TipMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         var self = this,
-            //user = self.get('session.currentUser'),
-            userPromise = self.get('session.userAccount');
+            session = self.get('session'),
+            user = session.get('user');
 
-        userPromise.then(function (user) {
-            return self.store.find('tip', { status: 'my', userId: user.id, longitude: user.longitude, latitude: user.latitude });
-        });
-
+        return self.store.find('tip', { status: 'my', userId: user.id, longitude: session.get('longitude'), latitude: session.get('latitude') });
     },
 
     actions: {
         openAddModal: function (modalName) {
             var self = this,
-                user = self.get('session.currentUser');
+                user = self.get('session.user');
 
             self.store.find('member', user.id).then(function (member) {
                 var empty = self.store.createRecord('tip', { creator: member });

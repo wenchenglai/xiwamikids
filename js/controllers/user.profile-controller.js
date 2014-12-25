@@ -1,4 +1,8 @@
 ﻿App.UserProfileController = Ember.ObjectController.extend({
+    disabledImportFacebook: function () {
+        return Ember.isEmpty(this.get('facebookId'));
+    }.property('facebookId'),
+
     _getISODateString: function (date) {
         if (date) {
             var com = date.split("/");
@@ -32,10 +36,30 @@
                 if (fbResponse.status === 'connected') {
                     // if logged in before, the cookie will have this status
                     Ember.run(function () {
-                        FB.api('/me?fields=id,name,location,education,hometown,birthday', function (fbUser) {
-                            fromModel.set('birthday', new Date(self._getISODateString(fbUser.birthday)));
-                            fromModel.set('fhometown', fbUser.hometown.name);
-                            fromModel.set('flocation', fbUser.location.name);
+                        FB.api('/me?fields=id,name,location,education,hometown,birthday,first_name,last_name,gender', function (fbUser) {
+                            fromModel.set('facebookId', fbUser.id);
+
+                            if (!fromModel.get('firstName'))
+                                fromModel.set('firstName', fbUser.first_name);
+
+                            if (!fromModel.get('lastName'))
+                                fromModel.set('lastName', fbUser.last_name);
+
+                            if (!fromModel.get('gender'))
+                                fromModel.set('gender', fbUser.gender);
+
+                            if (!fromModel.get('birthday'))
+                                if (fbUser.birthday)
+                                    fromModel.set('birthday', new Date(self._getISODateString(fbUser.birthday)));
+
+                            if (!fromModel.get('fhometown'))
+                                fromModel.set('fhometown', fbUser.hometown.name);
+
+                            if (!fromModel.get('flocation'))
+                                fromModel.set('flocation', fbUser.location.name);
+
+                            if (!fromModel.get('feducation'))
+                                fromModel.set('feducation', fbUser.education);
                             //fromModel.save();
                         });
                     });

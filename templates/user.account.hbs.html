@@ -1,29 +1,31 @@
 ﻿<div class="overlay"></div>
 <div class="wenmodal">
     <div class="row row-xs-height">
-        <div class="col-xs-8">
-            <label>
-                User Id:
-                {{view Ember.TextField class="edit_box" size="50" value=id}}
-            </label>
-        </div>
-        <div class="col-xs-4">
-            <button class="btn btn-primary btn-sm" {{action "importFromFacebook" }}>
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-sm" {{action "importFromFacebook" }} {{bind-attr disabled=disabledImportFacebook}}>
                 Import my profile from facebook
             </button>
+        </div>
+    </div>    
+    <div class="row row-xs-height">
+        <div class="col-xs-12">
+            <label>
+                User Id:
+                {{input class="edit_box" size="50" value=id}}
+            </label>
         </div>
     </div>
     <div class="row row-xs-height">
         <div class="col-xs-12">
             <label>
                 Facebook Id:
-                {{view Ember.TextField class="edit_box" value=facebookId}}
+                {{input class="edit_box" value=facebookId}}
             </label>
         </div>
         <div class="col-xs-12">
             <label>
                 Email:
-                {{view Ember.TextField class="edit_box" value=email}}
+                {{input class="edit_box" value=email}}
             </label>
         </div>
     </div>
@@ -31,7 +33,7 @@
         <div class="col-xs-12">
             <label>
                 Password:
-                {{view Ember.TextField class="edit_box" value=password}}
+                {{input class="edit_box" value=password}}
             </label>
         </div>        
     </div>

@@ -1,22 +1,22 @@
 ﻿<h2>My Family</h2>
 
 {{#if model}}
-<div class="row row-xs-height">
-    <div class="col-lg-12">
-        {{family-grid model=model editfamily="openEditFamilyModal" deletefamily="deleteFamily" addmember="openAddMemberModal" editmember="openEditMemberModal" deletemember="deleteMember" cancel="cancelUserCreation"}}
+    <div class="row row-xs-height">
+        <div class="col-lg-12">
+            {{family-grid model=model editfamily="openEditFamilyModal" deletefamily="deleteFamily" addmember="openAddMemberModal" editmember="openEditMemberModal" deletemember="deleteMember" cancel="cancelUserCreation"}}
+        </div>
     </div>
-</div>
 {{else}}
-<div class="row row-xs-height">
-    <div class="col-lg-12">
-        It appears that you don't have a family profile yet.
+    <div class="row row-xs-height">
+        <div class="col-xs-12">
+            It appears that you don't have a family profile yet.
+        </div>
     </div>
-</div>
-<div class="row row-xs-height">
-    <div class="col-lg-12">
-        <button class='btn btn-primary' {{action 'openAddFamilyModal' 'connect.addfamily' }}>Add New Family</button>
+    <div class="row row-xs-height">
+        <div class="col-xs-12">
+            <button class='btn btn-primary' {{action 'openAddFamilyModal' 'connect.addfamily' }}>Add New Family</button>
+        </div>
     </div>
-</div>
 {{/if}}
 
 

@@ -1,12 +1,12 @@
-﻿{{#with model}}
+﻿{{#with model as family}}
 <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">{{id}} | {{familyName}} | {{cityState}} | {{description}} | {{zipcode}}</div>
+    <div class="panel-heading">{{family.id}} | {{family.familyName}} | {{family.cityState}} | {{family.description}} | {{family.zipcode}}</div>
     <div class="panel-body">
         <p>
-            <a href="#" {{action "editfamily" "connect.editfamily" id }}>Edit</a>&nbsp;|&nbsp;
-            <a href="#" {{action "addmember" "connect.editmember" id }}>Add New Member</a>&nbsp;|&nbsp;
-            <a href="#" {{action "deletefamily" id }}>Delete Family</a>
+            <a href="#" {{action "editfamily" "connect.editfamily" family.id }}>Edit</a>&nbsp;|&nbsp;
+            <a href="#" {{action "addmember" "connect.editmember" family.id }}>Add New Member</a>&nbsp;|&nbsp;
+            <a href="#" {{action "deletefamily" family.id }}>Delete Family</a>
         </p>
     </div>
 
@@ -23,24 +23,24 @@
         <th>Action</th>
         </thead>
         <tbody>
-            {{#each members }}
+            {{#each member in family.members }}
             <tr>
-                <td>{{id}}</td>
+                <td>{{member.id}}</td>
                 <td>
-                    {{#if avatarUrl }}
-                        <img {{bind-attr src=avatarUrl}} alt="avatar" />
+                    {{#if member.avatarUrl }}
+                        <img {{bind-attr src=member.avatarUrl}} alt="avatar" />
                     {{else}}
-                        {{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}
+                        {{view "previewImage" width="200" height="200" srcBinding=member.imageData}}
                     {{/if}}
                 </td>
-                <td>{{firstName}}</td>
-                <td>{{lastName}}</td>
-                <td>{{prettyDate birthday 'll'}}</td>
-                <td>{{languages}}</td>
-                <td>{{type}}</td>
+                <td>{{member.firstName}}</td>
+                <td>{{member.lastName}}</td>
+                <td>{{prettyDate member.birthday 'll'}}</td>
+                <td>{{member.languages}}</td>
+                <td>{{member.type}}</td>
                 <td>
-                    <a href="#" {{action "editmember" "connect.editmember" id }}>Edit</a>&nbsp;|&nbsp;
-                    <a href="#" {{action "deletemember" id }}>Delete</a>
+                    <a href="#" {{action "editmember" "connect.editmember" member.id }}>Edit</a>&nbsp;|&nbsp;
+                    <a href="#" {{action "deletemember" member.id }}>Delete</a>
                 </td>
             </tr>
             {{/each}}

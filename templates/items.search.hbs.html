@@ -4,11 +4,11 @@
     <div class="col-lg-4">
         <label>
             Search for:
-            {{view Ember.TextField class="form-control" placeholder="e.g Toys" value=queryText}}
+            {{input class="form-control" placeholder="e.g Toys" value=queryText}}
         </label>
     </div>
     <div class="col-lg-4">
-        Within the distance of {{view Ember.Select class="btn btn-default dropdown-toggle" valueBinding="distance" content=distances placeholder="Distance"}}
+        Within the distance of {{view "select" class="btn btn-default dropdown-toggle" valueBinding="distance" content=distances placeholder="Distance"}}
     </div>
 </div>
 
