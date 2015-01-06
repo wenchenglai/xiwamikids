@@ -27,6 +27,12 @@
                 // deal with the failure here
                 debugger;
             });
+        },
+        preview: function (params) {
+            var self = this,
+                fromModel = this.get('model');
+
+
         }
     }
 });

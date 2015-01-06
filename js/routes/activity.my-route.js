@@ -1,6 +1,6 @@
 ﻿App.ActivityMyRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
-        var user = this.get('session.store').restore();
+        var user = this.get('session.user');
         return this.store.find('activity', { status: 'Upcoming', creator: user.id });
     },
 

@@ -51,5 +51,5 @@
             return this.get('firstName');
         else
             return '';
-    }
+    }.property('firstName', 'lastName', 'nickName')
 });

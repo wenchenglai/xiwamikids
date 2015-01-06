@@ -17,6 +17,7 @@
     seller: DS.belongsTo('member'),
     buyer: DS.belongsTo('member'),
     createdDate: DS.attr('date'),
+    viewCount: DS.attr('number'),
 
     ageRange: function () {
         return this.get('fromAge') + ' to ' + this.get('toAge');

@@ -32,13 +32,10 @@
             {{#link-to 'items' class="btn btn-default btn-lg navbar-btn"}}Items{{/link-to}}
 
 
-            {{#if session.isAuthenticated}}
-                {{# if session.facebookImage }}
-                    <img class="navbar-right" {{bind-attr src=session.facebookImage}} alt="avatar" />
-                {{/if}}           
+            {{#if session.isAuthenticated}}        
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account&nbsp;&nbsp;<img {{bind-attr src=session.user.largePicture}} height="42" width="42" alt="avatar" /><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#" {{ action 'openUserModal' 'user.account' }}>My Account</a></li>
                             <li><a href="#" {{ action 'openUserModal' 'user.profile' }}>My Profile</a></li>
@@ -85,13 +82,13 @@
     </script>
 
     <script type="text/x-handlebars" id="index">
-        <h2>Welcome to XiwamiKids Network</h2>
+        <h2>Welcome to Parents Social Network</h2>
         <div>
             {{#if session.isAuthenticated}}
-                {{#if session.id }}
-                    You logged in using custom account.  Your id is {{ session.id }}.  Your email is {{ session.email }}
+                {{#if session.facebookId }}
+                    You logged in using facebook.  Your facebook id is {{ session.facebookId }}.  Your are {{ session.user.displayName }}
                 {{else}}
-                    You logged in using facebook.  Your facebook id is {{ session.facebookId }}.  Your first name is {{ session.member.firstName }}
+                    You logged in using custom account.  Your id is {{ session.id }}.  Your email is {{ session.email }}
                 {{/if}}
             {{else}}
                 Currently you are not logged in.
@@ -182,6 +179,7 @@
     <script src="js/views/activity.map-view.js"></script>
     <script src="js/views/activity.my-view.js"></script>
     <script src="js/views/question.my-view.js"></script>
+    <script src="js/views/tip.my-view.js"></script>
 
     <script src="js/models/ds-init.js"></script>
     <script src="js/models/family-model.js"></script>
@@ -193,6 +191,7 @@
     <script src="js/models/answer-model.js"></script>
     <script src="js/models/tip-model.js"></script>
     <script src="js/models/like-model.js"></script>
+    <script src="js/models/discussion-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/index-route.js"></script>
@@ -210,7 +209,7 @@
     <script src="js/routes/question.browse-route.js"></script>
     <script src="js/routes/tip.my-route.js"></script>
     <script src="js/routes/tip.browse-route.js"></script>
-    <!--<script src="js/routes/tip.add-route.js"></script>-->
+    <script src="js/routes/tip.detail-route.js"></script>
 
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/index-controller.js"></script>
@@ -231,6 +230,7 @@
     <script src="js/controllers/question.my-controller.js"></script>
     <script src="js/controllers/question.ask-controller.js"></script>
     <script src="js/controllers/question.edit-controller.js"></script>
+    <script src="js/controllers/tip.detail-controller.js"></script>
     <script src="js/controllers/tip.browse-controller.js"></script>
     <script src="js/controllers/tip.my-controller.js"></script>
     <script src="js/controllers/tip.add-controller.js"></script>

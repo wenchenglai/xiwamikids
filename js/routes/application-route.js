@@ -44,7 +44,7 @@
                     });
                 } else {
                     self.store.find('member', facebookId).then(function (member) {
-                        self.controllerFor(modalName).set('model', member.id);
+                        self.controllerFor(modalName).set('model', member);
                         return self.render(modalName, {
                             into: 'application',
                             outlet: 'modal'

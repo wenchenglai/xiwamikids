@@ -4,5 +4,6 @@
     createdDate: DS.attr('date'),
     body: DS.attr('string'),
     like: DS.attr('number'),
+    viewCount: DS.attr('number'),
     isBest: DS.attr('boolean')
 });

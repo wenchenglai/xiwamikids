@@ -4,10 +4,15 @@
     description: DS.attr('string'),
     fromTime: DS.attr('date'),
     toTime: DS.attr('date'),
-    location: DS.attr('string'),
+    address: DS.attr('string'),
+    city: DS.attr('string'),
+    state: DS.attr('string'),
+    zipCode: DS.attr('string'),
     url: DS.attr('string'),
-    imageUrl: DS.attr('string'),
     imageData: DS.attr('string'),
+    imageUrl: DS.attr('string'),
+    type: DS.attr('string'),
     like: DS.attr('number'),
-    type: DS.attr('string')
+    viewCount: DS.attr('number'),
+    location: DS.attr('array')
 });

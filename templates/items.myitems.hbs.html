@@ -29,18 +29,18 @@
             <th>Age Range</th>
             </thead>
             <tbody>
-                {{#each}}
+                {{#each item in model}}
                 <tr>
-                    <td>{{id}}</td>
-                    <td>{{view App.PreviewImageView width="200" height="200" srcBinding="imageData"}}</td>
-                    <td>{{name}}</td>
-                    <td>{{description}}</td>
-                    <td>{{price}}</td>
-                    <td>{{createdDate}}</td>
-                    <td>{{ageRange}}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{view "previewImage" width="200" height="200" srcBinding="item.imageData"}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.createdDate}}</td>
+                    <td>{{item.ageRange}}</td>
                     <td>
-                        <a href="#" {{action "openEditItemModal" "items.additem" id }}>Edit</a>&nbsp;|&nbsp;
-                        <a href="#" {{action "openDeleteDialog" id target="view" bubbles=false }}>Delete</a>
+                        <a href="#" {{action "openEditItemModal" "items.additem" item.id }}>Edit</a>&nbsp;|&nbsp;
+                        <a href="#" {{action "openDeleteDialog" item.id target="view" bubbles=false }}>Delete</a>
                     </td>
                 </tr>
                 {{/each}}

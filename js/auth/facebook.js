@@ -63,8 +63,6 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                         isDeleted: false
                     });
 
-                    //resolve({ user: newMember });
-
                     newMember.save().then(function (member) {
                         resolve(member);
                     }, function (response, test2, test3) {
@@ -79,10 +77,21 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
         });
     },
     restore: function (properties) {
+        var self = this;
+
         return new Ember.RSVP.Promise(function (resolve, reject) {
             if (!Ember.isEmpty(properties.accessToken)) {
                 // this will be called when user has logged in and cookie is still valid
-                resolve(properties);
+                // somehow simple-auth would turn the user model object into a regular Javasript object.  So I need to get the user object from store again
+                self.get('container').lookup('store:main').find('member', properties.id).then(function (member) {
+                    properties.user = member;
+                    resolve(properties);
+                }, function(error) {
+                    reject();
+                    this.controllerFor('error').set('error', error);
+                    this.transitionTo('error');
+                });
+                
             } else {
                 reject();
             }
@@ -101,19 +110,25 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                         store.find('member', fbResponse.authResponse.userID).then(function (member) {
                             resolve({
                                 user: member,
+                                id: member.id,
                                 accessToken: fbResponse.authResponse.accessToken,
                                 facebookId: fbResponse.authResponse.userID
                             });
                         }, function (error) {
-                            self._setupUser(store).then(function (member) {
-                                resolve({
-                                    user: member,
-                                    accessToken: fbResponse.authResponse.accessToken,
-                                    facebookId: fbResponse.authResponse.userID                                    
+                            if (error.message) {
+                                self._setupUser(store).then(function(member) {
+                                    resolve({
+                                        user: member,
+                                        id: member.id,
+                                        accessToken: fbResponse.authResponse.accessToken,
+                                        facebookId: fbResponse.authResponse.userID
+                                    });
+                                }, function(errorMessage) {
+                                    reject(errorMessage);
                                 });
-                            }, function(errorMessage) {
-                                reject(errorMessage);
-                            });
+                            } else {
+                                reject("Error in find a member");
+                            }
                         });
                     });
                 } else if (fbResponse.status === 'not_authorized') {
@@ -129,6 +144,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                                 store.find('member', fbResponse.authResponse.userID).then(function (member) {
                                     resolve({
                                         user: member,
+                                        id: member.id,
                                         accessToken: fbResponse.authResponse.accessToken,
                                         facebookId: fbResponse.authResponse.userID
                                     });
@@ -136,6 +152,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                                     self._setupUser(store).then(function (member) {
                                         resolve({
                                             user: member,
+                                            id: member.id,
                                             accessToken: fbResponse.authResponse.accessToken,
                                             facebookId: fbResponse.authResponse.userID
                                         });

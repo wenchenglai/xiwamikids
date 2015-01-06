@@ -10,34 +10,34 @@ Ember.Application.initializer({
     before: 'simple-auth',
     initialize: function (container, application) {
         // customize the session so that it allows access to the account object
-        SimpleAuth.Session.reopen({
-            userAccount: function () {
-                var session = container.lookup('simple-auth-session:main');
-                var facebookId = session.get("facebookId");
-                //var facebookId = FB.getAuthResponse().userID;
-                var query = {
-                    facebookId: facebookId
-                };
-                if (!Ember.isEmpty(facebookId)) {
-                    return container.lookup('store:main').find('member', facebookId);
-                }
-            }.property('facebookId'),
+        //SimpleAuth.Session.reopen({
+        //    userAccount: function () {
+        //        var session = container.lookup('simple-auth-session:main');
+        //        var facebookId = session.get("facebookId");
+        //        //var facebookId = FB.getAuthResponse().userID;
+        //        var query = {
+        //            facebookId: facebookId
+        //        };
+        //        if (!Ember.isEmpty(facebookId)) {
+        //            return container.lookup('store:main').find('member', facebookId);
+        //        }
+        //    }.property('facebookId'),
 
-            setCurrentUser: function () {
-                var self = this,
-                    session = container.lookup('simple-auth-session:main'),
-                    facebookId = session.get("facebookId");
+        //    setCurrentUser: function () {
+        //        var self = this,
+        //            session = container.lookup('simple-auth-session:main'),
+        //            facebookId = session.get("facebookId");
 
-                var query = {
-                    facebookId: facebookId
-                };
-                if (!Ember.isEmpty(facebookId)) {
-                    return container.lookup('store:main').find('member', facebookId).then(function (user) {
-                        self.set('currentUser', user);
-                    });
-                }
-            }.observes('facebookId')
-        });
+        //        var query = {
+        //            facebookId: facebookId
+        //        };
+        //        if (!Ember.isEmpty(facebookId)) {
+        //            return container.lookup('store:main').find('member', facebookId).then(function (user) {
+        //                self.set('currentUser', user);
+        //            });
+        //        }
+        //    }.observes('facebookId')
+        //});
 
         //var session = container.lookup('simple-auth-session:main');
         //var applicationRoute = container.lookup('route:application');
@@ -127,6 +127,7 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/tip.my.hbs.html', 'tip/my');
         this._loadTemplate('/templates/tip.browse.hbs.html', 'tip/browse');
         this._loadTemplate('/templates/tip.add.hbs.html', 'tip/add');
+        this._loadTemplate('/templates/tip.detail.hbs.html', 'tip/detail');
     }
 });
 
@@ -179,6 +180,7 @@ App.Router.map(function() {
         this.route('browse');
         this.route('my');
         this.route('add');
+        this.route('detail', { path: '/detail/:id' });
     });
 });
 

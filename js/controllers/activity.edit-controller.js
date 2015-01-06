@@ -11,6 +11,10 @@
 
     types: ["Education", "Fun", "Literary & Books", "Sports"],
 
+    disabled: function () {
+        return Ember.isEmpty(this.get('title')) || Ember.isEmpty(this.get('fromTime')) || Ember.isEmpty(this.get('toTime'));
+    }.property('title', 'fromTime', 'toTime'),
+
     actions: {
         closeModal: function () {
             var record = this.get('model');
@@ -30,6 +34,8 @@
 
             fromModel.save().then(function (record) {
                 self.send('closeAddEditModal', true);
+            }, function (error) {
+                throw new Error(error.errorThrown.message + "; Stack: " + error.errorThrown.stack);
             });
         },
     }

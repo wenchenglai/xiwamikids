@@ -6,5 +6,6 @@
     isSolved: DS.attr('boolean'),
     status: DS.attr('string'),
     like: DS.attr('number'),
+    viewCount: DS.attr('number'),
     answers: DS.hasMany('answer', { embedded: 'always' })
 });
