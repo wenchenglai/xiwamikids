@@ -28,7 +28,7 @@
 
 
             newObj.save().then(function (data) {
-                
+                self.send('refresh');
 
             }, function (error) {
                 // deal with the failure here

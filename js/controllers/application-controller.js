@@ -10,7 +10,7 @@
 
         } else if (currentResource === 'tip') {
             this.set('content', [
-                { displayName: 'Index', linkName: 'index' },
+                { displayName: 'Index', linkName: 'tip.index' },
                 { displayName: 'Browse', linkName: 'tip.browse', subMenuitems: [{ displayName: 'Deals', linkName: 'tip.browse' }, { displayName: 'Education', linkName: 'tip.browse' }, { displayName: 'Health', linkName: 'tip.browse' }] },
                 { displayName: 'My Tips', linkName: 'tip.my' }
             ]);

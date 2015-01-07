@@ -161,3 +161,29 @@ label { clear: both }
 	width: 100px;
 }
 /* End of full calendar styles*/
+
+.dialog-mini {
+    border: 1px solid #000000;
+    width: 45px;
+    top: -37px;
+    height: 28px;
+    /* left: 593px; */
+    position: relative;
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    background-color: #0B0B3B;
+    float: right;  
+}
+
+.dialog-mini:before {
+    border-color: #0B0B3B transparent transparent #0B0B3B;
+    border-image: none;
+    border-style: solid;
+    border-width: 5px;
+    content: " ";
+    height: 0px;
+    left: 10px;
+    position: absolute;
+    top: 26px;
+    width: 0px;    
+}

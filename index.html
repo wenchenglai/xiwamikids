@@ -57,7 +57,7 @@
                     <ul class="nav nav-sidebar">
                         {{#each menuitem in content}}
                         <li>
-                            {{#link-to menuitem.linkName activeClass="selected"}}{{menuitem.displayName}}{{/link-to}}
+                            {{#link-to menuitem.linkName class="btn btn-default navbar-btn"}}{{menuitem.displayName}}{{/link-to}}
                             {{#if menuitem.subMenuItems}}
                                 <ul>
                                     {{#each sub in menuitem.subMenuitems}}

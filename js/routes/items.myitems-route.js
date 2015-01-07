@@ -1,7 +1,7 @@
 ﻿App.ItemsMyitemsRoute = Ember.Route.extend(SimpleAuth.AuthenticatedRouteMixin, {
     model: function () {
         var self = this,
-            user = self.get('session.currentUser');
+            user = self.get('session.user');
 
         return self.store.find('item', { status: 'Open', seller: user.id });
     },
@@ -9,7 +9,7 @@
     actions: {
         openAddItemModal: function (modalName) {
             var self = this,
-                user = self.get('session.currentUser');
+                user = self.get('session.user');
 
             self.store.find('member', user.id).then(function (member) {
                 var empty = self.store.createRecord('item', { seller: member, status: 'Open' });

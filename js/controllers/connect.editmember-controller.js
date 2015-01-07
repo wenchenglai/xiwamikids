@@ -56,10 +56,10 @@
             return this.send('closeFamilyMemberModal');
         },
         edit: function () {
-            var $this = this,
-                fromModel = this.get('model'),
+            var self = this,
+                fromModel = self.get('model'),
                 originalBirthday = fromModel.get('birthday'),
-                birthday = new Date(this.get('birthYear'), this.get('birthMonth') - 1, this.get('birthDayNumber', 0, 0, 0, 0));
+                birthday = new Date(self.get('birthYear'), self.get('birthMonth') - 1, self.get('birthDayNumber', 0, 0, 0, 0));
             
             if (originalBirthday) {
                 // it's difficult to compare the original date attribute with the custom date object from UI (UI uses three different textboxes instead of calendar textbox)
@@ -71,13 +71,12 @@
             }
 
             var onSuccess = function (ret) {
-                $this.send('closeFamilyMemberModal');
+                self.send('closeFamilyMemberModal');
             };
 
-            var onFail = function (ret) {
-                //if (ret.status === 200)
-                //    $this.send('closeFamilyMemberModal');
-                // deal with the failure here
+            var onFail = function (error) {
+                self.set('errorMessage', error.responseText);
+                self.set('showError', true);
             };
 
             fromModel.save().then(onSuccess, onFail);

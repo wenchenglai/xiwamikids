@@ -65,9 +65,12 @@
     <div class="row row-xs-height">
         <div class="col-xs-12">
             <label>
-                Post your review:
+                Post your comments: <div class="dialog-mini"><span style="text-align: center; width:45px;">{{controller.discussions.length}}</span></div>
                 {{textarea class="form-control" placeholder="review" rows="5" cols="60" value=discussion}}
             </label>
+            
+        </div>
+        <div class="col-xs-12 col-xs-offset-4">
             <button class="btn btn-primary btn-sm" {{action "postReview" tip.id }}>Post</button>
         </div>
     </div>
