@@ -51,7 +51,6 @@
 
         deleteActivity: function (id) {
             this.store.find('activity', id).then(function (record) {
-                //record.set('isDeleted', true);
                 record.deleteRecord();
                 record.save();
             });

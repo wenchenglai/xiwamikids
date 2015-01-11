@@ -46,6 +46,14 @@
                 { displayName: 'My Events', linkName: 'activity.my' }
             ]);
 
+        } else if (currentResource === 'user') {
+            this.set('content', [
+                { displayName: 'Inbox', linkName: 'inbox.browse' },
+                { displayName: 'New Message', linkName: 'inbox.new' },
+                { displayName: 'Sent', linkName: 'inbox.sent' },
+                { displayName: 'Trash', linkName: 'inbox.trash' }
+            ]);
+
         } else {
             this.set('content', []);
         }

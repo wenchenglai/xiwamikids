@@ -5,6 +5,7 @@
     description: DS.attr('string'),
     location: DS.attr('raw'),
     members: DS.hasMany('member', { embedded: 'always' }),
+    isDestroyed: DS.attr('boolean'),
 
     hasMember: function() {
         return this.get('members').get('length') > 0;

@@ -7,5 +7,5 @@
     star: DS.attr('number'),
     like: DS.attr('number'),
     viewCount: DS.attr('number'),
-    isDeleted: DS.attr('boolean')
+    isDestroyed: DS.attr('boolean')
 });

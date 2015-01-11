@@ -23,7 +23,7 @@
                     entityType: 'tip',
                     createdDate: new Date(),
                     description: self.get('discussion'),
-                    isDeleted: false
+                    isDestroyed: false
                 });
 
 

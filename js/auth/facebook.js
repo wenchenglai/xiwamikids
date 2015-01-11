@@ -60,7 +60,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
                         flocation: fbUser.location.name,
                         ftimezone: fbUser.timezone,
                         isUser: true,
-                        isDeleted: false
+                        isDestroyed: false
                     });
 
                     newMember.save().then(function (member) {

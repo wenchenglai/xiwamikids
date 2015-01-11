@@ -1,0 +1,40 @@
+﻿<div class="row row-xs-height">
+    <div class="col-lg-12">
+        <label>
+            To:
+            {{input class="edit_box" value=to placeholder="To"}}
+        </label>
+    </div>
+</div>
+<div class="row row-xs-height">
+    <div class="col-lg-12">
+        <label>
+            Subject
+            {{input class="edit_box" value=subject placeholder="Enter a subject"}}
+        </label>
+    </div>
+</div>
+<div class="row row-xs-height">
+    <div class="col-lg-12">
+        <label>
+            Body:
+            {{textarea class="edit_box" rows="5" cols="60" value=body placeholder="Type your message"}}
+        </label>
+    </div>
+</div>
+
+<div class="row row-xs-height">
+    <div class="col-lg-12">
+        <button class="btn btn-primary btn-sm" type="button" class="btn btn-default btn-lg" {{action "save" }} {{bind-attr disabled=disabled}}>Send Message</button>
+        {{#link-to 'inbox.browse' class="btn btn-link navbar-btn"}}Cancel{{/link-to}}
+    </div>
+    <div class="col-lg-12">
+        {{#if showError }}
+        <div class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{ errorMessage }}
+        </div>
+        {{/if}}
+    </div>
+</div>

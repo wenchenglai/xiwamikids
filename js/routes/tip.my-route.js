@@ -10,9 +10,10 @@
     actions: {
         loadData: function (status) {
             var self = this,
-                user = self.get('session.user');
+                session = self.get('session'),
+                user = session.get('user');
 
-            self.store.find('tip', { status: status, creator: user.id }).then(function (records) {
+            self.store.find('tip', { status: status, creator: user.id, longitude: session.get('longitude'), latitude: session.get('latitude') }).then(function (records) {
                 self.get('controller').set('content', records);
             });
         },
@@ -55,8 +56,9 @@
 
         delete: function (id) {
             this.store.find('tip', id).then(function (record) {
-                record.deleteRecord();
-                record.save();
+                record.destroyRecord();
+                //record.deleteRecord();
+                //record.save();
             });
         }
     }

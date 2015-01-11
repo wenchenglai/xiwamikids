@@ -13,11 +13,11 @@
     status: DS.attr('string'),
     imageUrl: DS.attr('string'),
     imageData: DS.attr('string'),
-    isDeleted: DS.attr('boolean'),
     seller: DS.belongsTo('member'),
     buyer: DS.belongsTo('member'),
     createdDate: DS.attr('date'),
     viewCount: DS.attr('number'),
+    isDestroyed: DS.attr('boolean'),
 
     ageRange: function () {
         return this.get('fromAge') + ' to ' + this.get('toAge');

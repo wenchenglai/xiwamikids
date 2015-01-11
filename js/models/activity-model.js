@@ -14,5 +14,6 @@
     type: DS.attr('string'),
     like: DS.attr('number'),
     viewCount: DS.attr('number'),
-    location: DS.attr('array')
+    location: DS.attr('array'),
+    isDestroyed: DS.attr('boolean')
 });

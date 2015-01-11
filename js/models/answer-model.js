@@ -5,5 +5,6 @@
     body: DS.attr('string'),
     like: DS.attr('number'),
     viewCount: DS.attr('number'),
-    isBest: DS.attr('boolean')
+    isBest: DS.attr('boolean'),
+    isDestroyed: DS.attr('boolean')
 });

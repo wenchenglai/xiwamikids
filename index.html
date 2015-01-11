@@ -8,11 +8,10 @@
     <title>Xiwami - App</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/app.css">
-    
+    <link rel="stylesheet" href="css/normalize.css">    
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css" media="screen">
+    <link rel="stylesheet" href="css/app.css">
 
     <link rel="stylesheet" href="css/jqueryui/smoothness/jquery-ui-1.10.4.custom.css">
     <link rel="stylesheet" href="css/fullcalendar.css">
@@ -37,9 +36,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account&nbsp;&nbsp;<img {{bind-attr src=session.user.largePicture}} height="42" width="42" alt="avatar" /><span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#" {{ action 'openUserModal' 'user.account' }}>My Account</a></li>
-                            <li><a href="#" {{ action 'openUserModal' 'user.profile' }}>My Profile</a></li>
-                            <li><a href="#" {{ action 'openUserModal' 'user.rewards' }}>My Rewards</a></li>
+                            <li><a href="#" {{ action 'openUserModal' 'user.account' }}>Account</a></li>
+                            <li><a href="#" {{ action 'openUserModal' 'user.profile' }}>Profile</a></li>
+                            <li>{{#link-to 'inbox'}}Inbox{{/link-to}}</li>
+                            <li><a href="#" {{ action 'openUserModal' 'user.rewards' }}>Rewards</a></li>
                             <li class="divider"></li>
                             <li><a style="cursor:pointer" {{ action 'invalidateSession' }}>Logout</a></li>
                         </ul>
@@ -59,11 +59,11 @@
                         <li>
                             {{#link-to menuitem.linkName class="btn btn-default navbar-btn"}}{{menuitem.displayName}}{{/link-to}}
                             {{#if menuitem.subMenuItems}}
-                                <ul>
-                                    {{#each sub in menuitem.subMenuitems}}
-                                    <li>{{#link-to sub.linkName activeClass="selected"}}{{sub.displayName}}{{/link-to}}</li>
-                                    {{/each}}
-                                </ul>
+                            <ul>
+                                {{#each sub in menuitem.subMenuitems}}
+                                <li>{{#link-to sub.linkName activeClass="selected"}}{{sub.displayName}}{{/link-to}}</li>
+                                {{/each}}
+                            </ul>
                             {{/if}}
                         </li>
                         {{/each}}
@@ -192,6 +192,7 @@
     <script src="js/models/tip-model.js"></script>
     <script src="js/models/like-model.js"></script>
     <script src="js/models/discussion-model.js"></script>
+    <script src="js/models/message-model.js"></script>
 
     <script src="js/routes/application-route.js"></script>
     <script src="js/routes/index-route.js"></script>
@@ -210,6 +211,10 @@
     <script src="js/routes/tip.my-route.js"></script>
     <script src="js/routes/tip.browse-route.js"></script>
     <script src="js/routes/tip.detail-route.js"></script>
+    <script src="js/routes/user.inbox.browse-route.js"></script>
+    <script src="js/routes/user.inbox.new-route.js"></script>
+    <script src="js/routes/user.inbox.sent-route.js"></script>
+    <script src="js/routes/user.inbox.trash-route.js"></script>
 
     <script src="js/controllers/application-controller.js"></script>
     <script src="js/controllers/index-controller.js"></script>
@@ -237,6 +242,7 @@
     <script src="js/controllers/user.account-controller.js"></script>
     <script src="js/controllers/user.profile-controller.js"></script>
     <script src="js/controllers/user.rewards-controller.js"></script>
+    <script src="js/controllers/user.inbox.new-controller.js"></script>
 
     <!-- to activate the test runner, add the "?test" query string parameter -->
     <script src="tests/runner.js"></script>

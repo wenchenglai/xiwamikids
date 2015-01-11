@@ -22,7 +22,7 @@
     flocation: DS.attr('string'),
     ftimezone: DS.attr('number'),
     zipCode: DS.attr('string'),
-    isDeleted: DS.attr('boolean'),
+    isDestroyed: DS.attr('boolean'),
 
     //male: function () {
     //    return this.get('gender') == 'Male';

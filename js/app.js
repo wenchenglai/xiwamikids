@@ -95,6 +95,11 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/user.account.hbs.html', 'user/account');
         this._loadTemplate('/templates/user.profile.hbs.html', 'user/profile');
         this._loadTemplate('/templates/user.rewards.hbs.html', 'user/rewards');
+        this._loadTemplate('/templates/user.inbox.hbs.html', 'inbox');
+        this._loadTemplate('/templates/user.inbox.browse.hbs.html', 'inbox/browse');
+        this._loadTemplate('/templates/user.inbox.new.hbs.html', 'inbox/new');
+        this._loadTemplate('/templates/user.inbox.sent.hbs.html', 'inbox/sent');
+        this._loadTemplate('/templates/user.inbox.trash.hbs.html', 'inbox/trash');
 
         // Account
         this._loadTemplate('/templates/login.hbs.html', 'login');
@@ -146,6 +151,12 @@ App.Router.map(function() {
         this.route('account');
         this.route('profile');
         this.route('rewards');
+        this.resource('inbox', function () {
+            this.route('browse');
+            this.route('new');
+            this.route('sent');
+            this.route('trash');
+        });
     });
 
     this.resource('connect', function () {

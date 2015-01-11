@@ -7,5 +7,6 @@
     status: DS.attr('string'),
     like: DS.attr('number'),
     viewCount: DS.attr('number'),
+    isDestroyed: DS.attr('boolean'),
     answers: DS.hasMany('answer', { embedded: 'always' })
 });
