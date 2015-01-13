@@ -13,16 +13,18 @@
             this.transitionTo('tip.browse');
         },
 
-        postReview: function () {
+        addNewFeedback: function () {
             var self = this,
                 user = self.get('session.user'),
                 fromModel = self.get('model'),
-                newObj = self.store.createRecord('discussion', {
+                newObj = self.store.createRecord('feedback', {
                     creator: user,
-                    entity: fromModel.get('id'),
-                    entityType: 'tip',
+                    parent: fromModel.get('id'),
+                    parentType: 'tip',
                     createdDate: new Date(),
-                    description: self.get('discussion'),
+                    description: self.get('feedbackText'),
+                    viewCount: 0,
+                    likeCount: 0,
                     isDestroyed: false
                 });
 
@@ -34,6 +36,45 @@
                 // deal with the failure here
                 debugger;
             });
+        },
+
+        addNewComment: function (fbId, commentText) {
+
+            var self = this,
+                user = self.get('session.user');
+
+            self.store.find('feedback', fbId).then(function(feedback) {
+                var comments = feedback.get('comments');
+
+                var newObj = self.store.createRecord('feedback', {
+                    creator: user,
+                    parent: fbId,
+                    createdDate: new Date(),
+                    description: commentText,
+                    viewCount: 0,
+                    likeCount: 0,
+                    isDestroyed: false
+                });
+
+                comments.addObject(newObj);
+
+                feedback.save().then(function (data) {
+                    self.send('refresh');
+
+                }, function (error) {
+                    // deal with the failure here
+                    debugger;
+                });
+            });
+        },
+
+        closeNewComment: function (fbId) {
+            Ember.$('*[data-id=' + fbId + ']').addClass("collapse");
+        },
+
+        openNewCommentUI: function (fbId) {
+            Ember.$('*[data-id=' + fbId + ']').removeClass("collapse");
         }
+
     }
 });

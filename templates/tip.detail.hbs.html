@@ -65,27 +65,51 @@
     <div class="row row-xs-height">
         <div class="col-xs-12">
             <label>
-                Post your comments: <div class="dialog-mini"><span style="text-align: center; width:45px;">{{controller.discussions.length}}</span></div>
-                {{textarea class="form-control" placeholder="review" rows="5" cols="60" value=discussion}}
+                Post your comments: <div class="dialog-mini"><span style="text-align: center; width:45px;">{{controller.feedbacks.length}}</span></div>
+                
             </label>
-            
+            {{textarea class="form-control" placeholder="review" rows="5" cols="60" value=feedbackText}}
         </div>
         <div class="col-xs-12 col-xs-offset-4">
-            <button class="btn btn-primary btn-sm" {{action "postReview" tip.id }}>Post</button>
+            <button class="btn btn-primary btn-sm" {{action "addNewFeedback" tip.id }}>Add Feedback</button>
         </div>
     </div>
-    {{#if controller.discussions}}
-        {{#each dis in controller.discussions}}
-        <div class="row row-xs-height">
-            <div class="col-xs-12">
-                <div>
-                    {{dis.description}}
+    {{#if controller.feedbacks}}
+        {{#each fb in controller.feedbacks}}
+
+            <div class="row row-xs-height">
+                <div class="col-xs-1">
+                    Likes: {{fb.likes}}
                 </div>
-                <div>
-                    By: {{dis.creator.id}} On {{dis.createdDate}}.  Likes: {{dis.likes}} 
+                <div class="col-xs-11">
+                    {{fb.description}}
                 </div>
             </div>
-        </div>
+            <div class="row row-xs-height">
+                <div class="col-xs-3 col-xs-offset-9">
+                    By: {{fb.creator.displayName}} On {{fb.createdDateShortDateString}}.
+                </div>
+            </div>
+            <div class="row row-xs-height">
+                <div class="col-xs-11 col-xs-offset-1">
+                    {{#each comment in fb.comments}}
+                    <div class="row row-xs-height">
+                        <div class="col-xs-12">
+                            {{comment.description}} - {{comment.creator.displayName}} {{comment.createdDateShortDateString}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="row row-xs-height">
+                <div class="col-xs-12">
+                    <div {{bind-attr data-id="fb.id" }} class="collapse" >
+                        {{feedback-comment model=fb addNewComment="addNewComment" closeNewComment="closeNewComment"}}
+                    </div>
+                    
+                    <a href="#" {{ action 'openNewCommentUI' fb.id }}>add a comment</a>
+                </div>
+            </div>            
         {{/each}}
     {{/if}}
 </div>

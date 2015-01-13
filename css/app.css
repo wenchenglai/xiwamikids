@@ -56,6 +56,10 @@ label { clear: both }
   display: none;
 }
 
+.show {
+    display: block;
+}
+
 .alert-modal {
 	padding: 6px;
 	margin-bottom: 0px;
@@ -82,13 +86,11 @@ label { clear: both }
     width: 1280px;
     height: 900px;
     border: none;
-    border-width: 4px;
-    border-style: dotted;
-    -moz-transform: scale(0.2);
+    -moz-transform: scale(0.1);
     -moz-transform-origin: 0 0;
-    -o-transform: scale(0.2);
+    -o-transform: scale(0.1);
     -o-transform-origin: 0 0;
-    -webkit-transform: scale(0.2);
+    -webkit-transform: scale(0.1);
     -webkit-transform-origin: 0 0;
 }
 
@@ -160,13 +162,6 @@ label { clear: both }
 	float: right;
 	width: 900px;
 	}
-
-/* Tried to set height in bootstrap style */
-.container-xs-height {
-	/*display:table;
-	padding-left:0px;
-	padding-right:0px;*/
-}
 
 .row-xs-height {
 	margin-bottom: 15px;

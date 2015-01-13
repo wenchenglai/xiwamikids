@@ -7,11 +7,11 @@
         controller.set('content', model);
 
         var query = {
-            entity: model.get('id'),
-            entityType: 'tip'
+            parent: model.get('id'),
+            parentType: 'tip'
         };
-        this.store.find('discussion', query).then(function(discussions) {
-            controller.set('discussions', discussions);
+        this.store.find('feedback', query).then(function(feedbacks) {
+            controller.set('feedbacks', feedbacks);
         });
     },
 

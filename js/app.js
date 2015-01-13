@@ -90,6 +90,7 @@ App = Ember.Application.create({
         this._loadTemplate('/templates/familylist-component.hbs.html', 'components/family-list');
         this._loadTemplate('/templates/familygrid-component.hbs.html', 'components/family-grid');
         this._loadTemplate('/templates/chosenmultiselect-component.hbs.html', 'components/chosen-multiselect');
+        this._loadTemplate('/templates/feedbackcomment-component.hbs.html', 'components/feedback-comment');
 
         // Authentication
         this._loadTemplate('/templates/user.account.hbs.html', 'user/account');

@@ -1,5 +1,5 @@
 ﻿App.TipAddController = Ember.ObjectController.extend({
-    disabled: function () {
+    disabled: function() {
         return Ember.isEmpty(this.get('title')) || Ember.isEmpty(this.get('description'));
     }.property('title', 'description'),
 
