@@ -76,6 +76,7 @@ App.FacebookAuthenticator = SimpleAuth.Authenticators.Base.extend({
             });
         });
     },
+
     restore: function (properties) {
         var self = this;
 

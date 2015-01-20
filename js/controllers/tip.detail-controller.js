@@ -44,8 +44,6 @@
                 user = self.get('session.user');
 
             self.store.find('feedback', fbId).then(function(feedback) {
-                var comments = feedback.get('comments');
-
                 var newObj = self.store.createRecord('feedback', {
                     creator: user,
                     parent: fbId,
@@ -56,11 +54,10 @@
                     isDestroyed: false
                 });
 
-                comments.addObject(newObj);
-
-                feedback.save().then(function (data) {
+                newObj.save().then(function (data) {
+                    var comments = feedback.get('comments');
+                    comments.addObject(data);
                     self.send('refresh');
-
                 }, function (error) {
                     // deal with the failure here
                     debugger;
